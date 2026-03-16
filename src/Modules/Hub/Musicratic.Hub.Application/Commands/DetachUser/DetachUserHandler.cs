@@ -14,7 +14,7 @@ public sealed class DetachUserHandler(
         if (attachment is null)
             return; // Already detached — idempotent
 
-        attachment.Expire();
+        attachment.Detach();
         attachmentRepository.Update(attachment);
         await unitOfWork.SaveChanges(cancellationToken);
     }

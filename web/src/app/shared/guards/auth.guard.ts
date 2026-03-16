@@ -1,15 +1,14 @@
 import { CanActivateFn, Router } from "@angular/router";
 import { inject } from "@angular/core";
-
-const TOKEN_KEY = "musicratic_access_token";
+import { AuthService } from "@app/shared/services/auth.service";
 
 export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
-  const token = localStorage.getItem(TOKEN_KEY);
+  const authService = inject(AuthService);
 
-  if (token) {
+  if (authService.isAuthenticated()) {
     return true;
   }
 
-  return router.createUrlTree(["/hub"]);
+  return router.createUrlTree(["/login"]);
 };

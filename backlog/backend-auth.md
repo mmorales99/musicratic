@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 16 |
-| Done | 10 |
-| Remaining | 6 |
+| Done | 13 |
+| Remaining | 3 |
 | Est. premium requests | ~22 |
 | Est. tokens | ~400 K |
 
@@ -29,9 +29,9 @@
 | AUTH-011 | Login endpoint (redirect to Authentik authorize URL) | S | 1 | 20K | 1A | AUTH-010 | backend-module | ✅ Done |
 | AUTH-012 | OIDC callback handler (exchange code → tokens → create/update user) | L | 4 | 70K | 1A | AUTH-010 | backend-module | ✅ Done |
 | AUTH-013 | JWE access token validation middleware | M | 3 | 50K | 1A | AUTH-010 | backend-module | ✅ Done |
-| AUTH-014 | Refresh token endpoint (exchange opaque refresh → new JWE) | M | 2 | 35K | 1A | AUTH-013 | backend-module | 📋 Backlog |
-| AUTH-015 | Logout endpoint (revoke Authentik session + clear tokens) | S | 1 | 20K | 1A | AUTH-013 | backend-module | 📋 Backlog |
-| AUTH-016 | Avatar upload endpoint (stream to Azurite blob, update user) | M | 2 | 40K | 1A | — | backend-module | 📋 Backlog |
+| AUTH-014 | Refresh token endpoint (exchange opaque refresh → new JWE) | M | 2 | 35K | 1A | AUTH-013 | backend-module | ✅ Done |
+| AUTH-015 | Logout endpoint (revoke Authentik session + clear tokens) | S | 1 | 20K | 1A | AUTH-013 | backend-module | ✅ Done |
+| AUTH-016 | Avatar upload endpoint (stream to Azurite blob, update user) | M | 2 | 40K | 1A | — | backend-module | ✅ Done |
 
 ## Phase 1F — Roles & Delegation
 

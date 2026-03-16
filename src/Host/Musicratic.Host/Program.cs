@@ -36,6 +36,8 @@ using Musicratic.Notification.Domain;
 using Musicratic.Notification.Application;
 using Musicratic.Notification.Infrastructure;
 using Musicratic.Notification.Api;
+using Musicratic.Notification.Api.Endpoints;
+using Musicratic.Voting.Api.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -94,14 +96,14 @@ builder.Services
 builder.Services
     .AddVotingDomain()
     .AddVotingApplication()
-    .AddVotingInfrastructure()
+    .AddVotingInfrastructure(builder.Configuration)
     .AddVotingApi();
 
 // Economy module
 builder.Services
     .AddEconomyDomain()
     .AddEconomyApplication()
-    .AddEconomyInfrastructure()
+    .AddEconomyInfrastructure(builder.Configuration)
     .AddEconomyApi();
 
 // Analytics module
@@ -122,7 +124,7 @@ builder.Services
 builder.Services
     .AddNotificationDomain()
     .AddNotificationApplication()
-    .AddNotificationInfrastructure()
+    .AddNotificationInfrastructure(builder.Configuration)
     .AddNotificationApi();
 
 var app = builder.Build();
@@ -132,11 +134,16 @@ app.MapHealthChecks("/health");
 app.UseSwagger();
 app.MapScalarApiReference();
 
+app.UseWebSockets();
 app.UseAuthentication();
 app.UseAuthorization();
 
 // Module endpoints
 app.MapAuthEndpoints();
+app.MapVotingEndpoints();
+app.MapVoteWebSocket();
+app.MapNotificationWebSocket();
+app.MapDeviceEndpoints();
 
 app.Run();
 

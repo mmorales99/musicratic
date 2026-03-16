@@ -9,6 +9,7 @@ using Musicratic.Auth.Infrastructure.Persistence;
 using Musicratic.Auth.Infrastructure.Services;
 using Musicratic.Shared.Application;
 
+
 namespace Musicratic.Auth.Infrastructure;
 
 public static class DependencyInjection
@@ -29,6 +30,12 @@ public static class DependencyInjection
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUnitOfWork, AuthUnitOfWork>();
+
+        services.AddScoped<ITokenService, TokenService>();
+
+        services.Configure<BlobStorageOptions>(
+            configuration.GetSection(BlobStorageOptions.SectionName));
+        services.AddScoped<IBlobStorageService, BlobStorageService>();
 
         services.AddAuthentikAuthentication(configuration);
 

@@ -6,6 +6,7 @@
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
     <PackageReference Include="coverlet.collector" />
   </ItemGroup>
 
@@ -13,6 +14,7 @@
     <ProjectReference Include="..\..\src\Host\Musicratic.Host\Musicratic.Host.csproj">
       <Aliases>HostApp</Aliases>
     </ProjectReference>
+    <ProjectReference Include="..\Musicratic.TestUtilities\Musicratic.TestUtilities.csproj" />
   </ItemGroup>
 
 </Project>

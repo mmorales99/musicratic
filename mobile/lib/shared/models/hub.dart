@@ -13,6 +13,11 @@ class Hub with _$Hub {
     required String status,
     @JsonKey(name: 'hub_code') String? hubCode,
     @JsonKey(name: 'owner_id') required String ownerId,
+    @Default('public') String visibility,
+    @JsonKey(name: 'is_active') @Default(false) bool isActive,
+    @JsonKey(name: 'is_paused') @Default(false) bool isPaused,
+    @JsonKey(name: 'qr_url') String? qrUrl,
+    @JsonKey(name: 'direct_link') String? directLink,
     @JsonKey(name: 'active_users_count') @Default(0) int activeUsersCount,
     @JsonKey(name: 'now_playing') String? nowPlaying,
     @JsonKey(name: 'genre_tags') List<String>? genreTags,
@@ -35,6 +40,9 @@ class HubSettings with _$HubSettings {
     int votingWindowSeconds,
     @JsonKey(name: 'coin_cost_multiplier') @Default(1.0)
     double coinCostMultiplier,
+    @JsonKey(name: 'min_vote_count') @Default(3) int minVoteCount,
+    @JsonKey(name: 'proposal_cooldown_minutes') @Default(5)
+    int proposalCooldownMinutes,
   }) = _HubSettings;
 
   factory HubSettings.fromJson(Map<String, dynamic> json) =>

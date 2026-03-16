@@ -1,3 +1,14 @@
+/**
+ * Re-export hub machines from the hub feature module.
+ * The canonical machines live in features/hub/machines/.
+ */
+export {
+  hubDetailMachine,
+  type HubDetailContext,
+  type HubDetailEvent,
+} from "@app/features/hub/machines/hub-detail.machine";
+
+// Legacy hub discovery machine — kept for backward compatibility
 import { setup, assign } from "xstate";
 import { Hub } from "@app/shared/models/hub.model";
 

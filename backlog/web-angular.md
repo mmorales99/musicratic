@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 0 |
-| Remaining | 25 |
+| Done | 10 |
+| Remaining | 15 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -16,22 +16,22 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-001 | Auth flow (redirect to Authentik, handle callback, store JWE, auto-refresh) | L | 4 | 80K | 1A | AUTH-012 | angular-web | 📋 Backlog |
-| WEB-002 | Auth XState machine (idle → authenticating → authenticated → refreshing → error) | M | 2 | 40K | 1A | WEB-001 | angular-web | 📋 Backlog |
-| WEB-003 | Hub creation form (name, type, providers, settings, validation) | M | 3 | 50K | 1A | HUB-013 | angular-web | 📋 Backlog |
-| WEB-004 | Hub detail screen (info, settings, members, lists, QR code display) | L | 4 | 70K | 1A | HUB-011 | angular-web | 📋 Backlog |
-| WEB-005 | List management screen (CRUD lists, add/remove/reorder tracks, search tracks) | L | 4 | 70K | 1A | HUB-018 | angular-web | 📋 Backlog |
-| WEB-006 | Hub join flow (enter code or deep link → validate → attach → see queue) | M | 3 | 50K | 1A | HUB-015 | angular-web | 📋 Backlog |
-| WEB-007 | Hub discovery screen (search, filter by name/genre/rating, paginated results) | M | 3 | 50K | 1A | HUB-019 | angular-web | 📋 Backlog |
+| WEB-001 | Auth flow (redirect to Authentik, handle callback, store JWE, auto-refresh) | L | 4 | 80K | 1A | AUTH-012 | angular-web | ✅ Done |
+| WEB-002 | Auth XState machine (idle → authenticating → authenticated → refreshing → error) | M | 2 | 40K | 1A | WEB-001 | angular-web | ✅ Done |
+| WEB-003 | Hub creation form (name, type, providers, settings, validation) | M | 3 | 50K | 1A | HUB-013 | angular-web | ✅ Done |
+| WEB-004 | Hub detail screen (info, settings, members, lists, QR code display) | L | 4 | 70K | 1A | HUB-011 | angular-web | ✅ Done |
+| WEB-005 | List management screen (CRUD lists, add/remove/reorder tracks, search tracks) | L | 4 | 70K | 1A | HUB-018 | angular-web | ✅ Done |
+| WEB-006 | Hub join flow (enter code or deep link → validate → attach → see queue) | M | 3 | 50K | 1A | HUB-015 | angular-web | ✅ Done |
+| WEB-007 | Hub discovery screen (search, filter by name/genre/rating, paginated results) | M | 3 | 50K | 1A | HUB-019 | angular-web | ✅ Done |
 
 ## Phase 1B — Queue & Proposals
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-008 | Live queue screen (WebSocket real-time list of upcoming tracks, current position) | L | 4 | 70K | 1B | PLAY-016 | angular-web | 📋 Backlog |
-| WEB-009 | Now-playing component (track info, album art, progress bar, time remaining) | M | 3 | 50K | 1B | PLAY-009 | angular-web | 📋 Backlog |
+| WEB-008 | Live queue screen (WebSocket real-time list of upcoming tracks, current position) | L | 4 | 70K | 1B | PLAY-016 | angular-web | ✅ Done |
+| WEB-009 | Now-playing component (track info, album art, progress bar, time remaining) | M | 3 | 50K | 1B | PLAY-009 | angular-web | ✅ Done |
 | WEB-010 | Track proposal flow (search multi-provider → choose pay/free → confirm) | L | 4 | 70K | 1B | PLAY-013 | angular-web | 📋 Backlog |
-| WEB-011 | Track search component (query → BFF → results from Spotify + YouTube) | M | 3 | 50K | 1B | PLAY-006 | angular-web | 📋 Backlog |
+| WEB-011 | Track search component (query → BFF → results from Spotify + YouTube) | M | 3 | 50K | 1B | PLAY-006 | angular-web | ✅ Done |
 
 ## Phase 1C — Voting & Skipping
 

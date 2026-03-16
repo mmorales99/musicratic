@@ -16,6 +16,9 @@ internal sealed class OidcDiscoveryDocument
     [JsonPropertyName("end_session_endpoint")]
     public string EndSessionEndpoint { get; init; } = string.Empty;
 
+    [JsonPropertyName("revocation_endpoint")]
+    public string RevocationEndpoint { get; init; } = string.Empty;
+
     [JsonPropertyName("jwks_uri")]
     public string JwksUri { get; init; } = string.Empty;
 

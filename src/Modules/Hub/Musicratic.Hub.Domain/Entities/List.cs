@@ -53,4 +53,45 @@ public sealed class List : AuditableEntity, ITenantScoped
     {
         PlayMode = playMode;
     }
+
+    public void RemoveTrack(Guid trackId)
+    {
+        var track = _tracks.FirstOrDefault(t => t.TrackId == trackId)
+            ?? throw new InvalidOperationException($"Track '{trackId}' not found in list.");
+
+        _tracks.Remove(track);
+
+        var sorted = _tracks.OrderBy(t => t.Position).ToList();
+        for (var i = 0; i < sorted.Count; i++)
+            sorted[i].UpdatePosition(i + 1);
+    }
+
+    public void ReorderTrack(Guid trackId, int newPosition)
+    {
+        var track = _tracks.FirstOrDefault(t => t.TrackId == trackId)
+            ?? throw new InvalidOperationException($"Track '{trackId}' not found in list.");
+
+        if (newPosition < 1 || newPosition > _tracks.Count)
+            throw new ArgumentOutOfRangeException(nameof(newPosition), "Position must be between 1 and the track count.");
+
+        var oldPosition = track.Position;
+        if (oldPosition == newPosition)
+            return;
+
+        foreach (var t in _tracks)
+        {
+            if (t.TrackId == trackId)
+            {
+                t.UpdatePosition(newPosition);
+            }
+            else if (oldPosition < newPosition && t.Position > oldPosition && t.Position <= newPosition)
+            {
+                t.UpdatePosition(t.Position - 1);
+            }
+            else if (oldPosition > newPosition && t.Position >= newPosition && t.Position < oldPosition)
+            {
+                t.UpdatePosition(t.Position + 1);
+            }
+        }
+    }
 }

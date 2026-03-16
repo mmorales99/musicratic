@@ -1,4 +1,5 @@
 using Musicratic.Hub.Domain.Entities;
+using Musicratic.Hub.Domain.Enums;
 using Musicratic.Hub.Domain.Repositories;
 using Musicratic.Shared.Application;
 
@@ -11,11 +12,12 @@ public sealed class AttachUserHandler(
 {
     /// <summary>
     /// Attaches a user to a hub. Detaches from any previous hub first.
-    /// Attachment expires after 1 hour (Phase 1 rule per docs/03-domain-model.md).
+    /// Adds user as Visitor member if not already a member.
+    /// Attachment expires after 1 hour (Phase 1 rule per docs/04-hub-system.md).
     /// </summary>
     public async Task<Guid> Handle(AttachUserCommand request, CancellationToken cancellationToken)
     {
-        var hub = await hubRepository.GetByCode(request.HubCode, cancellationToken)
+        var hub = await hubRepository.GetByCodeWithMembers(request.HubCode, cancellationToken)
             ?? throw new InvalidOperationException($"Hub with code '{request.HubCode}' not found.");
 
         if (!hub.IsActive)
@@ -25,14 +27,18 @@ public sealed class AttachUserHandler(
         var existingAttachment = await attachmentRepository.GetActiveAttachment(request.UserId, cancellationToken);
         if (existingAttachment is not null)
         {
-            existingAttachment.Expire();
+            existingAttachment.Detach();
             attachmentRepository.Update(existingAttachment);
         }
 
         // Create new attachment with 1-hour expiry
         var attachment = HubAttachment.Create(hub.Id, hub.TenantId, request.UserId, TimeSpan.FromHours(1));
-
         await attachmentRepository.Add(attachment, cancellationToken);
+
+        // Add user as Visitor member if not already a member
+        hub.TryAddMember(request.UserId, HubMemberRole.Visitor, assignedBy: null);
+        hubRepository.Update(hub);
+
         await unitOfWork.SaveChanges(cancellationToken);
 
         return attachment.Id;

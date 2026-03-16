@@ -8,4 +8,6 @@ public interface IHubAttachmentRepository : IRepository<HubAttachment>
     Task<HubAttachment?> GetActiveAttachment(Guid userId, CancellationToken cancellationToken = default);
 
     Task<IReadOnlyList<HubAttachment>> GetAttachmentsByHub(Guid hubId, CancellationToken cancellationToken = default);
+
+    Task<IReadOnlyList<HubAttachment>> GetExpiredActive(CancellationToken cancellationToken = default);
 }

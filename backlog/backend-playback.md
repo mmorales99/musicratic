@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 18 |
-| Done | 6 |
-| Remaining | 12 |
+| Done | 17 |
+| Remaining | 1 |
 | Est. premium requests | ~40 |
 | Est. tokens | ~700 K |
 
@@ -20,23 +20,23 @@
 | PLAY-004 | QueueEntry EF configuration + QueueEntryRepository | S | 1 | 20K | 1A | PLAY-003 | database | ✅ Done |
 | PLAY-005 | PlaybackDbContext (schema "playback") + DI registration | M | 2 | 35K | 1A | PLAY-002, PLAY-004 | database | ✅ Done |
 | PLAY-006 | IMusicProvider interface (Search, GetMetadata, GetPlaybackUrl) | S | 1 | 15K | 1A | — | backend-module | ✅ Done |
-| PLAY-007 | SpotifyProvider implementation (Spotify Web API: search, track metadata, playback URL) | L | 4 | 80K | 1A | PLAY-006 | backend-module | 📋 Backlog |
-| PLAY-008 | YouTubeMusicProvider implementation (YouTube Data API: search, video metadata) | L | 4 | 80K | 1A | PLAY-006 | backend-module | 📋 Backlog |
-| PLAY-009 | NowPlaying query (current track info + progress + queue position) | S | 1 | 20K | 1A | PLAY-003 | backend-module | 📋 Backlog |
-| PLAY-010 | PlaybackOrchestrator service (pick next from queue, advance, handle end-of-track) | L | 5 | 90K | 1A | PLAY-003, HUB-020 | backend-module | 📋 Backlog |
+| PLAY-007 | SpotifyProvider implementation (Spotify Web API: search, track metadata, playback URL) | L | 4 | 80K | 1A | PLAY-006 | backend-module | ✅ Done |
+| PLAY-008 | YouTubeMusicProvider implementation (YouTube Data API: search, video metadata) | L | 4 | 80K | 1A | PLAY-006 | backend-module | ✅ Done |
+| PLAY-009 | NowPlaying query (current track info + progress + queue position) | S | 1 | 20K | 1A | PLAY-003 | backend-module | ✅ Done |
+| PLAY-010 | PlaybackOrchestrator service (pick next from queue, advance, handle end-of-track) | L | 5 | 90K | 1A | PLAY-003, HUB-020 | backend-module | ✅ Done |
 
 ## Phase 1B — Queue & Proposals
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| PLAY-011 | Add-to-queue command (from list track or proposal, position calculation) | M | 2 | 35K | 1B | PLAY-010 | backend-module | 📋 Backlog |
-| PLAY-012 | Queue interleaving service (alternate list tracks + proposals at configurable ratio) | M | 3 | 50K | 1B | PLAY-011 | backend-module | 📋 Backlog |
+| PLAY-011 | Add-to-queue command (from list track or proposal, position calculation) | M | 2 | 35K | 1B | PLAY-010 | backend-module | ✅ Done |
+| PLAY-012 | Queue interleaving service (alternate list tracks + proposals at configurable ratio) | M | 3 | 50K | 1B | PLAY-011 | backend-module | ✅ Done |
 | PLAY-013 | Track proposal — coin-paid flow (validate wallet → debit → add to queue) | L | 4 | 70K | 1B | PLAY-011, ECON-005 | backend-module | 📋 Backlog |
-| PLAY-014 | Track proposal — collective vote flow (create pre-play vote, 2min window, 50% threshold) | L | 4 | 70K | 1B | PLAY-011, VOTE-004 | backend-module | 📋 Backlog |
-| PLAY-015 | Proposal approval/rejection by owner (override collective vote result) | M | 2 | 35K | 1B | PLAY-014 | backend-module | 📋 Backlog |
-| PLAY-016 | Queue WebSocket broadcasting (NOW_PLAYING, QUEUE_UPDATED, TRACK_ENDED, TRACK_SKIPPED) | L | 4 | 70K | 1B | PLAY-010 | backend-module | 📋 Backlog |
-| PLAY-017 | Playback API endpoints (get queue, get now-playing, propose track, skip) | M | 2 | 40K | 1B | PLAY-010 | backend-module | 📋 Backlog |
-| PLAY-018 | Dapr event handlers (hub_activated → start queue, hub_deactivated → stop queue) | M | 2 | 35K | 1B | PLAY-010 | backend-module | 📋 Backlog |
+| PLAY-014 | Track proposal — collective vote flow (create pre-play vote, 2min window, 50% threshold) | L | 4 | 70K | 1B | PLAY-011, VOTE-004 | backend-module | ✅ Done |
+| PLAY-015 | Proposal approval/rejection by owner (override collective vote result) | M | 2 | 35K | 1B | PLAY-014 | backend-module | ✅ Done |
+| PLAY-016 | Queue WebSocket broadcasting (NOW_PLAYING, QUEUE_UPDATED, TRACK_ENDED, TRACK_SKIPPED) | L | 4 | 70K | 1B | PLAY-010 | backend-module | ✅ Done |
+| PLAY-017 | Playback API endpoints (get queue, get now-playing, propose track, skip) | M | 2 | 40K | 1B | PLAY-010 | backend-module | ✅ Done |
+| PLAY-018 | Dapr event handlers (hub_activated → start queue, hub_deactivated → stop queue) | M | 2 | 35K | 1B | PLAY-010 | backend-module | ✅ Done |
 
 ## Dependency Graph
 

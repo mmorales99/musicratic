@@ -10,6 +10,7 @@ class HubBloc extends Bloc<HubEvent, HubState> {
         super(const HubState.initial()) {
     on<HubEventStarted>(_onStarted);
     on<HubEventLoadHubs>(_onLoadHubs);
+    on<HubEventCreateHub>(_onCreateHub);
     on<HubEventAttachToHub>(_onAttachToHub);
     on<HubEventDetachFromHub>(_onDetachFromHub);
   }
@@ -31,6 +32,19 @@ class HubBloc extends Bloc<HubEvent, HubState> {
     try {
       final hubs = await _repository.getActiveHubs();
       emit(HubState.loaded(hubs: hubs));
+    } on Exception catch (e) {
+      emit(HubState.error(message: e.toString()));
+    }
+  }
+
+  Future<void> _onCreateHub(
+    HubEventCreateHub event,
+    Emitter<HubState> emit,
+  ) async {
+    emit(const HubState.creating());
+    try {
+      final hub = await _repository.createHub(event.request);
+      emit(HubState.created(hub: hub));
     } on Exception catch (e) {
       emit(HubState.error(message: e.toString()));
     }

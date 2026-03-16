@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 15 |
-| Done | 0 |
-| Remaining | 15 |
+| Done | 4 |
+| Remaining | 11 |
 | Est. premium requests | ~34 |
 | Est. tokens | ~600 K |
 
@@ -14,10 +14,10 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| ECON-001 | WalletTransaction entity (user_id, type [purchase/spend/refund], amount, reference_id) | S | 1 | 20K | 1C | — | backend-module | 📋 Backlog |
-| ECON-002 | WalletTransaction EF configuration + WalletTransactionRepository | S | 1 | 20K | 1C | ECON-001 | database | 📋 Backlog |
-| ECON-003 | EconomyDbContext (schema "economy") + DI registration | M | 2 | 30K | 1C | ECON-002 | database | 📋 Backlog |
-| ECON-004 | Refund service (50% on skip, round down, credit wallet, record transaction) | M | 3 | 50K | 1C | ECON-001, VOTE-007 | backend-module | 📋 Backlog |
+| ECON-001 | WalletTransaction entity (user_id, type [purchase/spend/refund], amount, reference_id) | S | 1 | 20K | 1C | — | backend-module | ✅ Done |
+| ECON-002 | WalletTransaction EF configuration + WalletTransactionRepository | S | 1 | 20K | 1C | ECON-001 | database | ✅ Done |
+| ECON-003 | EconomyDbContext (schema "economy") + DI registration | M | 2 | 30K | 1C | ECON-002 | database | ✅ Done |
+| ECON-004 | Refund service (50% on skip, round down, credit wallet, record transaction) | M | 3 | 50K | 1C | ECON-001, VOTE-007 | backend-module | ✅ Done |
 
 ## Phase 1D — Economy
 

@@ -25,9 +25,19 @@ public static class DependencyInjection
         services.AddScoped<IListRepository, ListRepository>();
         services.AddScoped<IUnitOfWork, HubUnitOfWork>();
         services.AddScoped<IHubCodeGenerator, HubCodeGenerator>();
+        services.AddSingleton<IPlayModeService, PlayModeService>();
         services.AddSingleton<IHubLinkService>(sp =>
             new HubLinkService(configuration));
         services.AddSingleton<IQrCodeService, QrCodeService>();
+
+        services.Configure<AttachmentExpiryOptions>(options =>
+        {
+            var section = configuration.GetSection(AttachmentExpiryOptions.SectionName);
+            var intervalStr = section[nameof(AttachmentExpiryOptions.IntervalMinutes)];
+            if (int.TryParse(intervalStr, out var interval))
+                options.IntervalMinutes = interval;
+        });
+        services.AddHostedService<AttachmentExpiryBackgroundService>();
 
         return services;
     }

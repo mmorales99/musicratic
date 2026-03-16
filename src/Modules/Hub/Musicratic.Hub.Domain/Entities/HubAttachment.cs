@@ -15,7 +15,9 @@ public sealed class HubAttachment : BaseEntity, ITenantScoped
 
     public DateTime ExpiresAt { get; private set; }
 
-    public bool IsActive => DateTime.UtcNow < ExpiresAt;
+    public DateTime? EndedAt { get; private set; }
+
+    public bool IsActive => EndedAt is null && DateTime.UtcNow < ExpiresAt;
 
     private HubAttachment() { }
 
@@ -38,5 +40,11 @@ public sealed class HubAttachment : BaseEntity, ITenantScoped
     public void Expire()
     {
         ExpiresAt = DateTime.UtcNow;
+    }
+
+    public void Detach()
+    {
+        EndedAt = DateTime.UtcNow;
+        AddDomainEvent(new UserDetachedEvent(HubId, UserId, Id));
     }
 }

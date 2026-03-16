@@ -12,6 +12,7 @@ using Musicratic.Hub.Application.Queries.GetActiveHubs;
 using Musicratic.Hub.Application.Queries.GetHub;
 using Musicratic.Hub.Application.Queries.GetHubMembers;
 using Musicratic.Hub.Application.Queries.GetHubSettings;
+using Musicratic.Hub.Application.Queries.SearchHubs;
 using Musicratic.Hub.Domain.Entities;
 using Musicratic.Hub.Domain.Enums;
 
@@ -24,6 +25,7 @@ public static class HubEndpoints
         var group = endpoints.MapGroup("/api/hubs").WithTags("Hubs");
 
         group.MapGet("/", GetActiveHubs).WithName("GetActiveHubs");
+        group.MapGet("/search", SearchHubs).WithName("SearchHubs");
         group.MapGet("/{id:guid}", GetHubById).WithName("GetHubById");
         group.MapPost("/", CreateHub).WithName("CreateHub");
         group.MapPost("/{id:guid}/activate", ActivateHub).WithName("ActivateHub");
@@ -42,6 +44,23 @@ public static class HubEndpoints
     {
         var hubs = await sender.Send(new GetActiveHubsQuery(), cancellationToken);
         return Results.Ok(hubs);
+    }
+
+    private static async Task<IResult> SearchHubs(
+        ISender sender,
+        CancellationToken cancellationToken,
+        string? name = null,
+        HubType? type = null,
+        HubVisibility? visibility = null,
+        bool? isActive = null,
+        int page = 1,
+        int pageSize = 20)
+    {
+        var result = await sender.Send(
+            new SearchHubsQuery(name, type, visibility, isActive, page, pageSize),
+            cancellationToken);
+
+        return Results.Ok(result);
     }
 
     private static async Task<IResult> GetHubById(

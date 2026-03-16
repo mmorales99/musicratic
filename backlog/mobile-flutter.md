@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 0 |
-| Remaining | 25 |
+| Done | 10 |
+| Remaining | 15 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -16,22 +16,22 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-001 | Auth flow (open Authentik in WebView/browser, handle callback, secure token storage) | L | 4 | 80K | 1A | AUTH-012 | flutter-mobile | 📋 Backlog |
-| MOB-002 | Auth bloc (idle → authenticating → authenticated → refreshing → error, with freezed) | M | 2 | 40K | 1A | MOB-001 | flutter-mobile | 📋 Backlog |
-| MOB-003 | Hub creation screen (form fields, validation, submit to BFF) | M | 3 | 50K | 1A | HUB-013 | flutter-mobile | 📋 Backlog |
-| MOB-004 | Hub detail screen (info, settings, members, lists, QR display) | L | 4 | 70K | 1A | HUB-011 | flutter-mobile | 📋 Backlog |
-| MOB-005 | List management screen (CRUD lists, add/remove/reorder tracks) | L | 4 | 70K | 1A | HUB-018 | flutter-mobile | 📋 Backlog |
-| MOB-006 | QR scanner + hub join flow (camera scan → validate → attach → queue) | L | 4 | 70K | 1A | HUB-015 | flutter-mobile | 📋 Backlog |
-| MOB-007 | Hub discovery screen (search, filter, paginated results, pull-to-refresh) | M | 3 | 50K | 1A | HUB-019 | flutter-mobile | 📋 Backlog |
+| MOB-001 | Auth flow (open Authentik in WebView/browser, handle callback, secure token storage) | L | 4 | 80K | 1A | AUTH-012 | flutter-mobile | ✅ Done |
+| MOB-002 | Auth bloc (idle → authenticating → authenticated → refreshing → error, with freezed) | M | 2 | 40K | 1A | MOB-001 | flutter-mobile | ✅ Done |
+| MOB-003 | Hub creation screen (form fields, validation, submit to BFF) | M | 3 | 50K | 1A | HUB-013 | flutter-mobile | ✅ Done |
+| MOB-004 | Hub detail screen (info, settings, members, lists, QR display) | L | 4 | 70K | 1A | HUB-011 | flutter-mobile | ✅ Done |
+| MOB-005 | List management screen (CRUD lists, add/remove/reorder tracks) | L | 4 | 70K | 1A | HUB-018 | flutter-mobile | ✅ Done |
+| MOB-006 | QR scanner + hub join flow (camera scan → validate → attach → queue) | L | 4 | 70K | 1A | HUB-015 | flutter-mobile | ✅ Done |
+| MOB-007 | Hub discovery screen (search, filter, paginated results, pull-to-refresh) | M | 3 | 50K | 1A | HUB-019 | flutter-mobile | ✅ Done |
 
 ## Phase 1B — Queue & Proposals
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-008 | Live queue screen (WebSocket real-time, animated list transitions) | L | 4 | 70K | 1B | PLAY-016 | flutter-mobile | 📋 Backlog |
-| MOB-009 | Now-playing widget (track info, album art, animated progress, time remaining) | M | 3 | 50K | 1B | PLAY-009 | flutter-mobile | 📋 Backlog |
+| MOB-008 | Live queue screen (WebSocket real-time, animated list transitions) | L | 4 | 70K | 1B | PLAY-016 | flutter-mobile | ✅ Done |
+| MOB-009 | Now-playing widget (track info, album art, animated progress, time remaining) | M | 3 | 50K | 1B | PLAY-009 | flutter-mobile | ✅ Done |
 | MOB-010 | Track proposal flow (search → choose pay/free → confirm, with coin balance check) | L | 4 | 70K | 1B | PLAY-013 | flutter-mobile | 📋 Backlog |
-| MOB-011 | Track search screen (multi-provider search with provider tabs) | M | 3 | 50K | 1B | PLAY-006 | flutter-mobile | 📋 Backlog |
+| MOB-011 | Track search screen (multi-provider search with provider tabs) | M | 3 | 50K | 1B | PLAY-006 | flutter-mobile | ✅ Done |
 
 ## Phase 1C — Voting & Skipping
 

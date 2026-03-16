@@ -187,6 +187,14 @@ public sealed class Hub : AuditableEntity, ITenantScoped
         _members.Remove(member);
     }
 
+    public HubMember? TryAddMember(Guid userId, HubMemberRole role, Guid? assignedBy)
+    {
+        if (_members.Any(m => m.UserId == userId))
+            return null;
+
+        return AddMember(userId, role, assignedBy);
+    }
+
     public void PromoteMember(Guid userId, HubMemberRole newRole, Guid promotedBy)
     {
         var member = _members.FirstOrDefault(m => m.UserId == userId)

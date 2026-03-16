@@ -4,9 +4,44 @@ import { authGuard } from "./shared/guards/auth.guard";
 export const routes: Routes = [
   { path: "", redirectTo: "hub", pathMatch: "full" },
   {
+    path: "join/:code",
+    loadComponent: () =>
+      import("./features/hub/join/hub-join.component").then(
+        (m) => m.HubJoinComponent,
+      ),
+  },
+  {
+    path: "login",
+    loadComponent: () =>
+      import("./features/auth/login/login.component").then(
+        (m) => m.LoginComponent,
+      ),
+  },
+  {
+    path: "callback",
+    loadComponent: () =>
+      import("./features/auth/callback/callback.component").then(
+        (m) => m.CallbackComponent,
+      ),
+  },
+  {
     path: "hub",
     loadChildren: () =>
       import("./features/hub/hub.routes").then((m) => m.HUB_ROUTES),
+  },
+  {
+    path: "hub/:hubId/queue",
+    loadComponent: () =>
+      import("./features/playback/queue/queue.component").then(
+        (m) => m.QueueComponent,
+      ),
+  },
+  {
+    path: "hub/:hubId/search",
+    loadComponent: () =>
+      import("./features/playback/search/track-search.component").then(
+        (m) => m.TrackSearchComponent,
+      ),
   },
   {
     path: "playback",
@@ -42,4 +77,5 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  { path: "**", redirectTo: "hub" },
 ];

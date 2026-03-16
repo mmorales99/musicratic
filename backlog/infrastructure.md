@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 10 |
-| Done | 7 |
-| Remaining | 3 |
+| Done | 8 |
+| Remaining | 2 |
 | Est. premium requests | ~12 |
 | Est. tokens | ~200 K |
 
@@ -24,7 +24,7 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| INFRA-010 | Authentik configuration (realm, OIDC client, flows for login/register) | L | 4 | 70K | 1A | — | devops | 📋 Backlog |
+| INFRA-010 | Authentik configuration (realm, OIDC client, flows for login/register) | L | 4 | 70K | 1A | — | devops | ✅ Done |
 | INFRA-011 | PostgreSQL schema-per-module initialization (auth, hub, playback, voting, etc.) | M | 2 | 35K | 1A | — | devops | ✅ Done |
 | INFRA-012 | Caddy route refinement (WebSocket upgrade paths, CORS for web client) | S | 1 | 20K | 1A | — | devops | ✅ Done |
 

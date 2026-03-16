@@ -35,9 +35,10 @@ public sealed class HubAttachmentConfiguration : IEntityTypeConfiguration<HubAtt
             .HasColumnName("expires_at")
             .IsRequired();
 
-        builder.Property(a => a.IsActive)
-            .HasColumnName("is_active")
-            .HasDefaultValue(true);
+        builder.Property(a => a.EndedAt)
+            .HasColumnName("ended_at");
+
+        builder.Ignore(a => a.IsActive);
 
         builder.Property(a => a.TenantId)
             .HasColumnName("tenant_id")

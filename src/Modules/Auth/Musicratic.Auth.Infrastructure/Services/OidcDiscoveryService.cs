@@ -52,6 +52,12 @@ public sealed class OidcDiscoveryService : IOidcDiscoveryService, IDisposable
         return doc.EndSessionEndpoint;
     }
 
+    public async Task<string> GetRevocationEndpointAsync(CancellationToken cancellationToken = default)
+    {
+        var doc = await GetDiscoveryDocumentAsync(cancellationToken);
+        return doc.RevocationEndpoint;
+    }
+
     public async Task<string> GetJwksUriAsync(CancellationToken cancellationToken = default)
     {
         var doc = await GetDiscoveryDocumentAsync(cancellationToken);

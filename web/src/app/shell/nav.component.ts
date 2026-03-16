@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Component, ChangeDetectionStrategy, inject } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { AuthMachineService } from "@app/features/auth/machines/auth-machine.service";
 
 @Component({
   selector: "app-nav",
@@ -13,22 +14,32 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
         <li>
           <a routerLink="/hub" routerLinkActive="active">Hubs</a>
         </li>
-        <li>
-          <a routerLink="/playback" routerLinkActive="active">Playback</a>
-        </li>
-        <li>
-          <a routerLink="/voting" routerLinkActive="active">Voting</a>
-        </li>
-        <li>
-          <a routerLink="/economy" routerLinkActive="active">Economy</a>
-        </li>
-        <li>
-          <a routerLink="/profile" routerLinkActive="active">Profile</a>
-        </li>
-        <li>
-          <a routerLink="/analytics" routerLinkActive="active">Analytics</a>
-        </li>
+        @if (authMachine.isAuthenticated()) {
+          <li>
+            <a routerLink="/playback" routerLinkActive="active">Playback</a>
+          </li>
+          <li>
+            <a routerLink="/voting" routerLinkActive="active">Voting</a>
+          </li>
+          <li>
+            <a routerLink="/economy" routerLinkActive="active">Economy</a>
+          </li>
+          <li>
+            <a routerLink="/profile" routerLinkActive="active">Profile</a>
+          </li>
+          <li>
+            <a routerLink="/analytics" routerLinkActive="active">Analytics</a>
+          </li>
+        }
       </ul>
+      <div class="nav__auth">
+        @if (authMachine.isAuthenticated()) {
+          <span class="nav__user">{{ authMachine.user()?.displayName }}</span>
+          <button class="nav__button" (click)="onLogout()">Logout</button>
+        } @else {
+          <a class="nav__button" routerLink="/login">Login</a>
+        }
+      </div>
     </nav>
   `,
   styles: [
@@ -50,6 +61,7 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
         display: flex;
         list-style: none;
         gap: 1rem;
+        flex: 1;
       }
       .nav__links a {
         color: #ccc;
@@ -62,7 +74,35 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
         color: #fff;
         text-decoration: none;
       }
+      .nav__auth {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .nav__user {
+        color: #a0a0b0;
+        font-size: 0.875rem;
+      }
+      .nav__button {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        color: #fff;
+        background: #6c5ce7;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .nav__button:hover {
+        background: #5a4bd1;
+      }
     `,
   ],
 })
-export class NavComponent {}
+export class NavComponent {
+  readonly authMachine = inject(AuthMachineService);
+
+  onLogout(): void {
+    void this.authMachine.logout();
+  }
+}

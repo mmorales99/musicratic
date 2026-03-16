@@ -14,6 +14,7 @@ networks:
 
 volumes:
   postgres-data:
+  redis-data:
   sonarqube-data:
   sonarqube-extensions:
   sonarqube-logs:
@@ -21,6 +22,8 @@ volumes:
   caddy-config:
   azurite-data:
   eventhubs-data:
+  authentik-media:
+  authentik-templates:
 
 services:
   # ── PostgreSQL ────────────────────────────────────────────
@@ -110,6 +113,31 @@ services:
       timeout: 5s
       retries: 5
 
+  # ── Redis (Authentik session/cache store) ─────────────────
+  redis:
+    image: docker.io/library/redis:7.2-alpine
+    container_name: musicratic-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command:
+      [
+        "redis-server",
+        "--maxmemory",
+        "128mb",
+        "--maxmemory-policy",
+        "allkeys-lru",
+      ]
+    volumes:
+      - redis-data:/data
+    networks:
+      - musicratic-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   # ── Authentik Server ──────────────────────────────────────
   authentik-server:
     image: ghcr.io/goauthentik/server:2024.8.3
@@ -125,12 +153,18 @@ services:
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/db_password
       AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_secret_key
+      AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_ERROR_REPORTING__ENABLED: "false"
     secrets:
       - db_password
       - authentik_secret_key
+    volumes:
+      - authentik-media:/media
+      - authentik-templates:/templates
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - musicratic-net
@@ -143,6 +177,32 @@ services:
       interval: 15s
       timeout: 10s
       retries: 5
+
+  # ── Authentik Worker ──────────────────────────────────────
+  authentik-worker:
+    image: ghcr.io/goauthentik/server:2024.8.3
+    container_name: musicratic-authentik-worker
+    restart: unless-stopped
+    command: worker
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_POSTGRESQL__USER: musicratic
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: file:///run/secrets/db_password
+      AUTHENTIK_SECRET_KEY: file:///run/secrets/authentik_secret_key
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_ERROR_REPORTING__ENABLED: "false"
+    secrets:
+      - db_password
+      - authentik_secret_key
+    volumes:
+      - authentik-media:/media
+      - authentik-templates:/templates
+    depends_on:
+      authentik-server:
+        condition: service_healthy
+    networks:
+      - musicratic-net
 
   # ── SonarQube ─────────────────────────────────────────────
   sonarqube:

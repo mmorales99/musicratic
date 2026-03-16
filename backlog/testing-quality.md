@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 10 |
-| Done | 1 |
-| Remaining | 9 |
+| Done | 2 |
+| Remaining | 8 |
 | Est. premium requests | ~25 |
 | Est. tokens | ~430 K |
 
@@ -20,7 +20,7 @@
 | TEST-001 | Playwright E2E infrastructure for Angular (config, fixtures, auth helpers) | M | 3 | 50K | 1A | WEB-001 | testing | 📋 Backlog |
 | TEST-002 | Playwright E2E infrastructure for Flutter web (config, fixtures) | M | 3 | 50K | 1A | MOB-001 | testing | 📋 Backlog |
 | TEST-003 | Shared test utilities (entity builders, fake repositories, test data factories) | M | 2 | 40K | 1A | — | testing | ✅ Done |
-| TEST-004 | CustomWebApplicationFactory enhancement (per-module SQLite, seeded test data) | M | 2 | 40K | 1A | — | testing | 📋 Backlog |
+| TEST-004 | CustomWebApplicationFactory enhancement (per-module SQLite, seeded test data) | M | 2 | 40K | 1A | — | testing | ✅ Done |
 
 ## Phase 1A–1C — Integration Tests
 

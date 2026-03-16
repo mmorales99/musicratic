@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Musicratic.Hub.Domain.Enums;
 using Musicratic.Hub.Domain.Repositories;
 
 namespace Musicratic.Hub.Infrastructure.Persistence;
@@ -62,11 +63,57 @@ public sealed class HubRepository : IHubRepository
             .FirstOrDefaultAsync(h => h.Code == code, cancellationToken);
     }
 
+    public async Task<Domain.Entities.Hub?> GetByCodeWithMembers(
+        string code,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Hubs
+            .Include(h => h.Members)
+            .FirstOrDefaultAsync(h => h.Code == code, cancellationToken);
+    }
+
     public async Task<IReadOnlyList<Domain.Entities.Hub>> GetActiveHubs(
         CancellationToken cancellationToken = default)
     {
         return await _dbContext.Hubs
             .Where(h => h.IsActive)
             .ToListAsync(cancellationToken);
+    }
+
+    public async Task<(IReadOnlyList<Domain.Entities.Hub> Items, int TotalCount)> Search(
+        string? name,
+        HubType? type,
+        HubVisibility? visibility,
+        bool? isActive,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.Hubs
+            .Where(h => !h.IsDeleted)
+            .AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(name))
+            query = query.Where(h => h.Name.Contains(name));
+
+        if (type.HasValue)
+            query = query.Where(h => h.Type == type.Value);
+
+        if (visibility.HasValue)
+            query = query.Where(h => h.Visibility == visibility.Value);
+
+        if (isActive.HasValue)
+            query = query.Where(h => h.IsActive == isActive.Value);
+
+        var totalCount = await query.CountAsync(cancellationToken);
+
+        var items = await query
+            .Include(h => h.Members)
+            .OrderBy(h => h.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (items, totalCount);
     }
 }

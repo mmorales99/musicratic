@@ -10,5 +10,7 @@ public interface IOidcDiscoveryService
 
     Task<string> GetEndSessionEndpointAsync(CancellationToken cancellationToken = default);
 
+    Task<string> GetRevocationEndpointAsync(CancellationToken cancellationToken = default);
+
     Task<string> GetJwksUriAsync(CancellationToken cancellationToken = default);
 }

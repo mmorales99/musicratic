@@ -71,6 +71,16 @@ public sealed class QueueEntryRepository : IQueueEntryRepository
                 cancellationToken);
     }
 
+    public async Task<QueueEntry?> GetNextQueued(
+        Guid hubId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.QueueEntries
+            .Where(q => q.HubId == hubId && q.Status == QueueEntryStatus.Queued)
+            .OrderBy(q => q.Position)
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
     public async Task<int> GetNextPosition(
         Guid hubId,
         CancellationToken cancellationToken = default)
@@ -80,5 +90,38 @@ public sealed class QueueEntryRepository : IQueueEntryRepository
             .MaxAsync(q => (int?)q.Position, cancellationToken);
 
         return (maxPosition ?? -1) + 1;
+    }
+
+    public async Task<(IReadOnlyList<QueueEntry> Items, int TotalCount)> GetByHubIdPaginated(
+        Guid hubId, int skip, int take, CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.QueueEntries
+            .Where(q => q.HubId == hubId)
+            .OrderBy(q => q.Position);
+
+        var totalCount = await query.CountAsync(cancellationToken);
+        var items = await query.Skip(skip).Take(take).ToListAsync(cancellationToken);
+
+        return (items, totalCount);
+    }
+
+    public async Task<IReadOnlyList<QueueEntry>> GetPendingByProposer(
+        Guid hubId, Guid proposerId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.QueueEntries
+            .Where(q => q.HubId == hubId
+                && q.ProposerId == proposerId
+                && q.Status == QueueEntryStatus.Pending)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<int> GetQueuedCountBySource(
+        Guid hubId, QueueEntrySource source, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.QueueEntries
+            .Where(q => q.HubId == hubId
+                && q.Source == source
+                && q.Status == QueueEntryStatus.Queued)
+            .CountAsync(cancellationToken);
     }
 }

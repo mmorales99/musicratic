@@ -99,4 +99,64 @@ public sealed class QueueEntry : BaseEntity, ITenantScoped
 
         AddDomainEvent(new TrackSkippedEvent(Id, TrackId, HubId, wasPlaying));
     }
+
+    public static QueueEntry CreatePendingProposal(
+        Guid tenantId,
+        Guid trackId,
+        Guid hubId,
+        int position,
+        Guid proposerId)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(position, 0, nameof(position));
+
+        var entry = new QueueEntry
+        {
+            TenantId = tenantId,
+            TrackId = trackId,
+            HubId = hubId,
+            Position = position,
+            Source = QueueEntrySource.CollectiveVote,
+            Status = QueueEntryStatus.Pending,
+            ProposerId = proposerId,
+            CostPaid = 0
+        };
+
+        entry.AddDomainEvent(new QueueEntryCreatedEvent(entry.Id, trackId, hubId));
+
+        return entry;
+    }
+
+    public void Approve(int position)
+    {
+        if (Status != QueueEntryStatus.Pending)
+        {
+            throw new InvalidOperationException(
+                $"Cannot approve queue entry in '{Status}' status. Must be Pending.");
+        }
+
+        Status = QueueEntryStatus.Queued;
+        Position = position;
+
+        AddDomainEvent(new ProposalApprovedEvent(Id, TrackId, HubId));
+    }
+
+    public void Reject()
+    {
+        if (Status != QueueEntryStatus.Pending)
+        {
+            throw new InvalidOperationException(
+                $"Cannot reject queue entry in '{Status}' status. Must be Pending.");
+        }
+
+        Status = QueueEntryStatus.Rejected;
+        EndedAt = DateTime.UtcNow;
+
+        AddDomainEvent(new ProposalRejectedEvent(Id, TrackId, HubId));
+    }
+
+    public void SetPosition(int position)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(position, 0, nameof(position));
+        Position = position;
+    }
 }

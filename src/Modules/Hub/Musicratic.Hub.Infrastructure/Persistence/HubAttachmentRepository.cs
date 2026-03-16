@@ -69,4 +69,12 @@ public sealed class HubAttachmentRepository : IHubAttachmentRepository
             .Where(a => a.HubId == hubId)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<IReadOnlyList<HubAttachment>> GetExpiredActive(
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.HubAttachments
+            .Where(a => a.ExpiresAt < DateTime.UtcNow && a.EndedAt == null)
+            .ToListAsync(cancellationToken);
+    }
 }
