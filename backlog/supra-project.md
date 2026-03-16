@@ -65,3 +65,20 @@ Sprint 12 ── Phase 1G               ─── web + mobile (social screens) 
 - **PRs** = Premium Requests (Copilot quota units)
 - **Tokens** = Approximate input + output tokens consumed
 - **Phase** = Roadmap phase from [docs/11-development-roadmap.md](../docs/11-development-roadmap.md)
+
+## Task Statuses
+
+| Status | Meaning |
+|--------|---------|
+| ✅ Done | Completed, build passes, tests pass |
+| 🔄 Sprint | Assigned to current sprint, in progress |
+| 📋 Backlog | Ready to be planned into a sprint |
+| 🚫 Blocked | Dependency not met |
+| ⏳ Waiting Human | Needs human input — agent cannot proceed autonomously |
+
+### ⏳ Waiting Human Rules
+
+- Agents mark tasks `⏳ Waiting Human` when they encounter unresolvable blockers (missing config, ambiguous specs, credentials needed, persistent build errors)
+- Boberto treats `⏳ Waiting Human` as **blocking for sprint completion** — those tasks are deferred to the next sprint
+- Tasks **depending on** `⏳ Waiting Human` tasks are also deferred
+- Humans resolve the issue and change status back to `📋 Backlog` for the next planning cycle

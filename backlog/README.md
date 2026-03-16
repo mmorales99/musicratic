@@ -69,14 +69,26 @@ Each backlog uses this table format:
 - **Phase**: Roadmap phase (0, 1A, 1B, 1C, 1D, 1E, 1F, 1G)
 - **Deps**: Other task IDs this depends on (or `—`)
 - **Agent**: Which specialist agent handles it
-- **Status**: `✅ Done` / `🔄 Sprint` / `📋 Backlog` / `🚫 Blocked`
+- **Status**: `✅ Done` / `🔄 Sprint` / `📋 Backlog` / `🚫 Blocked` / `⏳ Waiting Human`
 
 ## Task Lifecycle
 
 ```
 📋 Backlog → 🔄 Sprint (planned) → 🏃 In Progress → ✅ Done
                                   ↘ 🚫 Blocked (if dependency not met)
+                                  ↘ ⏳ Waiting Human (needs human input — non-blocking)
 ```
+
+### ⏳ Waiting Human State
+
+When an agent encounters a blocking error, ambiguous requirement, or needs credentials/config that only a human can provide, it marks the task `⏳ Waiting Human` instead of stalling.
+
+**Rules:**
+- The agent logs a clear description of what is needed from the human in the task notes
+- The task is **not retried** automatically — it stays parked until a human resolves it
+- Boberto treats `⏳ Waiting Human` as **blocking** for sprint completion
+- If a sprint cannot finish because of `⏳ Waiting Human` tasks, those tasks (and any tasks that depend on them) are **moved to the next sprint**
+- The human resolves the blocker, changes status back to `📋 Backlog`, and Boberto picks it up in the next planning cycle
 
 ## Sprint Workflow
 
