@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 10 |
-| Remaining | 15 |
+| Done | 13 |
+| Remaining | 12 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -37,9 +37,9 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-012 | Vote buttons component (up/down on now-playing, disabled after voting) | M | 2 | 40K | 1C | VOTE-004 | angular-web | 📋 Backlog |
-| WEB-013 | Vote tally display (real-time percentages via WebSocket, progress bar) | M | 2 | 40K | 1C | VOTE-009 | angular-web | 📋 Backlog |
-| WEB-014 | Skip notification (toast when track skipped, refund notification if applicable) | S | 1 | 20K | 1C | VOTE-007 | angular-web | 📋 Backlog |
+| WEB-012 | Vote buttons component (up/down on now-playing, disabled after voting) | M | 2 | 40K | 1C | VOTE-004 | angular-web | ✅ Done |
+| WEB-013 | Vote tally display (real-time percentages via WebSocket, progress bar) | M | 2 | 40K | 1C | VOTE-009 | angular-web | ✅ Done |
+| WEB-014 | Skip notification (toast when track skipped, refund notification if applicable) | S | 1 | 20K | 1C | VOTE-007 | angular-web | ✅ Done |
 
 ## Phase 1D — Economy
 

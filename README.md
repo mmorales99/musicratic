@@ -1,5 +1,7 @@
 # Musicratic
 
+![AI Assisted](https://img.shields.io/badge/AI_Copilot_Assisted-~90%25_of_code-blueviolet?logo=githubcopilot&logoColor=white)
+
 **Democracy meets music. Let the crowd decide what plays next.**
 
 Musicratic is a collaborative music playback platform that transforms any shared space — coffee shops, bars, road trips, house parties — into a democratic jukebox. Hub owners publish curated playlists; visitors propose tracks, vote, and shape the soundtrack together.

@@ -26,9 +26,9 @@ export class QueueService {
   ): Observable<QueuePage> {
     const params = `?page=${page}&pageSize=${pageSize}`;
     return this.api
-      .get<ApiEnvelope<QueueEntry>>(
-        `/hubs/${encodeURIComponent(hubId)}/queue${params}`,
-      )
+      .get<
+        ApiEnvelope<QueueEntry>
+      >(`/hubs/${encodeURIComponent(hubId)}/queue${params}`)
       .pipe(
         map((envelope) => ({
           items: envelope.items,

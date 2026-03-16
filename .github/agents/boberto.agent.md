@@ -152,6 +152,8 @@ Before marking the project as complete, ensure:
 
 ## Sprint Execution Process
 
+> **⚠️ MANDATORY GIT RULE**: You MUST commit and push after EVERY execution group and at sprint end. This is NON-NEGOTIABLE. If you finish an execution group without committing, you have failed the process. Use `mcp_gitkraken_git_add_or_commit` then `mcp_gitkraken_git_push` — never skip this step.
+
 When asked to execute a sprint:
 
 1. **Mark tasks** — Change status from `📋 Backlog` to `🔄 Sprint` in backlog files
@@ -163,11 +165,12 @@ When asked to execute a sprint:
    d. Verify build compiles (`dotnet build`, `ng build`, etc.)
    e. If build fails → attempt one fix, if still fails → mark affected tasks `⏳ Waiting Human`
    f. Mark completed tasks as `✅ Done`
+   g. **🔒 COMMIT & PUSH NOW** — Stage all changes, commit with conventional message, push. Do NOT proceed to the next group without committing.
 4. **Defer blocked dependents** — Any task depending on a `⏳ Waiting Human` task gets moved back to `📋 Backlog`
 5. **Update supra-project** — Recalculate totals and phase progress
 6. **Verify sprint completion** — All tasks are either `✅ Done` or `⏳ Waiting Human`
 7. **Report results** — Show completed, waiting-human, and actual vs estimated effort
-8. **Commit & push** — Follow the Milestone Commit process below
+8. **🔒 FINAL COMMIT & PUSH** — Even if you committed per-group, always do a final commit for backlog/supra-project updates
 
 ## Milestone Commits
 

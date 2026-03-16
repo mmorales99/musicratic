@@ -9,12 +9,20 @@ import {
 import { ActivatedRoute } from "@angular/router";
 import { QueueMachineService } from "../machines/queue-machine.service";
 import { NowPlayingComponent } from "../now-playing/now-playing.component";
+import { VoteButtonsComponent } from "@app/features/voting/vote-buttons/vote-buttons.component";
+import { VoteTallyComponent } from "@app/features/voting/vote-tally/vote-tally.component";
+import { SkipNotificationComponent } from "@app/features/voting/skip-notification/skip-notification.component";
 import { QueueEntry } from "@app/shared/models/track.model";
 
 @Component({
   selector: "app-queue",
   standalone: true,
-  imports: [NowPlayingComponent],
+  imports: [
+    NowPlayingComponent,
+    VoteButtonsComponent,
+    VoteTallyComponent,
+    SkipNotificationComponent,
+  ],
   providers: [QueueMachineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -30,10 +38,16 @@ import { QueueEntry } from "@app/shared/models/track.model";
         </div>
       } @else if (machine.isConnected()) {
         <!-- Now Playing -->
-        <app-now-playing
-          [nowPlaying]="machine.nowPlaying()"
-          [hubId]="hubId"
-        />
+        <app-now-playing [nowPlaying]="machine.nowPlaying()" [hubId]="hubId" />
+
+        <!-- Voting Controls -->
+        @if (nowPlayingEntryId(); as entryId) {
+          <app-vote-buttons [hubId]="hubId" [entryId]="entryId" />
+          <app-vote-tally [hubId]="hubId" [entryId]="entryId" />
+        }
+
+        <!-- Skip Notifications -->
+        <app-skip-notification [hubId]="hubId" />
 
         <!-- Queue List -->
         <div class="queue-page__list">
@@ -218,6 +232,10 @@ export class QueueComponent implements OnInit, OnDestroy {
     this.machine
       .queue()
       .filter((e) => e.status !== "playing" && e.status !== "played"),
+  );
+
+  protected readonly nowPlayingEntryId = computed<string | null>(
+    () => this.machine.nowPlaying()?.entry?.id ?? null,
   );
 
   ngOnInit(): void {

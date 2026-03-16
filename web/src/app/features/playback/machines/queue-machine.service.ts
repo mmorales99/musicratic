@@ -22,7 +22,9 @@ export class QueueMachineService implements OnDestroy {
 
   readonly state = this.stateValue.asReadonly();
   readonly queue = computed<QueueEntry[]>(() => this.ctx().queue);
-  readonly nowPlaying = computed<NowPlaying | null>(() => this.ctx().nowPlaying);
+  readonly nowPlaying = computed<NowPlaying | null>(
+    () => this.ctx().nowPlaying,
+  );
   readonly error = computed<string | null>(() => this.ctx().error);
   readonly isConnected = computed(() => this.stateValue() === "connected");
   readonly isConnecting = computed(() => this.stateValue() === "connecting");

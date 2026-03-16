@@ -87,9 +87,7 @@ type ProviderTab = "all" | MusicProvider;
                 [disabled]="proposingId() === track.id"
                 (click)="propose(track)"
               >
-                {{
-                  proposingId() === track.id ? "Adding..." : "Add to Queue"
-                }}
+                {{ proposingId() === track.id ? "Adding..." : "Add to Queue" }}
               </button>
             </li>
           }
