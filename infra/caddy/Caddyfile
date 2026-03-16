@@ -1,0 +1,20 @@
+{
+    auto_https off
+}
+
+:80 {
+    handle /api/web/* {
+        reverse_proxy musicratic-bff-web:5010
+    }
+    handle /api/mobile/* {
+        reverse_proxy musicratic-bff-mobile:5020
+    }
+    handle /health {
+        reverse_proxy musicratic-backend:5000
+    }
+    handle {
+        root * /srv/web
+        try_files {path} /index.html
+        file_server
+    }
+}

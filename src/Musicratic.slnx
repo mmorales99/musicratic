@@ -1,0 +1,75 @@
+<Solution>
+  <Folder Name="/BFF/">
+    <Project Path="BFF/Musicratic.BFF.Mobile/Musicratic.BFF.Mobile.csproj" />
+    <Project Path="BFF/Musicratic.BFF.Web/Musicratic.BFF.Web.csproj" />
+  </Folder>
+  <Folder Name="/Host/">
+    <Project Path="Host/Musicratic.Host/Musicratic.Host.csproj" />
+  </Folder>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Analytics/">
+    <Project Path="Modules/Analytics/Musicratic.Analytics.Api/Musicratic.Analytics.Api.csproj" />
+    <Project Path="Modules/Analytics/Musicratic.Analytics.Application/Musicratic.Analytics.Application.csproj" />
+    <Project Path="Modules/Analytics/Musicratic.Analytics.Domain/Musicratic.Analytics.Domain.csproj" />
+    <Project Path="Modules/Analytics/Musicratic.Analytics.Infrastructure/Musicratic.Analytics.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Auth/">
+    <Project Path="Modules/Auth/Musicratic.Auth.Api/Musicratic.Auth.Api.csproj" />
+    <Project Path="Modules/Auth/Musicratic.Auth.Application/Musicratic.Auth.Application.csproj" />
+    <Project Path="Modules/Auth/Musicratic.Auth.Domain/Musicratic.Auth.Domain.csproj" />
+    <Project Path="Modules/Auth/Musicratic.Auth.Infrastructure/Musicratic.Auth.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Economy/">
+    <Project Path="Modules/Economy/Musicratic.Economy.Api/Musicratic.Economy.Api.csproj" />
+    <Project Path="Modules/Economy/Musicratic.Economy.Application/Musicratic.Economy.Application.csproj" />
+    <Project Path="Modules/Economy/Musicratic.Economy.Domain/Musicratic.Economy.Domain.csproj" />
+    <Project Path="Modules/Economy/Musicratic.Economy.Infrastructure/Musicratic.Economy.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Hub/">
+    <Project Path="Modules/Hub/Musicratic.Hub.Api/Musicratic.Hub.Api.csproj" />
+    <Project Path="Modules/Hub/Musicratic.Hub.Application/Musicratic.Hub.Application.csproj" />
+    <Project Path="Modules/Hub/Musicratic.Hub.Domain/Musicratic.Hub.Domain.csproj" />
+    <Project Path="Modules/Hub/Musicratic.Hub.Infrastructure/Musicratic.Hub.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Notification/">
+    <Project Path="Modules/Notification/Musicratic.Notification.Api/Musicratic.Notification.Api.csproj" />
+    <Project Path="Modules/Notification/Musicratic.Notification.Application/Musicratic.Notification.Application.csproj" />
+    <Project Path="Modules/Notification/Musicratic.Notification.Domain/Musicratic.Notification.Domain.csproj" />
+    <Project Path="Modules/Notification/Musicratic.Notification.Infrastructure/Musicratic.Notification.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Playback/">
+    <Project Path="Modules/Playback/Musicratic.Playback.Api/Musicratic.Playback.Api.csproj" />
+    <Project Path="Modules/Playback/Musicratic.Playback.Application/Musicratic.Playback.Application.csproj" />
+    <Project Path="Modules/Playback/Musicratic.Playback.Domain/Musicratic.Playback.Domain.csproj" />
+    <Project Path="Modules/Playback/Musicratic.Playback.Infrastructure/Musicratic.Playback.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Social/">
+    <Project Path="Modules/Social/Musicratic.Social.Api/Musicratic.Social.Api.csproj" />
+    <Project Path="Modules/Social/Musicratic.Social.Application/Musicratic.Social.Application.csproj" />
+    <Project Path="Modules/Social/Musicratic.Social.Domain/Musicratic.Social.Domain.csproj" />
+    <Project Path="Modules/Social/Musicratic.Social.Infrastructure/Musicratic.Social.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Voting/">
+    <Project Path="Modules/Voting/Musicratic.Voting.Api/Musicratic.Voting.Api.csproj" />
+    <Project Path="Modules/Voting/Musicratic.Voting.Application/Musicratic.Voting.Application.csproj" />
+    <Project Path="Modules/Voting/Musicratic.Voting.Domain/Musicratic.Voting.Domain.csproj" />
+    <Project Path="Modules/Voting/Musicratic.Voting.Infrastructure/Musicratic.Voting.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Musicratic.Shared.Application/Musicratic.Shared.Application.csproj" />
+    <Project Path="Shared/Musicratic.Shared.Contracts/Musicratic.Shared.Contracts.csproj" />
+    <Project Path="Shared/Musicratic.Shared.Domain/Musicratic.Shared.Domain.csproj" />
+    <Project Path="Shared/Musicratic.Shared.Infrastructure/Musicratic.Shared.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="../tests/Musicratic.Analytics.Tests/Musicratic.Analytics.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Auth.Tests/Musicratic.Auth.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Economy.Tests/Musicratic.Economy.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Hub.Tests/Musicratic.Hub.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Integration.Tests/Musicratic.Integration.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Notification.Tests/Musicratic.Notification.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Playback.Tests/Musicratic.Playback.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Social.Tests/Musicratic.Social.Tests.csproj" />
+    <Project Path="../tests/Musicratic.Voting.Tests/Musicratic.Voting.Tests.csproj" />
+  </Folder>
+</Solution>

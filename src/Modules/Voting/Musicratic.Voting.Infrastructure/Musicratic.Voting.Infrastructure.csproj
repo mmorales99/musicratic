@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Dapr.Client" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Musicratic.Voting.Application\Musicratic.Voting.Application.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Musicratic.Shared.Infrastructure\Musicratic.Shared.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

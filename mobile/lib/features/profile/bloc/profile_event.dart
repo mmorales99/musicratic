@@ -1,0 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'profile_event.freezed.dart';
+
+@freezed
+class ProfileEvent with _$ProfileEvent {
+  const factory ProfileEvent.loadProfile() = ProfileEventLoadProfile;
+  const factory ProfileEvent.updateProfile({
+    required Map<String, dynamic> fields,
+  }) = ProfileEventUpdateProfile;
+  const factory ProfileEvent.loadPublicProfile({
+    required String userId,
+  }) = ProfileEventLoadPublicProfile;
+}

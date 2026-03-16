@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            set -euo pipefail
+
+            DEPLOY_DIR="${MUSICRATIC_DEPLOY_DIR:-/opt/musicratic}"
+            cd "$DEPLOY_DIR"
+
+            echo "=== Pulling latest code ==="
+            git pull origin main
+
+            echo "=== Building and deploying ==="
+            podman-compose -f infra/podman-compose.yml build
+            podman-compose -f infra/podman-compose.yml up -d
+
+            echo "=== Waiting for health checks ==="
+            sleep 20
+
+            echo "=== Service status ==="
+            podman-compose -f infra/podman-compose.yml ps
+
+            echo "=== Deployment complete ==="
