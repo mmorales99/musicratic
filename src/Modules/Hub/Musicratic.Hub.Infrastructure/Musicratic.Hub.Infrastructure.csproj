@@ -5,6 +5,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
     <PackageReference Include="Dapr.Client" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="QRCoder" />
   </ItemGroup>
 
   <ItemGroup>

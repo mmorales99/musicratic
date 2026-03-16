@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 22 |
-| Done | 7 |
-| Remaining | 15 |
+| Done | 13 |
+| Remaining | 9 |
 | Est. premium requests | ~35 |
 | Est. tokens | ~600 K |
 
@@ -26,18 +26,18 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| HUB-010 | Hub code generation service (unique short alphanumeric, e.g. CAFELUNA23) | S | 1 | 20K | 1A | — | backend-module | 📋 Backlog |
-| HUB-011 | QR code generation service (signed URL + QR image → Azurite blob) | M | 3 | 50K | 1A | HUB-010 | backend-module | 📋 Backlog |
-| HUB-012 | Deep link generation (https://musicratic.app/join/{code}?sig={sig}) | S | 1 | 20K | 1A | HUB-010 | backend-module | 📋 Backlog |
-| HUB-013 | Hub update + soft-delete commands | M | 2 | 35K | 1A | — | backend-module | 📋 Backlog |
-| HUB-014 | Hub settings CRUD (update individual settings via command) | M | 2 | 35K | 1A | — | backend-module | 📋 Backlog |
+| HUB-010 | Hub code generation service (unique short alphanumeric, e.g. CAFELUNA23) | S | 1 | 20K | 1A | — | backend-module | ✅ Done |
+| HUB-011 | QR code generation service (signed URL + QR image → Azurite blob) | M | 3 | 50K | 1A | HUB-010 | backend-module | ✅ Done |
+| HUB-012 | Deep link generation (https://musicratic.app/join/{code}?sig={sig}) | S | 1 | 20K | 1A | HUB-010 | backend-module | ✅ Done |
+| HUB-013 | Hub update + soft-delete commands | M | 2 | 35K | 1A | — | backend-module | ✅ Done |
+| HUB-014 | Hub settings CRUD (update individual settings via command) | M | 2 | 35K | 1A | — | backend-module | ✅ Done |
 | HUB-015 | Attachment flow (validate hub active → detach previous → create with 1h expiry) | L | 4 | 70K | 1A | AUTH-013 | backend-module | 📋 Backlog |
 | HUB-016 | Attachment expiry background job (check expired → auto-detach) | M | 2 | 40K | 1A | HUB-015 | backend-module | 📋 Backlog |
-| HUB-017 | List update + delete + reorder commands | M | 2 | 35K | 1A | — | backend-module | 📋 Backlog |
+| HUB-017 | List update + delete + reorder commands | M | 2 | 35K | 1A | — | backend-module | ✅ Done |
 | HUB-018 | ListTrack management (add, remove, reorder, bulk-add) | M | 2 | 40K | 1A | — | backend-module | 📋 Backlog |
 | HUB-019 | Hub search/filter query (by name, type, visibility, tenant) | M | 2 | 35K | 1A | — | backend-module | 📋 Backlog |
 | HUB-020 | Play mode logic (ordered sequence vs weighted shuffle per list) | M | 2 | 40K | 1A | — | backend-module | 📋 Backlog |
-| HUB-021 | Hub pause / resume state transition commands | S | 1 | 20K | 1A | — | backend-module | 📋 Backlog |
+| HUB-021 | Hub pause / resume state transition commands | S | 1 | 20K | 1A | — | backend-module | ✅ Done |
 
 ## Phase 1F — Roles & Delegation
 

@@ -70,6 +70,7 @@
     <Project Path="../tests/Musicratic.Notification.Tests/Musicratic.Notification.Tests.csproj" />
     <Project Path="../tests/Musicratic.Playback.Tests/Musicratic.Playback.Tests.csproj" />
     <Project Path="../tests/Musicratic.Social.Tests/Musicratic.Social.Tests.csproj" />
+    <Project Path="../tests/Musicratic.TestUtilities/Musicratic.TestUtilities.csproj" />
     <Project Path="../tests/Musicratic.Voting.Tests/Musicratic.Voting.Tests.csproj" />
   </Folder>
 </Solution>

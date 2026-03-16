@@ -4,6 +4,7 @@ using Musicratic.Hub.Application.Commands.CreateHub;
 using Musicratic.Hub.Domain.Entities;
 using Musicratic.Hub.Domain.Enums;
 using Musicratic.Hub.Domain.Repositories;
+using Musicratic.Hub.Domain.Services;
 using Musicratic.Shared.Application;
 using HubEntity = Musicratic.Hub.Domain.Entities.Hub;
 
@@ -12,14 +13,24 @@ namespace Musicratic.Hub.Tests.Application;
 public class CreateHubHandlerTests
 {
     private readonly Mock<IHubRepository> _hubRepositoryMock;
+    private readonly Mock<IHubCodeGenerator> _hubCodeGeneratorMock;
     private readonly Mock<IUnitOfWork> _unitOfWorkMock;
     private readonly CreateHubHandler _handler;
 
     public CreateHubHandlerTests()
     {
         _hubRepositoryMock = new Mock<IHubRepository>();
+        _hubCodeGeneratorMock = new Mock<IHubCodeGenerator>();
         _unitOfWorkMock = new Mock<IUnitOfWork>();
-        _handler = new CreateHubHandler(_hubRepositoryMock.Object, _unitOfWorkMock.Object);
+
+        _hubCodeGeneratorMock
+            .Setup(g => g.Generate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync("MYBAR42");
+
+        _handler = new CreateHubHandler(
+            _hubRepositoryMock.Object,
+            _hubCodeGeneratorMock.Object,
+            _unitOfWorkMock.Object);
     }
 
     [Fact]

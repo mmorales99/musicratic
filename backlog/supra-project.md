@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 28 |
-| **Remaining** | 148 |
+| **Done** | 48 |
+| **Remaining** | 128 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -15,9 +15,9 @@
 
 | Sub-Project | Total | Done | Backlog | Est. PRs | Est. Tokens | Phase Coverage |
 |-------------|-------|------|---------|----------|-------------|----------------|
-| [Backend Auth](backend-auth.md) | 16 | 6 | 10 | ~22 | ~400 K | 0, 1A, 1F |
-| [Backend Hub](backend-hub.md) | 22 | 7 | 15 | ~35 | ~600 K | 0, 1A, 1F |
-| [Backend Playback](backend-playback.md) | 18 | 0 | 18 | ~40 | ~700 K | 1A, 1B |
+| [Backend Auth](backend-auth.md) | 16 | 10 | 6 | ~22 | ~400 K | 0, 1A, 1F |
+| [Backend Hub](backend-hub.md) | 22 | 13 | 9 | ~35 | ~600 K | 0, 1A, 1F |
+| [Backend Playback](backend-playback.md) | 18 | 6 | 12 | ~40 | ~700 K | 1A, 1B |
 | [Backend Voting](backend-voting.md) | 15 | 0 | 15 | ~32 | ~550 K | 1B, 1C |
 | [Backend Economy](backend-economy.md) | 15 | 0 | 15 | ~34 | ~600 K | 1C, 1D |
 | [Backend Analytics](backend-analytics.md) | 10 | 0 | 10 | ~22 | ~380 K | 1E |
@@ -25,15 +25,15 @@
 | [Backend Notification](backend-notification.md) | 10 | 0 | 10 | ~22 | ~380 K | 1B–1G |
 | [Web Angular](web-angular.md) | 25 | 0 | 25 | ~55 | ~950 K | 1A–1G |
 | [Mobile Flutter](mobile-flutter.md) | 25 | 0 | 25 | ~55 | ~950 K | 1A–1G |
-| [Infrastructure](infrastructure.md) | 10 | 5 | 5 | ~12 | ~200 K | 0, 1A |
-| [Testing & Quality](testing-quality.md) | 10 | 0 | 10 | ~25 | ~430 K | 0–1G |
+| [Infrastructure](infrastructure.md) | 10 | 7 | 3 | ~12 | ~200 K | 0, 1A |
+| [Testing & Quality](testing-quality.md) | 10 | 1 | 9 | ~25 | ~430 K | 0–1G |
 
 ## Phase Progress
 
 | Phase | Description | Tasks | Done | % |
 |-------|-------------|-------|------|---|
 | **Phase 0** | Foundation | 28 | 28 | 100% |
-| **Phase 1A** | Hub & List Management | 42 | 0 | 0% |
+| **Phase 1A** | Hub & List Management | 42 | 20 | 48% |
 | **Phase 1B** | Queue & Proposals | 28 | 0 | 0% |
 | **Phase 1C** | Voting & Skipping | 24 | 0 | 0% |
 | **Phase 1D** | Economy | 18 | 0 | 0% |

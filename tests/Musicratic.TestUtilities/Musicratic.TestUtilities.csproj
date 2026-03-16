@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Using Remove="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Shared\Musicratic.Shared.Domain\Musicratic.Shared.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Shared\Musicratic.Shared.Application\Musicratic.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Auth\Musicratic.Auth.Domain\Musicratic.Auth.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Hub\Musicratic.Hub.Domain\Musicratic.Hub.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Modules\Playback\Musicratic.Playback.Domain\Musicratic.Playback.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

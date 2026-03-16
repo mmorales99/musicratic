@@ -51,6 +51,13 @@ public sealed class HubConfiguration : IEntityTypeConfiguration<Domain.Entities.
             .HasColumnName("is_active")
             .HasDefaultValue(false);
 
+        builder.Property(h => h.IsPaused)
+            .HasColumnName("is_paused")
+            .HasDefaultValue(false);
+
+        builder.Property(h => h.PausedAt)
+            .HasColumnName("paused_at");
+
         builder.Property(h => h.QrUrl)
             .HasColumnName("qr_url")
             .HasMaxLength(2048);
@@ -62,6 +69,15 @@ public sealed class HubConfiguration : IEntityTypeConfiguration<Domain.Entities.
         builder.Property(h => h.Visibility)
             .HasColumnName("visibility")
             .HasConversion<string>();
+
+        builder.Property(h => h.IsDeleted)
+            .HasColumnName("is_deleted")
+            .HasDefaultValue(false);
+
+        builder.Property(h => h.DeletedAt)
+            .HasColumnName("deleted_at");
+
+        builder.HasQueryFilter(h => !h.IsDeleted);
 
         builder.OwnsOne(h => h.Settings, settings =>
         {

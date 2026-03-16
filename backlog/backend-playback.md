@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 18 |
-| Done | 0 |
-| Remaining | 18 |
+| Done | 6 |
+| Remaining | 12 |
 | Est. premium requests | ~40 |
 | Est. tokens | ~700 K |
 
@@ -14,12 +14,12 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| PLAY-001 | Track entity (provider, external_id, title, artist, duration, album_art_url, hotness) | S | 1 | 20K | 1A | — | backend-module | 📋 Backlog |
-| PLAY-002 | Track EF configuration + TrackRepository | S | 1 | 20K | 1A | PLAY-001 | database | 📋 Backlog |
-| PLAY-003 | QueueEntry entity (track_id, hub_id, position, status, source, proposer_id, cost_paid) | M | 2 | 30K | 1A | PLAY-001 | backend-module | 📋 Backlog |
-| PLAY-004 | QueueEntry EF configuration + QueueEntryRepository | S | 1 | 20K | 1A | PLAY-003 | database | 📋 Backlog |
-| PLAY-005 | PlaybackDbContext (schema "playback") + DI registration | M | 2 | 35K | 1A | PLAY-002, PLAY-004 | database | 📋 Backlog |
-| PLAY-006 | IMusicProvider interface (Search, GetMetadata, GetPlaybackUrl) | S | 1 | 15K | 1A | — | backend-module | 📋 Backlog |
+| PLAY-001 | Track entity (provider, external_id, title, artist, duration, album_art_url, hotness) | S | 1 | 20K | 1A | — | backend-module | ✅ Done |
+| PLAY-002 | Track EF configuration + TrackRepository | S | 1 | 20K | 1A | PLAY-001 | database | ✅ Done |
+| PLAY-003 | QueueEntry entity (track_id, hub_id, position, status, source, proposer_id, cost_paid) | M | 2 | 30K | 1A | PLAY-001 | backend-module | ✅ Done |
+| PLAY-004 | QueueEntry EF configuration + QueueEntryRepository | S | 1 | 20K | 1A | PLAY-003 | database | ✅ Done |
+| PLAY-005 | PlaybackDbContext (schema "playback") + DI registration | M | 2 | 35K | 1A | PLAY-002, PLAY-004 | database | ✅ Done |
+| PLAY-006 | IMusicProvider interface (Search, GetMetadata, GetPlaybackUrl) | S | 1 | 15K | 1A | — | backend-module | ✅ Done |
 | PLAY-007 | SpotifyProvider implementation (Spotify Web API: search, track metadata, playback URL) | L | 4 | 80K | 1A | PLAY-006 | backend-module | 📋 Backlog |
 | PLAY-008 | YouTubeMusicProvider implementation (YouTube Data API: search, video metadata) | L | 4 | 80K | 1A | PLAY-006 | backend-module | 📋 Backlog |
 | PLAY-009 | NowPlaying query (current track info + progress + queue position) | S | 1 | 20K | 1A | PLAY-003 | backend-module | 📋 Backlog |

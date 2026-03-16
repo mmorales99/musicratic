@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Routing;
 using Musicratic.Hub.Application.Commands.ActivateHub;
 using Musicratic.Hub.Application.Commands.CreateHub;
 using Musicratic.Hub.Application.Commands.DeactivateHub;
+using Musicratic.Hub.Application.Commands.GenerateDeepLink;
+using Musicratic.Hub.Application.Commands.UpdateHubSettings;
 using Musicratic.Hub.Application.DTOs;
 using Musicratic.Hub.Application.Queries.GetActiveHubs;
 using Musicratic.Hub.Application.Queries.GetHub;
 using Musicratic.Hub.Application.Queries.GetHubMembers;
+using Musicratic.Hub.Application.Queries.GetHubSettings;
 using Musicratic.Hub.Domain.Entities;
 using Musicratic.Hub.Domain.Enums;
 
@@ -26,6 +29,9 @@ public static class HubEndpoints
         group.MapPost("/{id:guid}/activate", ActivateHub).WithName("ActivateHub");
         group.MapPost("/{id:guid}/deactivate", DeactivateHub).WithName("DeactivateHub");
         group.MapGet("/{id:guid}/members", GetHubMembers).WithName("GetHubMembers");
+        group.MapPost("/{id:guid}/deep-link", GenerateDeepLink).WithName("GenerateDeepLink");
+        group.MapGet("/{id:guid}/settings", GetHubSettings).WithName("GetHubSettings");
+        group.MapPatch("/{id:guid}/settings", UpdateHubSettings).WithName("UpdateHubSettings");
 
         return group;
     }
@@ -97,6 +103,43 @@ public static class HubEndpoints
         return Results.Ok(members);
     }
 
+    private static async Task<IResult> GenerateDeepLink(
+        Guid id,
+        ISender sender,
+        CancellationToken cancellationToken)
+    {
+        var deepLink = await sender.Send(new GenerateDeepLinkCommand(id), cancellationToken);
+        return Results.Ok(new { url = deepLink });
+    }
+
+    private static async Task<IResult> GetHubSettings(
+        Guid id,
+        ISender sender,
+        CancellationToken cancellationToken)
+    {
+        var settings = await sender.Send(new GetHubSettingsQuery(id), cancellationToken);
+        return Results.Ok(settings);
+    }
+
+    private static async Task<IResult> UpdateHubSettings(
+        Guid id,
+        UpdateHubSettingsRequest request,
+        ISender sender,
+        CancellationToken cancellationToken)
+    {
+        await sender.Send(new UpdateHubSettingsCommand(
+            id,
+            request.AllowProposals,
+            request.AutoSkipThreshold,
+            request.VotingWindowSeconds,
+            request.MaxQueueSize,
+            request.AllowedProviders,
+            request.EnableLocalStorage,
+            request.AdsEnabled), cancellationToken);
+
+        return Results.NoContent();
+    }
+
     public sealed record CreateHubRequest(
         string Name,
         HubType Type,
@@ -115,4 +158,13 @@ public static class HubEndpoints
         public List<MusicProvider> AllowedProviders { get; init; } =
             AllowedProviders ?? [MusicProvider.Spotify];
     }
+
+    public sealed record UpdateHubSettingsRequest(
+        bool? AllowProposals = null,
+        double? AutoSkipThreshold = null,
+        int? VotingWindowSeconds = null,
+        int? MaxQueueSize = null,
+        List<MusicProvider>? AllowedProviders = null,
+        bool? EnableLocalStorage = null,
+        bool? AdsEnabled = null);
 }

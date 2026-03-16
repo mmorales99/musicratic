@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup Label="Microsoft Extensions">
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.1" />
   </ItemGroup>
   <ItemGroup Label="MediatR">
     <PackageVersion Include="MediatR" Version="12.4.1" />
@@ -11,6 +12,9 @@
   <ItemGroup Label="FluentValidation">
     <PackageVersion Include="FluentValidation" Version="11.11.0" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+  </ItemGroup>
+  <ItemGroup Label="Authentication">
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
   </ItemGroup>
   <ItemGroup Label="EF Core">
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
@@ -32,6 +36,9 @@
   <ItemGroup Label="Dapr">
     <PackageVersion Include="Dapr.Client" Version="1.14.0" />
     <PackageVersion Include="Dapr.AspNetCore" Version="1.14.0" />
+  </ItemGroup>
+  <ItemGroup Label="QR Code">
+    <PackageVersion Include="QRCoder" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup Label="gRPC">
     <PackageVersion Include="Grpc.AspNetCore" Version="2.67.0" />

@@ -23,7 +23,7 @@ public class HubTests
         var ownerId = Guid.NewGuid();
 
         // Act
-        var hub = HubEntity.Create("My Bar", HubType.Venue, ownerId, DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, ownerId, DefaultSettings, "MYBAR42");
 
         // Assert
         hub.Should().NotBeNull();
@@ -41,7 +41,7 @@ public class HubTests
     public void Create_ShouldSetTenantIdToHubId_WhenCreated()
     {
         // Act
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
 
         // Assert
         hub.TenantId.Should().Be(hub.Id);
@@ -51,7 +51,7 @@ public class HubTests
     public void Create_ShouldGenerateCode_WhenCreated()
     {
         // Act
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
 
         // Assert
         hub.Code.Should().NotBeNullOrWhiteSpace();
@@ -66,7 +66,7 @@ public class HubTests
         var ownerId = Guid.NewGuid();
 
         // Act
-        var hub = HubEntity.Create("My Bar", HubType.Venue, ownerId, DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, ownerId, DefaultSettings, "MYBAR42");
 
         // Assert
         hub.DomainEvents.Should().ContainSingle()
@@ -82,7 +82,7 @@ public class HubTests
     public void Create_ShouldThrow_WhenNameIsInvalid(string? name)
     {
         // Act
-        var act = () => HubEntity.Create(name!, HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var act = () => HubEntity.Create(name!, HubType.Venue, Guid.NewGuid(), DefaultSettings, "TEST42");
 
         // Assert
         act.Should().Throw<ArgumentException>();
@@ -92,7 +92,7 @@ public class HubTests
     public void Create_ShouldAcceptPortableType_WhenProvided()
     {
         // Act
-        var hub = HubEntity.Create("Party", HubType.Portable, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("Party", HubType.Portable, Guid.NewGuid(), DefaultSettings, "PARTY42");
 
         // Assert
         hub.Type.Should().Be(HubType.Portable);
@@ -102,7 +102,7 @@ public class HubTests
     public void Activate_ShouldSetIsActiveTrue_WhenInactive()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.ClearDomainEvents();
 
         // Act
@@ -116,7 +116,7 @@ public class HubTests
     public void Activate_ShouldRaiseHubActivatedEvent_WhenActivated()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.ClearDomainEvents();
 
         // Act
@@ -132,7 +132,7 @@ public class HubTests
     public void Activate_ShouldNotRaiseEvent_WhenAlreadyActive()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.Activate();
         hub.ClearDomainEvents();
 
@@ -148,7 +148,7 @@ public class HubTests
     public void Deactivate_ShouldSetIsActiveFalse_WhenActive()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.Activate();
         hub.ClearDomainEvents();
 
@@ -163,7 +163,7 @@ public class HubTests
     public void Deactivate_ShouldRaiseHubDeactivatedEvent_WhenDeactivated()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.Activate();
         hub.ClearDomainEvents();
 
@@ -180,7 +180,7 @@ public class HubTests
     public void Deactivate_ShouldNotRaiseEvent_WhenAlreadyInactive()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         hub.ClearDomainEvents();
 
         // Act
@@ -195,7 +195,7 @@ public class HubTests
     public void AddMember_ShouldAddMember_WhenUserNotAlreadyMember()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         var assignedBy = Guid.NewGuid();
         hub.ClearDomainEvents();
@@ -214,7 +214,7 @@ public class HubTests
     public void AddMember_ShouldRaiseMemberJoinedEvent_WhenMemberAdded()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.ClearDomainEvents();
 
@@ -232,7 +232,7 @@ public class HubTests
     public void AddMember_ShouldThrow_WhenUserAlreadyMember()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.Visitor, Guid.NewGuid());
 
@@ -248,7 +248,7 @@ public class HubTests
     public void AddMember_ShouldAllowNullAssignedBy_WhenSelfJoin()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
 
         // Act
@@ -262,7 +262,7 @@ public class HubTests
     public void RemoveMember_ShouldRemoveMember_WhenMemberExists()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.Visitor, Guid.NewGuid());
 
@@ -277,7 +277,7 @@ public class HubTests
     public void RemoveMember_ShouldThrow_WhenUserNotMember()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
 
         // Act
@@ -292,7 +292,7 @@ public class HubTests
     public void RemoveMember_ShouldThrow_WhenRemovingSuperOwner()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.SuperOwner, Guid.NewGuid());
 
@@ -308,7 +308,7 @@ public class HubTests
     public void PromoteMember_ShouldPromote_WhenNewRoleIsHigher()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         var promotedBy = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.Visitor, Guid.NewGuid());
@@ -324,7 +324,7 @@ public class HubTests
     public void PromoteMember_ShouldThrow_WhenUserNotMember()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
 
         // Act
         var act = () => hub.PromoteMember(Guid.NewGuid(), HubMemberRole.SubListOwner, Guid.NewGuid());
@@ -338,7 +338,7 @@ public class HubTests
     public void PromoteMember_ShouldThrow_WhenDemoting()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.SubHubManager, Guid.NewGuid());
 
@@ -354,7 +354,7 @@ public class HubTests
     public void PromoteMember_ShouldThrow_WhenAssigningSameRole()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var userId = Guid.NewGuid();
         hub.AddMember(userId, HubMemberRole.Visitor, Guid.NewGuid());
 
@@ -370,7 +370,7 @@ public class HubTests
     public void UpdateSettings_ShouldUpdateSettings_WhenValid()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var newSettings = new HubSettings
         {
             AllowProposals = false,
@@ -390,7 +390,7 @@ public class HubTests
     public void UpdateSettings_ShouldThrow_WhenSettingsIsNull()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
 
         // Act
         var act = () => hub.UpdateSettings(null!);
@@ -403,7 +403,7 @@ public class HubTests
     public void SetVisibility_ShouldUpdateVisibility_WhenCalled()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
 
         // Act
         hub.SetVisibility(HubVisibility.Private);
@@ -416,7 +416,7 @@ public class HubTests
     public void AddMultipleMembers_ShouldTrackAll_WhenDifferentUsers()
     {
         // Arrange
-        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings);
+        var hub = HubEntity.Create("My Bar", HubType.Venue, Guid.NewGuid(), DefaultSettings, "MYBAR42");
         var user1 = Guid.NewGuid();
         var user2 = Guid.NewGuid();
         var user3 = Guid.NewGuid();

@@ -2,16 +2,66 @@
     auto_https off
 }
 
+(cors) {
+    @cors_preflight method OPTIONS
+    handle @cors_preflight {
+        header Access-Control-Allow-Origin "{http.request.header.Origin}"
+        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        header Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        header Access-Control-Expose-Headers "X-Total-Count, X-Request-Id"
+        header Access-Control-Max-Age "3600"
+        header Access-Control-Allow-Credentials "true"
+        respond 204
+    }
+    @cors_origin header Origin *
+    handle @cors_origin {
+        header Access-Control-Allow-Origin "{http.request.header.Origin}"
+        header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        header Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        header Access-Control-Expose-Headers "X-Total-Count, X-Request-Id"
+        header Access-Control-Max-Age "3600"
+        header Access-Control-Allow-Credentials "true"
+    }
+}
+
 :80 {
+    # WebSocket routes — must be before API routes
+    @ws_web {
+        path /ws/web/*
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @ws_web musicratic-backend:5000 {
+        flush_interval -1
+    }
+
+    @ws_mobile {
+        path /ws/mobile/*
+        header Connection *Upgrade*
+        header Upgrade websocket
+    }
+    reverse_proxy @ws_mobile musicratic-backend:5000 {
+        flush_interval -1
+    }
+
+    # API routes with CORS
+    handle /api/auth/* {
+        import cors
+        reverse_proxy musicratic-backend:5000
+    }
     handle /api/web/* {
+        import cors
         reverse_proxy musicratic-bff-web:5010
     }
     handle /api/mobile/* {
+        import cors
         reverse_proxy musicratic-bff-mobile:5020
     }
+
     handle /health {
         reverse_proxy musicratic-backend:5000
     }
+
     handle {
         root * /srv/web
         try_files {path} /index.html

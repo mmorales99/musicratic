@@ -22,6 +22,10 @@ public sealed class Hub : AuditableEntity, ITenantScoped
 
     public bool IsActive { get; private set; }
 
+    public bool IsPaused { get; private set; }
+
+    public DateTime? PausedAt { get; private set; }
+
     public string QrUrl { get; private set; } = string.Empty;
 
     public string DirectLink { get; private set; } = string.Empty;
@@ -30,21 +34,26 @@ public sealed class Hub : AuditableEntity, ITenantScoped
 
     public HubSettings Settings { get; private set; } = null!;
 
+    public bool IsDeleted { get; private set; }
+
+    public DateTime? DeletedAt { get; private set; }
+
     private readonly List<HubMember> _members = [];
 
     public IReadOnlyCollection<HubMember> Members => _members.AsReadOnly();
 
     private Hub() { }
 
-    public static Hub Create(string name, HubType type, Guid ownerId, HubSettings settings)
+    public static Hub Create(string name, HubType type, Guid ownerId, HubSettings settings, string code)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentException.ThrowIfNullOrWhiteSpace(code);
 
         var hub = new Hub
         {
             TenantId = Guid.NewGuid(),
             Name = name,
-            Code = GenerateCode(name),
+            Code = code,
             Type = type,
             OwnerId = ownerId,
             SubscriptionTier = SubscriptionTier.FreeTrial,
@@ -77,7 +86,40 @@ public sealed class Hub : AuditableEntity, ITenantScoped
             return;
 
         IsActive = false;
+
+        if (IsPaused)
+        {
+            IsPaused = false;
+            PausedAt = null;
+        }
+
         AddDomainEvent(new HubDeactivatedEvent(Id));
+    }
+
+    public void Pause()
+    {
+        if (!IsActive)
+            throw new InvalidOperationException("Cannot pause an inactive hub.");
+
+        if (IsPaused)
+            throw new InvalidOperationException("Hub is already paused.");
+
+        IsPaused = true;
+        PausedAt = DateTime.UtcNow;
+        AddDomainEvent(new HubPausedEvent(Id));
+    }
+
+    public void Resume()
+    {
+        if (!IsActive)
+            throw new InvalidOperationException("Cannot resume an inactive hub.");
+
+        if (!IsPaused)
+            throw new InvalidOperationException("Hub is not paused.");
+
+        IsPaused = false;
+        PausedAt = null;
+        AddDomainEvent(new HubResumedEvent(Id));
     }
 
     public void UpdateSettings(HubSettings settings)
@@ -88,6 +130,37 @@ public sealed class Hub : AuditableEntity, ITenantScoped
     public void SetVisibility(HubVisibility visibility)
     {
         Visibility = visibility;
+    }
+
+    public void Update(string name, HubVisibility visibility)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+
+        Name = name;
+        Visibility = visibility;
+    }
+
+    public void SoftDelete()
+    {
+        if (IsDeleted)
+            return;
+
+        IsDeleted = true;
+        DeletedAt = DateTime.UtcNow;
+
+        if (IsActive)
+            Deactivate();
+
+        AddDomainEvent(new HubDeletedEvent(Id));
+    }
+
+    public void Restore()
+    {
+        if (!IsDeleted)
+            return;
+
+        IsDeleted = false;
+        DeletedAt = null;
     }
 
     public HubMember AddMember(Guid userId, HubMemberRole role, Guid? assignedBy)
@@ -122,11 +195,13 @@ public sealed class Hub : AuditableEntity, ITenantScoped
         member.PromoteTo(newRole, promotedBy);
     }
 
-    private static string GenerateCode(string name)
+    public void UpdateLinks(string qrUrl, string directLink)
     {
-        var sanitized = new string(name.Where(char.IsLetterOrDigit).ToArray()).ToUpperInvariant();
-        var prefix = sanitized.Length >= 8 ? sanitized[..8] : sanitized;
-        var suffix = DateTime.UtcNow.Ticks % 10000;
-        return $"{prefix}{suffix}";
+        ArgumentException.ThrowIfNullOrWhiteSpace(qrUrl);
+        ArgumentException.ThrowIfNullOrWhiteSpace(directLink);
+
+        QrUrl = qrUrl;
+        DirectLink = directLink;
     }
+
 }

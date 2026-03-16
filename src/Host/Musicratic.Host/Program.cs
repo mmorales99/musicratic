@@ -7,6 +7,7 @@ using Musicratic.Auth.Domain;
 using Musicratic.Auth.Application;
 using Musicratic.Auth.Infrastructure;
 using Musicratic.Auth.Api;
+using Musicratic.Auth.Api.Endpoints;
 using Musicratic.Hub.Domain;
 using Musicratic.Hub.Application;
 using Musicratic.Hub.Infrastructure;
@@ -61,6 +62,9 @@ builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Authorization
+builder.Services.AddAuthorization();
+
 // Shared
 builder.Services.AddSharedApplication();
 builder.Services.AddSharedInfrastructure();
@@ -83,7 +87,7 @@ builder.Services
 builder.Services
     .AddPlaybackDomain()
     .AddPlaybackApplication()
-    .AddPlaybackInfrastructure()
+    .AddPlaybackInfrastructure(builder.Configuration)
     .AddPlaybackApi();
 
 // Voting module
@@ -127,6 +131,12 @@ app.UseSerilogRequestLogging();
 app.MapHealthChecks("/health");
 app.UseSwagger();
 app.MapScalarApiReference();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+// Module endpoints
+app.MapAuthEndpoints();
 
 app.Run();
 
