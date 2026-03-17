@@ -24,6 +24,7 @@ public static class DependencyInjection
         services.AddScoped<IHubMemberRepository, HubMemberRepository>();
         services.AddScoped<IHubAttachmentRepository, HubAttachmentRepository>();
         services.AddScoped<IListRepository, ListRepository>();
+        services.AddScoped<IMemberListAssignmentRepository, MemberListAssignmentRepository>();
         services.AddScoped<IUnitOfWork, HubUnitOfWork>();
         services.AddScoped<IHubCodeGenerator, HubCodeGenerator>();
         services.AddSingleton<IPlayModeService, PlayModeService>();

@@ -203,6 +203,19 @@ public sealed class Hub : AuditableEntity, ITenantScoped
         member.PromoteTo(newRole, promotedBy);
     }
 
+    public void DemoteMember(Guid userId, HubMemberRole newRole, Guid demotedBy)
+    {
+        var member = _members.FirstOrDefault(m => m.UserId == userId)
+            ?? throw new InvalidOperationException($"User '{userId}' is not a member of this hub.");
+
+        member.DemoteTo(newRole, demotedBy);
+    }
+
+    public int GetMemberCountByRole(HubMemberRole role)
+    {
+        return _members.Count(m => m.Role == role);
+    }
+
     public void UpdateLinks(string qrUrl, string directLink)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(qrUrl);

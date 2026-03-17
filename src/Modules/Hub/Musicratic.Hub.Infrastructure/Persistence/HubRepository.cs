@@ -72,6 +72,15 @@ public sealed class HubRepository : IHubRepository
             .FirstOrDefaultAsync(h => h.Code == code, cancellationToken);
     }
 
+    public async Task<Domain.Entities.Hub?> GetByIdWithMembers(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Hubs
+            .Include(h => h.Members)
+            .FirstOrDefaultAsync(h => h.Id == id, cancellationToken);
+    }
+
     public async Task<IReadOnlyList<Domain.Entities.Hub>> GetActiveHubs(
         CancellationToken cancellationToken = default)
     {

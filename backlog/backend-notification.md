@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 10 |
-| Done | 9 |
-| Remaining | 1 |
+| Done | 10 |
+| Remaining | 0 |
 | Est. premium requests | ~22 |
 | Est. tokens | ~380 K |
 
@@ -23,7 +23,7 @@
 | NTFY-007 | Notification preferences entity + CRUD (per-user opt-in/out per type) | M | 2 | 35K | 1D | NTFY-001 | backend-module | ✅ Done |
 | NTFY-008 | Notification API endpoints (list notifications, mark read, update preferences) | M | 2 | 35K | 1D | NTFY-004 | backend-module | ✅ Done |
 | NTFY-009 | Dapr event handlers (vote_cast, track_skipped, review_created, report_ready → notify) | M | 3 | 50K | 1E | NTFY-004 | backend-module | ✅ Done |
-| NTFY-010 | Email notification service (SMTP for weekly/monthly analytics reports) | M | 2 | 40K | 1E | NTFY-001 | backend-module | 📋 Backlog |
+| NTFY-010 | Email notification service (SMTP for weekly/monthly analytics reports) | M | 2 | 40K | 1E | NTFY-001 | backend-module | ✅ Done |
 
 ## Dependency Graph
 

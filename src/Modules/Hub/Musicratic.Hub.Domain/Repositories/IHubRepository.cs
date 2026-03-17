@@ -9,6 +9,8 @@ public interface IHubRepository : IRepository<Entities.Hub>
 
     Task<Entities.Hub?> GetByCodeWithMembers(string code, CancellationToken cancellationToken = default);
 
+    Task<Entities.Hub?> GetByIdWithMembers(Guid id, CancellationToken cancellationToken = default);
+
     Task<IReadOnlyList<Entities.Hub>> GetActiveHubs(CancellationToken cancellationToken = default);
 
     Task<(IReadOnlyList<Entities.Hub> Items, int TotalCount)> Search(

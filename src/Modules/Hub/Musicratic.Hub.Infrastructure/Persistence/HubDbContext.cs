@@ -12,6 +12,7 @@ public sealed class HubDbContext : BaseDbContext
     public DbSet<HubAttachment> HubAttachments => Set<HubAttachment>();
     public DbSet<List> Lists => Set<List>();
     public DbSet<ListTrack> ListTracks => Set<ListTrack>();
+    public DbSet<MemberListAssignment> MemberListAssignments => Set<MemberListAssignment>();
 
     public HubDbContext(
         DbContextOptions<HubDbContext> options,

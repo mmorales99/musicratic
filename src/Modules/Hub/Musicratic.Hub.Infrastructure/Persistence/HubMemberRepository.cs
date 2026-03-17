@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Musicratic.Hub.Domain.Entities;
+using Musicratic.Hub.Domain.Enums;
 using Musicratic.Hub.Domain.Repositories;
 
 namespace Musicratic.Hub.Infrastructure.Persistence;
@@ -86,5 +87,14 @@ public sealed class HubMemberRepository : IHubMemberRepository
             .ToListAsync(cancellationToken);
 
         return (items, totalCount);
+    }
+
+    public async Task<int> CountByRole(
+        Guid hubId,
+        HubMemberRole role,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.HubMembers
+            .CountAsync(m => m.HubId == hubId && m.Role == role, cancellationToken);
     }
 }

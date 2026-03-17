@@ -1,9 +1,9 @@
 {
-    "last_sprint": 6,
-    "requests_used": 8,
+    "last_sprint": 7,
+    "requests_used": 24,
     "last_completed_group": 2,
-    "timestamp": "2025-07-21T12:30:00Z",
-    "tasks_done_this_session": ["AUTH-020", "HUB-030", "PLAY-013"],
+    "timestamp": "2025-07-14T10:00:00Z",
+    "tasks_done_this_session": ["AUTH-020", "HUB-030", "PLAY-013", "AUTH-021", "AUTH-022", "VOTE-008", "NTFY-009"],
     "tasks_waiting_human": [],
     "exit_reason": null
 }

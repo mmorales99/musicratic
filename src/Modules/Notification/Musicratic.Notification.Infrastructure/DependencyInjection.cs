@@ -32,6 +32,10 @@ public static class DependencyInjection
         services.Configure<ApnsOptions>(configuration.GetSection(ApnsOptions.SectionName));
         services.Configure<FcmOptions>(configuration.GetSection(FcmOptions.SectionName));
 
+        // Email notification config
+        services.Configure<SmtpOptions>(configuration.GetSection(SmtpOptions.SectionName));
+        services.AddScoped<IEmailNotificationService, EmailNotificationService>();
+
         services.AddHttpClient("ApnsPush");
         services.AddHttpClient("FcmPush");
         services.AddHttpClient("FcmAuth");

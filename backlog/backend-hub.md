@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 22 |
-| Done | 19 |
-| Remaining | 3 |
+| Done | 22 |
+| Remaining | 0 |
 | Est. premium requests | ~35 |
 | Est. tokens | ~600 K |
 
@@ -44,8 +44,8 @@
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
 | HUB-030 | Hub member list + detail queries (with role info) | S | 1 | 20K | 1F | — | backend-module | ✅ Done |
-| HUB-031 | Promote / demote member commands (with tier limits enforcement) | M | 2 | 40K | 1F | AUTH-020 | backend-module | 📋 Backlog |
-| HUB-032 | Permission scoping (sub-list-owner sees only assigned lists) | M | 2 | 35K | 1F | AUTH-021 | backend-module | 📋 Backlog |
+| HUB-031 | Promote / demote member commands (with tier limits enforcement) | M | 2 | 40K | 1F | AUTH-020 | backend-module | ✅ Done |
+| HUB-032 | Permission scoping (sub-list-owner sees only assigned lists) | M | 2 | 35K | 1F | AUTH-021 | backend-module | ✅ Done |
 
 ## Dependency Graph
 

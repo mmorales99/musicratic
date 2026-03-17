@@ -1,4 +1,5 @@
 using Musicratic.Hub.Domain.Enums;
+using Musicratic.Hub.Domain.Events;
 using Musicratic.Shared.Domain;
 
 namespace Musicratic.Hub.Domain.Entities;
@@ -44,8 +45,27 @@ public sealed class HubMember : AuditableEntity, ITenantScoped
         if (newRole <= Role)
             throw new InvalidOperationException($"Cannot demote or assign same role. Current: {Role}, Requested: {newRole}.");
 
+        var oldRole = Role;
         Role = newRole;
         AssignedBy = promotedBy;
         AssignedAt = DateTime.UtcNow;
+
+        AddDomainEvent(new MemberPromotedEvent(HubId, UserId, oldRole, newRole, promotedBy));
+    }
+
+    internal void DemoteTo(HubMemberRole newRole, Guid demotedBy)
+    {
+        if (newRole >= Role)
+            throw new InvalidOperationException($"Cannot demote to same or higher role. Current: {Role}, Requested: {newRole}.");
+
+        if (Role == HubMemberRole.SuperOwner)
+            throw new InvalidOperationException("Cannot demote the super owner of a hub.");
+
+        var oldRole = Role;
+        Role = newRole;
+        AssignedBy = demotedBy;
+        AssignedAt = DateTime.UtcNow;
+
+        AddDomainEvent(new MemberDemotedEvent(HubId, UserId, oldRole, newRole, demotedBy));
     }
 }
