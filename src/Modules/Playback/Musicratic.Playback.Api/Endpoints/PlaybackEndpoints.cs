@@ -6,6 +6,7 @@ using Musicratic.Playback.Application.Commands.AddToQueue;
 using Musicratic.Playback.Application.Commands.AdvanceTrack;
 using Musicratic.Playback.Application.Commands.ApproveProposal;
 using Musicratic.Playback.Application.Commands.ProposeTrackCollective;
+using Musicratic.Playback.Application.Commands.ProposeTrackPaid;
 using Musicratic.Playback.Application.Commands.RejectProposal;
 using Musicratic.Playback.Application.Commands.SkipTrack;
 using Musicratic.Playback.Application.Commands.StartPlayback;
@@ -85,12 +86,21 @@ public static class PlaybackEndpoints
         return Results.Created($"/api/hubs/{hubId}/queue/{result.QueueEntryId}", result);
     }
 
-    private static Task<IResult> ProposeTrackPaid(
+    private static async Task<IResult> ProposeTrackPaid(
         Guid hubId,
+        ProposeTrackPaidRequest request,
+        ISender sender,
         CancellationToken cancellationToken)
     {
-        // PLAY-013 deferred — requires ECON-005
-        return Task.FromResult(Results.StatusCode(StatusCodes.Status501NotImplemented));
+        var command = new ProposeTrackPaidCommand(
+            TenantId: hubId,
+            HubId: hubId,
+            TrackId: request.TrackId,
+            ProposerId: request.ProposerId,
+            CoinAmount: request.CoinAmount);
+
+        var result = await sender.Send(command, cancellationToken);
+        return Results.Created($"/api/hubs/{hubId}/queue/{result.QueueEntryId}", result);
     }
 
     private static async Task<IResult> SkipCurrentTrack(
@@ -146,5 +156,7 @@ public static class PlaybackEndpoints
 }
 
 public sealed record ProposeTrackCollectiveRequest(Guid TrackId, Guid ProposerId);
+
+public sealed record ProposeTrackPaidRequest(Guid TrackId, Guid ProposerId, int CoinAmount);
 
 public sealed record ApproveRejectRequest(Guid UserId);

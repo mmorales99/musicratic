@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 137 |
-| **Remaining** | 39 |
+| **Done** | 140 |
+| **Remaining** | 36 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -15,9 +15,9 @@
 
 | Sub-Project | Total | Done | Backlog | Est. PRs | Est. Tokens | Phase Coverage |
 |-------------|-------|------|---------|----------|-------------|----------------|
-| [Backend Auth](backend-auth.md) | 16 | 13 | 3 | ~22 | ~400 K | 0, 1A, 1F |
-| [Backend Hub](backend-hub.md) | 22 | 18 | 4 | ~35 | ~600 K | 0, 1A, 1F |
-| [Backend Playback](backend-playback.md) | 18 | 17 | 1 | ~40 | ~700 K | 1A, 1B |
+| [Backend Auth](backend-auth.md) | 16 | 14 | 2 | ~22 | ~400 K | 0, 1A, 1F |
+| [Backend Hub](backend-hub.md) | 22 | 19 | 3 | ~35 | ~600 K | 0, 1A, 1F |
+| [Backend Playback](backend-playback.md) | 18 | 18 | 0 | ~40 | ~700 K | 1A, 1B |
 | [Backend Voting](backend-voting.md) | 15 | 14 | 1 | ~32 | ~550 K | 1B, 1C |
 | [Backend Economy](backend-economy.md) | 15 | 15 | 0 | ~34 | ~600 K | 1C, 1D |
 | [Backend Analytics](backend-analytics.md) | 10 | 10 | 0 | ~22 | ~380 K | 1E |
@@ -34,11 +34,11 @@
 |-------|-------------|-------|------|---|
 | **Phase 0** | Foundation | 28 | 28 | 100% |
 | **Phase 1A** | Hub & List Management | 42 | 42 | 100% |
-| **Phase 1B** | Queue & Proposals | 28 | 24 | 86% |
+| **Phase 1B** | Queue & Proposals | 28 | 25 | 89% |
 | **Phase 1C** | Voting & Skipping | 24 | 19 | 79% |
 | **Phase 1D** | Economy | 18 | 18 | 100% |
 | **Phase 1E** | Analytics & Reports | 14 | 10 | 71% |
-| **Phase 1F** | Roles & Delegation | 12 | 0 | 0% |
+| **Phase 1F** | Roles & Delegation | 12 | 2 | 17% |
 | **Phase 1G** | Social (Minimal) | 14 | 0 | 0% |
 
 ## Recommended Sprint Order

@@ -7,6 +7,7 @@ using Musicratic.Economy.Domain.Repositories;
 using Musicratic.Economy.Infrastructure.Persistence;
 using Musicratic.Economy.Infrastructure.Services;
 using Musicratic.Shared.Application;
+using Musicratic.Shared.Contracts;
 
 namespace Musicratic.Economy.Infrastructure;
 
@@ -28,6 +29,9 @@ public static class DependencyInjection
 
         // ECON-004: Refund service
         services.AddScoped<IRefundService, RefundService>();
+
+        // Shared contract: wallet operations for cross-module usage (PLAY-013)
+        services.AddScoped<IWalletOperationProvider, WalletOperationProvider>();
 
         // ECON-005: Coin pricing engine with configurable options
         var pricingSection = configuration.GetSection(CoinPricingOptions.SectionName);

@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 16 |
-| Done | 13 |
-| Remaining | 3 |
+| Done | 14 |
+| Remaining | 2 |
 | Est. premium requests | ~22 |
 | Est. tokens | ~400 K |
 
@@ -37,7 +37,7 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| AUTH-020 | Role resolution service (query HubMember per request → resolve role) | M | 3 | 50K | 1F | — | backend-module | 📋 Backlog |
+| AUTH-020 | Role resolution service (query HubMember per request → resolve role) | M | 3 | 50K | 1F | — | backend-module | ✅ Done |
 | AUTH-021 | Authorization middleware (role ≥ required → allow, else 403 ProblemDetails) | M | 2 | 40K | 1F | AUTH-020 | backend-module | 📋 Backlog |
 | AUTH-022 | RequireRole attribute/endpoint filter for minimal APIs | S | 1 | 20K | 1F | AUTH-021 | backend-module | 📋 Backlog |
 

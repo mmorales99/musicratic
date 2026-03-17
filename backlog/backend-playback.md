@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 18 |
-| Done | 17 |
-| Remaining | 1 |
+| Done | 18 |
+| Remaining | 0 |
 | Est. premium requests | ~40 |
 | Est. tokens | ~700 K |
 
@@ -31,7 +31,7 @@
 |----|------|------|-----|--------|-------|------|-------|--------|
 | PLAY-011 | Add-to-queue command (from list track or proposal, position calculation) | M | 2 | 35K | 1B | PLAY-010 | backend-module | ✅ Done |
 | PLAY-012 | Queue interleaving service (alternate list tracks + proposals at configurable ratio) | M | 3 | 50K | 1B | PLAY-011 | backend-module | ✅ Done |
-| PLAY-013 | Track proposal — coin-paid flow (validate wallet → debit → add to queue) | L | 4 | 70K | 1B | PLAY-011, ECON-005 | backend-module | 📋 Backlog |
+| PLAY-013 | Track proposal — coin-paid flow (validate wallet → debit → add to queue) | L | 4 | 70K | 1B | PLAY-011, ECON-005 | backend-module | ✅ Done |
 | PLAY-014 | Track proposal — collective vote flow (create pre-play vote, 2min window, 50% threshold) | L | 4 | 70K | 1B | PLAY-011, VOTE-004 | backend-module | ✅ Done |
 | PLAY-015 | Proposal approval/rejection by owner (override collective vote result) | M | 2 | 35K | 1B | PLAY-014 | backend-module | ✅ Done |
 | PLAY-016 | Queue WebSocket broadcasting (NOW_PLAYING, QUEUE_UPDATED, TRACK_ENDED, TRACK_SKIPPED) | L | 4 | 70K | 1B | PLAY-010 | backend-module | ✅ Done |
