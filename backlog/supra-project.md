@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 147 |
-| **Remaining** | 29 |
+| **Done** | 152 |
+| **Remaining** | 24 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -21,7 +21,7 @@
 | [Backend Voting](backend-voting.md) | 15 | 15 | 0 | ~32 | ~550 K | 1B, 1C |
 | [Backend Economy](backend-economy.md) | 15 | 15 | 0 | ~34 | ~600 K | 1C, 1D |
 | [Backend Analytics](backend-analytics.md) | 10 | 10 | 0 | ~22 | ~380 K | 1E |
-| [Backend Social](backend-social.md) | 10 | 0 | 10 | ~22 | ~380 K | 1G |
+| [Backend Social](backend-social.md) | 10 | 5 | 5 | ~22 | ~380 K | 1G |
 | [Backend Notification](backend-notification.md) | 10 | 10 | 0 | ~22 | ~380 K | 1B–1G |
 | [Web Angular](web-angular.md) | 25 | 16 | 9 | ~55 | ~950 K | 1A–1G |
 | [Mobile Flutter](mobile-flutter.md) | 25 | 16 | 9 | ~55 | ~950 K | 1A–1G |
@@ -39,7 +39,7 @@
 | **Phase 1D** | Economy | 18 | 18 | 100% |
 | **Phase 1E** | Analytics & Reports | 14 | 12 | 86% |
 | **Phase 1F** | Roles & Delegation | 12 | 6 | 50% |
-| **Phase 1G** | Social (Minimal) | 14 | 0 | 0% |
+| **Phase 1G** | Social (Minimal) | 14 | 5 | 36% |
 
 ## Recommended Sprint Order
 

@@ -34,6 +34,7 @@ public static class DependencyInjection
 
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IRoleResolutionService, RoleResolutionService>();
+        services.AddScoped<IUserProfileProvider, UserProfileProvider>();
 
         services.Configure<BlobStorageOptions>(
             configuration.GetSection(BlobStorageOptions.SectionName));

@@ -32,6 +32,7 @@ public static class DependencyInjection
             new HubLinkService(configuration));
         services.AddSingleton<IQrCodeService, QrCodeService>();
         services.AddScoped<IHubMemberRoleProvider, HubMemberRoleProvider>();
+        services.AddScoped<IHubDiscoveryProvider, HubDiscoveryProvider>();
 
         services.Configure<AttachmentExpiryOptions>(options =>
         {

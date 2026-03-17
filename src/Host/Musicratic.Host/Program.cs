@@ -120,7 +120,7 @@ builder.Services
 builder.Services
     .AddSocialDomain()
     .AddSocialApplication()
-    .AddSocialInfrastructure()
+    .AddSocialInfrastructure(builder.Configuration)
     .AddSocialApi();
 
 // Notification module
