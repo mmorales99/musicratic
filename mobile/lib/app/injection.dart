@@ -27,11 +27,25 @@ import '../features/economy/repository/economy_repository.dart';
 import '../features/profile/bloc/profile_bloc.dart';
 import '../features/profile/repository/profile_repository.dart';
 import '../features/analytics/bloc/analytics_bloc.dart';
+import '../features/analytics/dashboard/analytics_dashboard_bloc.dart';
+import '../features/analytics/dashboard/analytics_dashboard_repository.dart';
+import '../features/analytics/reports/reports_bloc.dart';
+import '../features/analytics/reports/reports_repository.dart';
 import '../features/analytics/repository/analytics_repository.dart';
+import '../features/hub/members/member_bloc.dart';
+import '../features/hub/members/member_repository.dart';
+import '../features/hub/roles/role_bloc.dart';
+import '../features/hub/roles/role_repository.dart';
+import '../features/social/profile/social_profile_bloc.dart';
+import '../features/social/profile/social_profile_repository.dart';
+import '../features/social/reviews/reviews_bloc.dart';
+import '../features/social/reviews/reviews_repository.dart';
+import '../features/social/sharing/share_service.dart';
 import '../shared/api/bff_api_client.dart';
 import '../shared/api/websocket_service.dart';
 import '../shared/services/auth_service.dart';
 import '../shared/services/deep_link_service.dart';
+import '../shared/services/role_service.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -89,6 +103,28 @@ void configureDependencies() {
   getIt.registerLazySingleton<AnalyticsRepository>(
     () => AnalyticsRepositoryImpl(apiClient: getIt<BffApiClient>()),
   );
+  getIt.registerLazySingleton<DashboardRepository>(
+    () => DashboardRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<ReportsRepository>(
+    () => ReportsRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<MemberRepository>(
+    () => MemberRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<RoleRepository>(
+    () => RoleRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<SocialProfileRepository>(
+    () => SocialProfileRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<ReviewsRepository>(
+    () => ReviewsRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<ShareService>(
+    () => ShareServiceImpl(apiClient: getIt<BffApiClient>()),
+  );
+  getIt.registerLazySingleton<RoleService>(() => RoleService());
 
   // Blocs — AuthBloc is singleton (app-wide auth state)
   getIt.registerLazySingleton<AuthBloc>(
@@ -147,5 +183,26 @@ void configureDependencies() {
   );
   getIt.registerFactory<AnalyticsBloc>(
     () => AnalyticsBloc(repository: getIt<AnalyticsRepository>()),
+  );
+  getIt.registerFactory<AnalyticsDashboardBloc>(
+    () => AnalyticsDashboardBloc(repository: getIt<DashboardRepository>()),
+  );
+  getIt.registerFactory<ReportsBloc>(
+    () => ReportsBloc(repository: getIt<ReportsRepository>()),
+  );
+  getIt.registerFactory<MemberBloc>(
+    () => MemberBloc(repository: getIt<MemberRepository>()),
+  );
+  getIt.registerFactory<RoleBloc>(
+    () => RoleBloc(
+      memberRepository: getIt<MemberRepository>(),
+      roleRepository: getIt<RoleRepository>(),
+    ),
+  );
+  getIt.registerFactory<SocialProfileBloc>(
+    () => SocialProfileBloc(repository: getIt<SocialProfileRepository>()),
+  );
+  getIt.registerFactory<ReviewsBloc>(
+    () => ReviewsBloc(repository: getIt<ReviewsRepository>()),
   );
 }

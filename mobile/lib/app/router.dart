@@ -5,6 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/analytics/screens/analytics_screen.dart';
+import '../features/analytics/dashboard/analytics_dashboard_bloc.dart';
+import '../features/analytics/dashboard/analytics_dashboard_event.dart';
+import '../features/analytics/dashboard/analytics_dashboard_screen.dart';
+import '../features/analytics/reports/reports_bloc.dart';
+import '../features/analytics/reports/reports_event.dart';
+import '../features/analytics/reports/reports_screen.dart';
 import '../features/auth/bloc/auth_bloc.dart';
 import '../features/auth/bloc/auth_state.dart';
 import '../features/auth/screens/login_screen.dart';
@@ -24,6 +30,12 @@ import '../features/hub/bloc/hub_join_bloc.dart';
 import '../features/hub/bloc/hub_search_bloc.dart';
 import '../features/hub/bloc/list_bloc.dart';
 import '../features/hub/bloc/list_event.dart';
+import '../features/hub/members/member_bloc.dart';
+import '../features/hub/members/member_event.dart';
+import '../features/hub/members/member_management_screen.dart';
+import '../features/hub/roles/role_bloc.dart';
+import '../features/hub/roles/role_event.dart';
+import '../features/hub/roles/role_assignment_screen.dart';
 import '../features/hub/screens/hub_create_screen.dart';
 import '../features/hub/screens/hub_detail_screen.dart';
 import '../features/hub/screens/hub_join_screen.dart';
@@ -38,6 +50,12 @@ import '../features/playback/screens/queue_screen.dart';
 import '../features/playback/screens/track_search_screen.dart';
 import '../features/playback/proposal/proposal_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
+import '../features/social/profile/social_profile_bloc.dart';
+import '../features/social/profile/social_profile_event.dart';
+import '../features/social/profile/social_profile_screen.dart';
+import '../features/social/reviews/reviews_bloc.dart';
+import '../features/social/reviews/reviews_event.dart';
+import '../features/social/reviews/reviews_screen.dart';
 import '../features/voting/bloc/voting_bloc.dart';
 import '../features/voting/screens/voting_screen.dart';
 import 'injection.dart';
@@ -148,6 +166,66 @@ GoRouter createAppRouter({required AuthBloc authBloc}) {
                   );
                 },
               ),
+              GoRoute(
+                path: 'members',
+                name: 'hub-members',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<MemberBloc>()
+                      ..add(MemberEvent.load(hubId: hubId)),
+                    child: MemberManagementScreen(hubId: hubId),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'roles',
+                name: 'hub-roles',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<RoleBloc>()
+                      ..add(RoleEvent.load(hubId: hubId)),
+                    child: RoleAssignmentScreen(hubId: hubId),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'dashboard',
+                name: 'hub-dashboard',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<AnalyticsDashboardBloc>()
+                      ..add(AnalyticsDashboardEvent.load(hubId: hubId)),
+                    child: AnalyticsDashboardScreen(hubId: hubId),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'reports',
+                name: 'hub-reports',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<ReportsBloc>()
+                      ..add(ReportsEvent.load(hubId: hubId)),
+                    child: ReportsScreen(hubId: hubId),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'reviews',
+                name: 'hub-reviews',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<ReviewsBloc>()
+                      ..add(ReviewsEvent.load(hubId: hubId)),
+                    child: ReviewsScreen(hubId: hubId),
+                  );
+                },
+              ),
             ],
           ),
         ],
@@ -207,6 +285,15 @@ GoRouter createAppRouter({required AuthBloc authBloc}) {
         path: '/profile',
         name: 'profile',
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: '/social-profile',
+        name: 'social-profile',
+        builder: (context, state) => BlocProvider(
+          create: (_) => getIt<SocialProfileBloc>()
+            ..add(const SocialProfileEvent.load()),
+          child: const SocialProfileScreen(),
+        ),
       ),
       GoRoute(
         path: '/analytics',

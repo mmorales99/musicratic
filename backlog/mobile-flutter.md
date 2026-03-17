@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 17 |
-| Remaining | 8 |
+| Done | 25 |
+| Remaining | 0 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -53,21 +53,21 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-018 | Analytics dashboard (charts via fl_chart, top tracks, vote distribution) | L | 4 | 70K | 1E | ANLT-009 | flutter-mobile | 📋 Backlog |
-| MOB-019 | Reports screen (weekly/monthly summaries, expandable cards) | M | 2 | 40K | 1E | ANLT-006 | flutter-mobile | 📋 Backlog |
+| MOB-018 | Analytics dashboard (charts via fl_chart, top tracks, vote distribution) | L | 4 | 70K | 1E | ANLT-009 | flutter-mobile | ✅ Done |
+| MOB-019 | Reports screen (weekly/monthly summaries, expandable cards) | M | 2 | 40K | 1E | ANLT-006 | flutter-mobile | ✅ Done |
 
 ## Phase 1F — Roles & Delegation
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-020 | Member management screen (list members, swipe-to-remove) | M | 2 | 40K | 1F | HUB-030 | flutter-mobile | 📋 Backlog |
-| MOB-021 | Role assignment UI (promote/demote bottom sheet, tier limit warnings) | M | 2 | 40K | 1F | HUB-031 | flutter-mobile | 📋 Backlog |
-| MOB-022 | Conditional UI by role (Visibility widgets based on user role in hub) | M | 2 | 35K | 1F | AUTH-021 | flutter-mobile | 📋 Backlog |
+| MOB-020 | Member management screen (list members, swipe-to-remove) | M | 2 | 40K | 1F | HUB-030 | flutter-mobile | ✅ Done |
+| MOB-021 | Role assignment UI (promote/demote bottom sheet, tier limit warnings) | M | 2 | 40K | 1F | HUB-031 | flutter-mobile | ✅ Done |
+| MOB-022 | Conditional UI by role (Visibility widgets based on user role in hub) | M | 2 | 35K | 1F | AUTH-021 | flutter-mobile | ✅ Done |
 
 ## Phase 1G — Social
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-023 | User profile screen (display name, avatar picker, stats, edit) | M | 2 | 40K | 1G | SOCL-008 | flutter-mobile | 📋 Backlog |
-| MOB-024 | Hub reviews widget (star rating, write review, reviews list) | M | 2 | 40K | 1G | SOCL-005 | flutter-mobile | 📋 Backlog |
-| MOB-025 | Social sharing (platform share sheet, copy link, deep link handling) | S | 1 | 25K | 1G | SOCL-007 | flutter-mobile | 📋 Backlog |
+| MOB-023 | User profile screen (display name, avatar picker, stats, edit) | M | 2 | 40K | 1G | SOCL-008 | flutter-mobile | ✅ Done |
+| MOB-024 | Hub reviews widget (star rating, write review, reviews list) | M | 2 | 40K | 1G | SOCL-005 | flutter-mobile | ✅ Done |
+| MOB-025 | Social sharing (platform share sheet, copy link, deep link handling) | S | 1 | 25K | 1G | SOCL-007 | flutter-mobile | ✅ Done |
