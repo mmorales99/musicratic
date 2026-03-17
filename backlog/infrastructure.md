@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 10 |
-| Done | 8 |
-| Remaining | 2 |
+| Done | 10 |
+| Remaining | 0 |
 | Est. premium requests | ~12 |
 | Est. tokens | ~200 K |
 
@@ -32,13 +32,13 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| INFRA-013 | Stripe webhook endpoint configuration (secret rotation, event forwarding) | M | 2 | 35K | 1D | ECON-007 | devops | 📋 Backlog |
+| INFRA-013 | Stripe webhook endpoint configuration (secret rotation, event forwarding) | M | 2 | 35K | 1D | ECON-007 | devops | ✅ Done |
 
 ## Phase 1E+ — Quality & Monitoring
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| INFRA-014 | SonarQube quality gate configuration (coverage thresholds, duplication, ratings) | M | 2 | 40K | 1E | — | devops | 📋 Backlog |
+| INFRA-014 | SonarQube quality gate configuration (coverage thresholds, duplication, ratings) | M | 2 | 40K | 1E | — | devops | ✅ Done |
 
 ## Dependency Graph
 

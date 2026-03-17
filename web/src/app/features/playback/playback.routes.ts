@@ -15,4 +15,11 @@ export const PLAYBACK_ROUTES: Routes = [
         (m) => m.TrackSearchComponent,
       ),
   },
+  {
+    path: "propose/:hubId",
+    loadComponent: () =>
+      import(
+        "./components/track-proposal/track-proposal.component"
+      ).then((m) => m.TrackProposalComponent),
+  },
 ];

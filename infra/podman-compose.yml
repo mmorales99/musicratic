@@ -7,6 +7,8 @@ secrets:
     file: ./secrets/authentik_secret_key.txt
   sonarqube_password:
     file: ./secrets/sonarqube_password.txt
+  stripe_webhook_secret:
+    file: ./secrets/stripe_webhook_secret.txt
 
 networks:
   musicratic-net:
@@ -257,8 +259,10 @@ services:
       MUSICRATIC_EVENTHUBS_HOST: eventhubs-emulator
       MUSICRATIC_AZURITE_HOST: azurite
       MUSICRATIC_AUTHENTIK_URL: http://authentik-server:9000
+      MUSICRATIC_SECRET_STRIPE_WEBHOOK: ${STRIPE_WEBHOOK_SECRET:-whsec_test}
     secrets:
       - db_password
+      - stripe_webhook_secret
     depends_on:
       postgres:
         condition: service_healthy

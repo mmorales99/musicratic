@@ -1,0 +1,10 @@
+{
+  "name": "Musicratic",
+  "conditions": [
+    { "metric": "new_coverage", "op": "LT", "error": "100" },
+    { "metric": "new_duplicated_lines_density", "op": "GT", "error": "3" },
+    { "metric": "new_reliability_rating", "op": "GT", "error": "1" },
+    { "metric": "new_security_rating", "op": "GT", "error": "1" },
+    { "metric": "new_maintainability_rating", "op": "GT", "error": "1" }
+  ]
+}

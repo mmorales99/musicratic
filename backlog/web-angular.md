@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 16 |
-| Remaining | 9 |
+| Done | 18 |
+| Remaining | 7 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -30,7 +30,7 @@
 |----|------|------|-----|--------|-------|------|-------|--------|
 | WEB-008 | Live queue screen (WebSocket real-time list of upcoming tracks, current position) | L | 4 | 70K | 1B | PLAY-016 | angular-web | ✅ Done |
 | WEB-009 | Now-playing component (track info, album art, progress bar, time remaining) | M | 3 | 50K | 1B | PLAY-009 | angular-web | ✅ Done |
-| WEB-010 | Track proposal flow (search multi-provider → choose pay/free → confirm) | L | 4 | 70K | 1B | PLAY-013 | angular-web | 📋 Backlog |
+| WEB-010 | Track proposal flow (search multi-provider → choose pay/free → confirm) | L | 4 | 70K | 1B | PLAY-013 | angular-web | ✅ Done |
 | WEB-011 | Track search component (query → BFF → results from Spotify + YouTube) | M | 3 | 50K | 1B | PLAY-006 | angular-web | ✅ Done |
 
 ## Phase 1C — Voting & Skipping
@@ -53,7 +53,7 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-018 | Analytics dashboard (charts: top tracks, vote distribution, play counts) | L | 4 | 70K | 1E | ANLT-009 | angular-web | 📋 Backlog |
+| WEB-018 | Analytics dashboard (charts: top tracks, vote distribution, play counts) | L | 4 | 70K | 1E | ANLT-009 | angular-web | ✅ Done |
 | WEB-019 | Reports screen (weekly/monthly summaries, actionable suggestions) | M | 2 | 40K | 1E | ANLT-006 | angular-web | 📋 Backlog |
 
 ## Phase 1F — Roles & Delegation

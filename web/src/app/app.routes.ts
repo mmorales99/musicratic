@@ -44,6 +44,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: "hub/:hubId/propose",
+    loadComponent: () =>
+      import(
+        "./features/playback/components/track-proposal/track-proposal.component"
+      ).then((m) => m.TrackProposalComponent),
+    canActivate: [authGuard],
+  },
+  {
     path: "playback",
     loadChildren: () =>
       import("./features/playback/playback.routes").then(

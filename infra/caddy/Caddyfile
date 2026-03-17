@@ -44,6 +44,11 @@
         flush_interval -1
     }
 
+    # Stripe webhook — no CORS needed (server-to-server)
+    handle /api/economy/webhooks/stripe {
+        reverse_proxy musicratic-host:8080
+    }
+
     # API routes with CORS
     handle /api/auth/* {
         import cors

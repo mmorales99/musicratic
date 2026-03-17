@@ -164,12 +164,11 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
+          projectBaseDir: .
           args: >
-            -Dsonar.projectKey=musicratic
-            -Dsonar.sources=src,web/src,mobile/lib
-            -Dsonar.tests=src,web,mobile
-            -Dsonar.test.inclusions=**/*Tests/**,**/*.spec.ts,**/*_test.dart
+            -Dproject.settings=infra/sonarqube/sonar-project.properties
             -Dsonar.cs.opencover.reportsPaths=coverage/backend/**/coverage.cobertura.xml
+            -Dsonar.typescript.lcov.reportPaths=web/coverage/lcov.info
             -Dsonar.dart.lcov.reportPaths=coverage/mobile/lcov.info
 
       - name: SonarQube Quality Gate
