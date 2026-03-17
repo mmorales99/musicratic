@@ -18,6 +18,9 @@ import '../features/playback/repositories/track_repository.dart';
 import '../features/voting/bloc/voting_bloc.dart';
 import '../features/voting/repository/voting_repository.dart';
 import '../features/economy/bloc/economy_bloc.dart';
+import '../features/economy/bloc/wallet_bloc.dart';
+import '../features/economy/bloc/purchase_bloc.dart';
+import '../features/economy/bloc/subscription_bloc.dart';
 import '../features/economy/repository/economy_repository.dart';
 import '../features/profile/bloc/profile_bloc.dart';
 import '../features/profile/repository/profile_repository.dart';
@@ -67,7 +70,10 @@ void configureDependencies() {
     () => TrackSearchRepositoryImpl(apiClient: getIt<BffApiClient>()),
   );
   getIt.registerLazySingleton<VotingRepository>(
-    () => VotingRepositoryImpl(apiClient: getIt<BffApiClient>()),
+    () => VotingRepositoryImpl(
+      apiClient: getIt<BffApiClient>(),
+      authService: getIt<AuthService>(),
+    ),
   );
   getIt.registerLazySingleton<EconomyRepository>(
     () => EconomyRepositoryImpl(apiClient: getIt<BffApiClient>()),
@@ -115,6 +121,15 @@ void configureDependencies() {
   );
   getIt.registerFactory<EconomyBloc>(
     () => EconomyBloc(repository: getIt<EconomyRepository>()),
+  );
+  getIt.registerFactory<WalletBloc>(
+    () => WalletBloc(repository: getIt<EconomyRepository>()),
+  );
+  getIt.registerFactory<PurchaseBloc>(
+    () => PurchaseBloc(repository: getIt<EconomyRepository>()),
+  );
+  getIt.registerFactory<SubscriptionBloc>(
+    () => SubscriptionBloc(repository: getIt<EconomyRepository>()),
   );
   getIt.registerFactory<ProfileBloc>(
     () => ProfileBloc(repository: getIt<ProfileRepository>()),

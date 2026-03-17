@@ -15,25 +15,24 @@ class VotingScreen extends StatelessWidget {
       ),
       body: BlocBuilder<VotingBloc, VotingState>(
         builder: (context, state) {
-          return state.when(
-            idle: () => const Center(
+          if (state.entries.isEmpty) {
+            return const Center(
               child: Text('No active voting session'),
-            ),
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-            windowOpen: (queueEntryId, expiresAt) => Center(
-              child: Text('Vote now! Expires: $expiresAt'),
-            ),
-            voteCast: (queueEntryId, value) => Center(
-              child: Text('You voted: $value'),
-            ),
-            tallyLoaded: (upvotes, downvotes) => Center(
-              child: Text('Up: $upvotes / Down: $downvotes'),
-            ),
-            error: (message) => Center(
-              child: Text('Error: $message'),
-            ),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: state.entries.length,
+            itemBuilder: (context, index) {
+              final entryId = state.entries.keys.elementAt(index);
+              final data = state.entries[entryId]!;
+              return ListTile(
+                title: Text('Entry: $entryId'),
+                subtitle: Text(
+                  'Up: ${data.tally.upCount} / Down: ${data.tally.downCount}',
+                ),
+              );
+            },
           );
         },
       ),

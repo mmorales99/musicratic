@@ -1,8 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  inject,
-} from "@angular/core";
+import { Component, ChangeDetectionStrategy, inject } from "@angular/core";
 import { ToastService, Toast } from "@app/shared/services/toast.service";
 
 @Component({

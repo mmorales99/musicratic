@@ -50,10 +50,7 @@ export class SkipNotificationComponent implements OnInit, OnDestroy {
         const title = `Track skipped — ${label}`;
 
         let detail: string | null = null;
-        if (
-          msg.payload.refundAmount !== null &&
-          msg.payload.refundAmount > 0
-        ) {
+        if (msg.payload.refundAmount !== null && msg.payload.refundAmount > 0) {
           detail = `You'll receive ${msg.payload.refundAmount} coins refund`;
         }
 
@@ -69,12 +66,7 @@ export class SkipNotificationComponent implements OnInit, OnDestroy {
         const label = SKIP_REASON_LABELS[reason] ?? reason;
         const type = SKIP_REASON_TYPES[reason] ?? "neutral";
 
-        this.toastService.show(
-          type,
-          `Track skipped — ${label}`,
-          null,
-          5000,
-        );
+        this.toastService.show(type, `Track skipped — ${label}`, null, 5000);
       }),
     );
   }

@@ -64,6 +64,20 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: "wallet",
+    loadChildren: () =>
+      import("./features/economy/economy.routes").then((m) => m.ECONOMY_ROUTES),
+    canActivate: [authGuard],
+  },
+  {
+    path: "hub/:hubId/subscription",
+    loadComponent: () =>
+      import(
+        "./features/economy/subscription/subscription.component"
+      ).then((m) => m.SubscriptionComponent),
+    canActivate: [authGuard],
+  },
+  {
     path: "profile",
     loadChildren: () =>
       import("./features/profile/profile.routes").then((m) => m.PROFILE_ROUTES),

@@ -57,16 +57,105 @@ Read `backlog/README.md` for the full estimation model and conventions.
 | L    | 4–8   | ~50–100 K  | 3–5          | 20–40 min |
 | XL   | 8+    | ~100–200 K | 5–10         | 40–90 min |
 
+> ⚠️ **Autonomous mode limit**: In unattended mode, prefer XS–M tasks only. L/XL tasks should be broken into smaller sub-tasks before scheduling. Never schedule more than 1 L-size task per sprint.
+
+## Rate-Limit & Throttle Rules
+
+> **Why this exists**: Running unattended hits Copilot premium-request quotas. These rules keep Boberto inside the rate window so the session never disconnects.
+
+### Budget Tracking
+
+Boberto MUST maintain a running **request counter** (`requests_used`) across the session. Increment it by the task's estimated premium requests (`PRs` column) after each agent delegation. The counter persists in the checkpoint file (see §Checkpoint/Resume).
+
+### Per-Sprint Limits
+
+| Rule                             | Value | Rationale                                    |
+| -------------------------------- | ----- | -------------------------------------------- |
+| Max premium requests per sprint  | **8** | Leaves headroom before quota wall            |
+| Max agent calls per sprint       | **5** | Each subagent call counts as 1+ premium reqs |
+| Max tasks per sprint             | **6** | Fewer tasks = fewer tool calls = less burst  |
+| Max parallel agents in one group | **2** | Parallel calls multiply request rate         |
+
+### Cooldown Between Sprints
+
+After every sprint (including failed/partial ones), Boberto MUST run a **cooldown pause** before planning the next sprint:
+
+```powershell
+Write-Host '⏸️  Cooldown: waiting 60 seconds before next sprint...'
+Start-Sleep -Seconds 60
+```
+
+This is **mandatory**. Do NOT skip even if the previous sprint was small.
+
+### Cooldown Between Execution Groups
+
+Between execution groups within a sprint, pause **30 seconds**:
+
+```powershell
+Write-Host '⏸️  Inter-group pause: 30 seconds...'
+Start-Sleep -Seconds 30
+```
+
+### Session Budget Cap
+
+Boberto MUST track cumulative premium requests across all sprints. If `requests_used` reaches **75** in a single session, **stop immediately**:
+
+1. Commit & push all progress
+2. Update the checkpoint file
+3. Send a critical notification: `"⚠️ Session budget cap (75 PRs) reached. Sprints paused at Sprint N. Resume with /run-all-sprints."`
+4. Exit the loop — do NOT start another sprint
+
+This prevents a runaway session from hitting the hard rate limit.
+
+### Pre-Flight Budget Check
+
+Before planning each sprint, check: `requests_used + estimated_sprint_prs <= 75`. If the next sprint would exceed the budget, send a notification and exit.
+
+## Checkpoint / Resume
+
+Boberto writes a **checkpoint file** after every sprint so work survives a disconnect:
+
+**File**: `backlog/.checkpoint.json`
+
+```json
+{
+    "last_sprint": 3,
+    "requests_used": 42,
+    "last_completed_group": 2,
+    "timestamp": "2026-03-17T08:30:00Z",
+    "tasks_done_this_session": ["AUTH-012", "HUB-014"],
+    "tasks_waiting_human": ["PLAY-007"],
+    "exit_reason": null
+}
+```
+
+**Write checkpoint** after:
+
+- Each execution group completes
+- Each sprint completes
+- Any error that might end the session
+- Before the cooldown pause
+
+**Read checkpoint** when starting:
+
+- On `/run-all-sprints`, read `backlog/.checkpoint.json` first
+- If it exists, resume from `last_sprint + 1` and carry over `requests_used`
+- The human can delete this file to reset the counter
+
+**After a disconnect**, the human just clicks "Try Again" or invokes `/run-all-sprints` again. Boberto reads the checkpoint and picks up where it left off, with the request budget already partially spent.
+
 ## Sprint Planning Process
 
 When asked to plan a sprint:
 
-1. **Read backlogs** — Scan all `backlog/*.md` files for `📋 Backlog` tasks
-2. **Check dependencies** — Only include tasks whose `Deps` are `✅ Done` or `—`
-3. **Follow phase order** — Prioritize earlier phases (1A before 1B, etc.)
-4. **Respect capacity** — A sprint should be 10–20 premium requests (~5–12 tasks)
-5. **Maximize parallelism** — Group independent tasks by agent for concurrent execution
-6. **Present the sprint** — Show a table with tasks, agents, estimates, and execution order
+1. **Read checkpoint** — Load `backlog/.checkpoint.json` if it exists, resume counters
+2. **Read backlogs** — Scan all `backlog/*.md` files for `📋 Backlog` tasks
+3. **Check dependencies** — Only include tasks whose `Deps` are `✅ Done` or `—`
+4. **Follow phase order** — Prioritize earlier phases (1A before 1B, etc.)
+5. **Respect capacity** — A sprint should be **max 8 premium requests** (~3–6 tasks)
+6. **Pre-flight budget check** — Ensure `requests_used + sprint_estimate <= 75`
+7. **Limit parallelism** — Max **2** parallel agent calls per execution group
+8. **Present the sprint** — Show a table with tasks, agents, estimates, and execution order
 
 ### Sprint Proposal Format
 
@@ -157,20 +246,25 @@ Before marking the project as complete, ensure:
 When asked to execute a sprint:
 
 1. **Mark tasks** — Change status from `📋 Backlog` to `🔄 Sprint` in backlog files
-2. **Group by agent** — Tasks going to the same agent can be batched
+2. **Group by agent** — Tasks going to the same agent can be batched (max **2** parallel agents per group)
 3. **Execute groups** — For each execution group:
-   a. Launch specialist agents in parallel (independent tasks)
+   a. Launch specialist agents (max 2 parallel, independent tasks only)
    b. Wait for all to complete
-   c. If an agent encounters a blocker → mark task `⏳ Waiting Human` with reason, continue with other tasks
-   d. Verify build compiles (`dotnet build`, `ng build`, etc.)
-   e. If build fails → attempt one fix, if still fails → mark affected tasks `⏳ Waiting Human`
-   f. Mark completed tasks as `✅ Done`
-   g. **🔒 COMMIT & PUSH NOW** — Stage all changes, commit with conventional message, push. Do NOT proceed to the next group without committing.
+   c. Increment `requests_used` by the PRs consumed in the checkpoint
+   d. If an agent encounters a blocker → mark task `⏳ Waiting Human` with reason, continue with other tasks
+   e. Verify build compiles (`dotnet build`, `ng build`, etc.)
+   f. If build fails → attempt one fix, if still fails → mark affected tasks `⏳ Waiting Human`
+   g. Mark completed tasks as `✅ Done`
+   h. **🔒 COMMIT & PUSH NOW** — Stage all changes, commit with conventional message, push. Do NOT proceed to the next group without committing.
+   i. **📝 WRITE CHECKPOINT** — Update `backlog/.checkpoint.json` with current counters
+   j. **⏸️ INTER-GROUP COOLDOWN** — `Start-Sleep -Seconds 30` before the next group
 4. **Defer blocked dependents** — Any task depending on a `⏳ Waiting Human` task gets moved back to `📋 Backlog`
 5. **Update supra-project** — Recalculate totals and phase progress
 6. **Verify sprint completion** — All tasks are either `✅ Done` or `⏳ Waiting Human`
 7. **Report results** — Show completed, waiting-human, and actual vs estimated effort
 8. **🔒 FINAL COMMIT & PUSH** — Even if you committed per-group, always do a final commit for backlog/supra-project updates
+9. **📝 WRITE CHECKPOINT** — Update checkpoint with sprint completion
+10. **⏸️ SPRINT COOLDOWN** — `Start-Sleep -Seconds 60` before planning the next sprint
 
 ## Milestone Commits
 

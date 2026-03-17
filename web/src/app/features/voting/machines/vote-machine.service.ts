@@ -37,16 +37,12 @@ export class VoteMachineService implements OnDestroy {
   );
   readonly downvotePercentage = computed<number>(() => {
     const total = this.totalVoters();
-    return total === 0
-      ? 0
-      : Math.round((this.ctx().downCount / total) * 100);
+    return total === 0 ? 0 : Math.round((this.ctx().downCount / total) * 100);
   });
   readonly isNearSkipThreshold = computed(
     () => this.downvotePercentage() >= 50 && this.downvotePercentage() < 65,
   );
-  readonly isAtSkipThreshold = computed(
-    () => this.downvotePercentage() >= 65,
-  );
+  readonly isAtSkipThreshold = computed(() => this.downvotePercentage() >= 65);
 
   constructor() {
     this.actorSub = this.actor.subscribe((snapshot) => {
@@ -88,9 +84,7 @@ export class VoteMachineService implements OnDestroy {
 
     this.actor.send({ type: "VOTE_UP" });
     try {
-      await firstValueFrom(
-        this.voteService.castVote(hubId, entryId, "up"),
-      );
+      await firstValueFrom(this.voteService.castVote(hubId, entryId, "up"));
       this.actor.send({ type: "VOTE_SUCCESS" });
     } catch (err) {
       const message =
@@ -110,9 +104,7 @@ export class VoteMachineService implements OnDestroy {
 
     this.actor.send({ type: "VOTE_DOWN" });
     try {
-      await firstValueFrom(
-        this.voteService.castVote(hubId, entryId, "down"),
-      );
+      await firstValueFrom(this.voteService.castVote(hubId, entryId, "down"));
       this.actor.send({ type: "VOTE_SUCCESS" });
     } catch (err) {
       const message =

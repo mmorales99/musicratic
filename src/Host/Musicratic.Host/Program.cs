@@ -24,10 +24,12 @@ using Musicratic.Economy.Domain;
 using Musicratic.Economy.Application;
 using Musicratic.Economy.Infrastructure;
 using Musicratic.Economy.Api;
+using Musicratic.Economy.Api.Endpoints;
 using Musicratic.Analytics.Domain;
 using Musicratic.Analytics.Application;
 using Musicratic.Analytics.Infrastructure;
 using Musicratic.Analytics.Api;
+using Musicratic.Analytics.Api.Endpoints;
 using Musicratic.Social.Domain;
 using Musicratic.Social.Application;
 using Musicratic.Social.Infrastructure;
@@ -110,7 +112,7 @@ builder.Services
 builder.Services
     .AddAnalyticsDomain()
     .AddAnalyticsApplication()
-    .AddAnalyticsInfrastructure()
+    .AddAnalyticsInfrastructure(builder.Configuration)
     .AddAnalyticsApi();
 
 // Social module
@@ -143,7 +145,12 @@ app.MapAuthEndpoints();
 app.MapVotingEndpoints();
 app.MapVoteWebSocket();
 app.MapNotificationWebSocket();
+app.MapNotificationEndpoints();
 app.MapDeviceEndpoints();
+app.MapEconomyEndpoints();
+app.MapEconomyDaprEndpoints();
+app.MapStripeWebhookEndpoints();
+app.MapAnalyticsEndpoints();
 
 app.Run();
 

@@ -9,6 +9,15 @@ import '../features/auth/bloc/auth_bloc.dart';
 import '../features/auth/bloc/auth_state.dart';
 import '../features/auth/screens/login_screen.dart';
 import '../features/economy/screens/economy_screen.dart';
+import '../features/economy/screens/wallet_screen.dart';
+import '../features/economy/screens/purchase_screen.dart';
+import '../features/economy/screens/subscription_screen.dart';
+import '../features/economy/bloc/wallet_bloc.dart';
+import '../features/economy/bloc/wallet_event.dart';
+import '../features/economy/bloc/purchase_bloc.dart';
+import '../features/economy/bloc/purchase_event.dart';
+import '../features/economy/bloc/subscription_bloc.dart';
+import '../features/economy/bloc/subscription_event.dart';
 import '../features/hub/bloc/hub_detail_bloc.dart';
 import '../features/hub/bloc/hub_detail_event.dart';
 import '../features/hub/bloc/hub_join_bloc.dart';
@@ -27,6 +36,7 @@ import '../features/playback/screens/playback_screen.dart';
 import '../features/playback/screens/queue_screen.dart';
 import '../features/playback/screens/track_search_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
+import '../features/voting/bloc/voting_bloc.dart';
 import '../features/voting/screens/voting_screen.dart';
 import 'injection.dart';
 
@@ -137,12 +147,48 @@ GoRouter createAppRouter({required AuthBloc authBloc}) {
       GoRoute(
         path: '/voting',
         name: 'voting',
-        builder: (context, state) => const VotingScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (_) => getIt<VotingBloc>(),
+          child: const VotingScreen(),
+        ),
       ),
       GoRoute(
         path: '/economy',
         name: 'economy',
         builder: (context, state) => const EconomyScreen(),
+        routes: [
+          GoRoute(
+            path: 'wallet',
+            name: 'economy-wallet',
+            builder: (context, state) => BlocProvider(
+              create: (_) => getIt<WalletBloc>()
+                ..add(const WalletEvent.loadWallet()),
+              child: const WalletScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'purchase',
+            name: 'economy-purchase',
+            builder: (context, state) => BlocProvider(
+              create: (_) => getIt<PurchaseBloc>()
+                ..add(const PurchaseEvent.loadPackages()),
+              child: const PurchaseScreen(),
+            ),
+          ),
+          GoRoute(
+            path: 'subscription/:hubId',
+            name: 'economy-subscription',
+            builder: (context, state) {
+              final hubId = state.pathParameters['hubId']!;
+              return BlocProvider(
+                create: (_) => getIt<SubscriptionBloc>()
+                  ..add(SubscriptionEvent.loadSubscription(
+                      hubId: hubId)),
+                child: SubscriptionScreen(hubId: hubId),
+              );
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: '/profile',

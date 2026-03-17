@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 10 |
-| Done | 6 |
-| Remaining | 4 |
+| Done | 8 |
+| Remaining | 2 |
 | Est. premium requests | ~22 |
 | Est. tokens | ~380 K |
 
@@ -20,8 +20,8 @@
 | NTFY-004 | WebSocket notification delivery (push to connected user sessions) | M | 3 | 50K | 1B | NTFY-001 | backend-module | ✅ Done |
 | NTFY-005 | APNs push notification service (direct HTTP/2 to Apple) | L | 4 | 70K | 1C | NTFY-001 | backend-module | ✅ Done |
 | NTFY-006 | FCM push notification service (direct HTTP to Google) | L | 4 | 70K | 1C | NTFY-001 | backend-module | ✅ Done |
-| NTFY-007 | Notification preferences entity + CRUD (per-user opt-in/out per type) | M | 2 | 35K | 1D | NTFY-001 | backend-module | 📋 Backlog |
-| NTFY-008 | Notification API endpoints (list notifications, mark read, update preferences) | M | 2 | 35K | 1D | NTFY-004 | backend-module | 📋 Backlog |
+| NTFY-007 | Notification preferences entity + CRUD (per-user opt-in/out per type) | M | 2 | 35K | 1D | NTFY-001 | backend-module | ✅ Done |
+| NTFY-008 | Notification API endpoints (list notifications, mark read, update preferences) | M | 2 | 35K | 1D | NTFY-004 | backend-module | ✅ Done |
 | NTFY-009 | Dapr event handlers (vote_cast, track_skipped, review_created, report_ready → notify) | M | 3 | 50K | 1E | NTFY-004 | backend-module | 📋 Backlog |
 | NTFY-010 | Email notification service (SMTP for weekly/monthly analytics reports) | M | 2 | 40K | 1E | NTFY-001 | backend-module | 📋 Backlog |
 

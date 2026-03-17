@@ -13,6 +13,8 @@ public sealed class EconomyDbContext : BaseDbContext
 
     public DbSet<CoinPackage> CoinPackages => Set<CoinPackage>();
 
+    public DbSet<Subscription> Subscriptions => Set<Subscription>();
+
     public EconomyDbContext(
         DbContextOptions<EconomyDbContext> options,
         TenantContext tenantContext)

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/injection.dart';
+import '../../voting/bloc/voting_bloc.dart';
+import '../../voting/bloc/voting_event.dart';
+import '../../voting/bloc/voting_state.dart';
+import '../../voting/models/vote_models.dart';
+import '../../voting/widgets/vote_buttons_widget.dart';
+import '../../voting/widgets/vote_tally_widget.dart';
 import '../bloc/queue_bloc.dart';
 import '../bloc/queue_event.dart';
 import '../bloc/queue_state.dart';
@@ -14,11 +21,37 @@ class QueueScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => getIt<VotingBloc>()
+        ..add(VotingEvent.connectToVoting(hubId: hubId)),
+      child: _QueueScaffold(hubId: hubId),
+    );
+  }
+}
+
+class _QueueScaffold extends StatelessWidget {
+  const _QueueScaffold({required this.hubId});
+
+  final String hubId;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Live Queue'),
       ),
-      body: BlocConsumer<QueueBloc, QueueState>(
+      body: BlocListener<VotingBloc, VotingState>(
+        listenWhen: (previous, current) =>
+            current.lastSkipNotification != null &&
+            current.lastSkipNotification !=
+                previous.lastSkipNotification,
+        listener: (context, state) {
+          final notification = state.lastSkipNotification;
+          if (notification != null) {
+            _showSkipSnackBar(context, notification);
+          }
+        },
+        child: BlocConsumer<QueueBloc, QueueState>(
         listener: (context, state) {
           if (state is QueueStateError) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -61,7 +94,54 @@ class QueueScreen extends StatelessWidget {
           );
         },
       ),
+      ),
     );
+  }
+
+  void _showSkipSnackBar(
+    BuildContext context,
+    SkipNotification notification,
+  ) {
+    final (message, color) = switch (notification.reason) {
+      SkipReason.community => (
+          'Track skipped \u2014 Community vote',
+          Colors.orange,
+        ),
+      SkipReason.owner => (
+          'Track skipped \u2014 Owner decision',
+          Colors.blue,
+        ),
+      SkipReason.autoAdvance => (
+          'Track skipped \u2014 Auto-advance',
+          Colors.grey,
+        ),
+    };
+
+    final fullMessage = notification.refundAmount != null &&
+            notification.refundAmount! > 0
+        ? '$message (${notification.refundAmount} coins refunded)'
+        : message;
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                Icon(
+                  Icons.skip_next,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                const SizedBox(width: 8),
+                Expanded(child: Text(fullMessage)),
+              ],
+            ),
+            backgroundColor: color,
+            duration: const Duration(seconds: 5),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
   }
 }
 
@@ -117,7 +197,10 @@ class _QueueLoadedView extends StatelessWidget {
             ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) => _QueueEntryTile(entry: entries[index]),
+              (context, index) => _QueueEntryTile(
+                hubId: hubId,
+                entry: entries[index],
+              ),
               childCount: entries.length,
             ),
           ),
@@ -128,8 +211,12 @@ class _QueueLoadedView extends StatelessWidget {
 }
 
 class _QueueEntryTile extends StatelessWidget {
-  const _QueueEntryTile({required this.entry});
+  const _QueueEntryTile({
+    required this.hubId,
+    required this.entry,
+  });
 
+  final String hubId;
   final QueueEntryDto entry;
 
   @override
@@ -140,29 +227,49 @@ class _QueueEntryTile extends StatelessWidget {
     final seconds = duration.inSeconds.remainder(60);
     final durationText = '$minutes:${seconds.toString().padLeft(2, '0')}';
 
-    return ListTile(
-      leading: _buildLeading(theme),
-      title: Text(
-        entry.trackTitle,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
-      subtitle: Text(
-        entry.trackArtist,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            durationText,
-            style: theme.textTheme.bodySmall,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          leading: _buildLeading(theme),
+          title: Text(
+            entry.trackTitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(width: 8),
-          _StatusBadge(status: entry.status),
-        ],
-      ),
+          subtitle: Text(
+            entry.trackArtist,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              VoteButtonsWidget(
+                hubId: hubId,
+                entryId: entry.id,
+                isTrackPlaying:
+                    entry.status == QueueEntryStatus.playing,
+                compact: true,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                durationText,
+                style: theme.textTheme.bodySmall,
+              ),
+              const SizedBox(width: 8),
+              _StatusBadge(status: entry.status),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: VoteTallyWidget(
+            entryId: entry.id,
+            compact: true,
+          ),
+        ),
+      ],
     );
   }
 

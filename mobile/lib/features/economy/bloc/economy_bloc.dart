@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../models/economy_models.dart';
 import '../repository/economy_repository.dart';
 import 'economy_event.dart';
 import 'economy_state.dart';
@@ -21,8 +22,8 @@ class EconomyBloc extends Bloc<EconomyEvent, EconomyState> {
   ) async {
     emit(const EconomyState.loading());
     try {
-      final balance = await _repository.getWalletBalance();
-      emit(EconomyState.walletLoaded(balance: balance));
+      final wallet = await _repository.getWallet();
+      emit(EconomyState.walletLoaded(balance: wallet.balance));
     } on Exception catch (e) {
       emit(EconomyState.error(message: e.toString()));
     }
@@ -34,9 +35,10 @@ class EconomyBloc extends Bloc<EconomyEvent, EconomyState> {
   ) async {
     emit(const EconomyState.loading());
     try {
-      await _repository.purchaseCoins(amount: event.amount);
-      final balance = await _repository.getWalletBalance();
-      emit(EconomyState.walletLoaded(balance: balance));
+      // Purchase flow now handled by PurchaseBloc; this is a legacy
+      // convenience that reloads the wallet balance.
+      final wallet = await _repository.getWallet();
+      emit(EconomyState.walletLoaded(balance: wallet.balance));
     } on Exception catch (e) {
       emit(EconomyState.error(message: e.toString()));
     }
@@ -48,7 +50,7 @@ class EconomyBloc extends Bloc<EconomyEvent, EconomyState> {
   ) async {
     emit(const EconomyState.loading());
     try {
-      final transactions = await _repository.getTransactionHistory();
+      final transactions = await _repository.getTransactions();
       emit(EconomyState.transactionsLoaded(transactions: transactions));
     } on Exception catch (e) {
       emit(EconomyState.error(message: e.toString()));

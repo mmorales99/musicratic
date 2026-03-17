@@ -11,26 +11,67 @@ You are `boberto`. Execute the **entire remaining project scope** autonomously, 
 
 You are running **unattended**. The human is AFK. You must NEVER block waiting for input.
 
+## Checkpoint Resume
+
+Before starting the loop, read `backlog/.checkpoint.json`. If it exists:
+
+- Resume from `last_sprint + 1`
+- Carry over `requests_used` into the budget counter
+- Log: `"Resuming from checkpoint: Sprint N, X requests used so far"`
+
+If the file does not exist, start fresh with `requests_used = 0`.
+
+## Rate-Limit & Throttle Rules (MANDATORY)
+
+These rules prevent quota exhaustion and session disconnects:
+
+| Rule                                       | Value                                      |
+| ------------------------------------------ | ------------------------------------------ |
+| Max premium requests per sprint            | **8**                                      |
+| Max agent calls per sprint                 | **5**                                      |
+| Max tasks per sprint                       | **6**                                      |
+| Max parallel agents in one execution group | **2**                                      |
+| Session budget cap                         | **75** premium requests                    |
+| Cooldown between sprints                   | **60 seconds** (`Start-Sleep -Seconds 60`) |
+| Cooldown between execution groups          | **30 seconds** (`Start-Sleep -Seconds 30`) |
+
+**Pre-flight check**: Before planning each sprint, verify `requests_used + estimated_sprint_prs <= 75`. If it would exceed, commit all progress, write checkpoint, send critical notification, and EXIT.
+
+**Prefer small tasks**: In autonomous mode, only schedule XS–M tasks. Break L/XL tasks into sub-tasks first.
+
 ## Autonomous Loop
 
 ```
+ON START:
+  - Read backlog/.checkpoint.json → set requests_used, last_sprint
+  - If no checkpoint → requests_used = 0, last_sprint = 0
+
 REPEAT:
+  0. PRE-FLIGHT BUDGET CHECK
+     - Estimate next sprint at ~6 PRs
+     - If requests_used + 6 > 75 → COMMIT, WRITE CHECKPOINT, NOTIFY, EXIT ⚠️
+
   1. PLAN next sprint
      - Read all backlog/*.md files
      - Find 📋 Backlog tasks whose deps are all ✅ Done or —
      - Skip tasks whose deps include any ⏳ Waiting Human task (defer them)
      - Group by phase order (1A before 1B, etc.), then by agent for parallelism
-     - Target 10–20 premium requests per sprint
+     - Target max 8 premium requests per sprint (3–6 tasks)
+     - Max 2 parallel agent calls per execution group
 
   2. EXECUTE sprint
      - Mark tasks 🔄 Sprint
-     - Delegate to specialist agents (parallel where possible)
-     - For each agent call:
+     - For each execution group:
+       • Delegate to specialist agents (max 2 parallel)
+       • Wait for all to complete
+       • Increment requests_used by actual PRs consumed
        • If agent succeeds → mark ✅ Done
-       • If agent hits a blocker (error, missing config, ambiguous spec) →
-         mark ⏳ Waiting Human, log the reason, move on
-     - After each execution group: verify build (dotnet build, ng build, flutter analyze)
-     - If build fails: attempt ONE fix. If still fails → ⏳ Waiting Human for affected tasks
+       • If agent hits a blocker → mark ⏳ Waiting Human, log the reason, move on
+       • Verify build (dotnet build, ng build, flutter analyze)
+       • If build fails: attempt ONE fix. If still fails → ⏳ Waiting Human
+       • 🔒 COMMIT & PUSH after each group
+       • 📝 WRITE CHECKPOINT after each group
+       • ⏸️ COOLDOWN: Start-Sleep -Seconds 30
 
   3. UPDATE backlogs
      - Mark completed tasks ✅ Done in their backlog files
@@ -42,11 +83,15 @@ REPEAT:
      - Only if build passes and tests pass for completed work
      - feat(sprint-N): complete Sprint N — [summary]
      - Include list of completed task IDs and any ⏳ items in commit body
+     - 📝 WRITE CHECKPOINT with sprint results
 
-  5. CHECK exit conditions:
+  5. ⏸️ SPRINT COOLDOWN: Start-Sleep -Seconds 60
+
+  6. CHECK exit conditions:
      - ALL tasks ✅ Done → NOTIFY critical "Project complete!", print FINAL REPORT, EXIT ✅
      - ALL remaining tasks ⏳ Waiting Human → NOTIFY critical "All remaining tasks need human", print FINAL REPORT, EXIT ⏳
      - No 📋 Backlog tasks have satisfiable deps → NOTIFY critical "Deadlock", print DEADLOCK REPORT, EXIT 🚫
+     - requests_used >= 75 → NOTIFY critical "Session budget cap reached", print PROGRESS REPORT, EXIT ⚠️
      - Rate limit / quota error from agent call → NOTIFY critical "Rate limit hit", print PROGRESS REPORT, EXIT ⚠️
      - Otherwise → NOTIFY info "Sprint N done", CONTINUE to next sprint
 ```

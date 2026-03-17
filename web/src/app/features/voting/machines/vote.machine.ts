@@ -57,10 +57,7 @@ function applyOptimisticVote(
     currentVote: newVote,
     upCount: Math.max(0, upCount),
     downCount: Math.max(0, downCount),
-    percentage: calcPercentage(
-      Math.max(0, upCount),
-      Math.max(0, downCount),
-    ),
+    percentage: calcPercentage(Math.max(0, upCount), Math.max(0, downCount)),
     error: null,
   };
 }
@@ -120,8 +117,7 @@ export const voteMachine = setup({
         if (context.previousVote === "down") down++;
         return calcPercentage(Math.max(0, up), Math.max(0, down));
       },
-      error: ({ event }) =>
-        event.type === "VOTE_FAILED" ? event.error : null,
+      error: ({ event }) => (event.type === "VOTE_FAILED" ? event.error : null),
     }),
     confirmVote: assign({
       previousVote: () => null,

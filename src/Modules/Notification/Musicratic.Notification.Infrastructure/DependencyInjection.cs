@@ -21,6 +21,7 @@ public static class DependencyInjection
 
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IDeviceTokenRepository, DeviceTokenRepository>();
+        services.AddScoped<INotificationPreferenceRepository, NotificationPreferenceRepository>();
         services.AddScoped<IUnitOfWork, NotificationUnitOfWork>();
 
         services.AddSingleton<IConnectionManager, InMemoryConnectionManager>();

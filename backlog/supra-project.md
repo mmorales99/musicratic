@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 113 |
-| **Remaining** | 63 |
+| **Done** | 132 |
+| **Remaining** | 44 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -19,12 +19,12 @@
 | [Backend Hub](backend-hub.md) | 22 | 18 | 4 | ~35 | ~600 K | 0, 1A, 1F |
 | [Backend Playback](backend-playback.md) | 18 | 17 | 1 | ~40 | ~700 K | 1A, 1B |
 | [Backend Voting](backend-voting.md) | 15 | 14 | 1 | ~32 | ~550 K | 1B, 1C |
-| [Backend Economy](backend-economy.md) | 15 | 4 | 11 | ~34 | ~600 K | 1C, 1D |
+| [Backend Economy](backend-economy.md) | 15 | 15 | 0 | ~34 | ~600 K | 1C, 1D |
 | [Backend Analytics](backend-analytics.md) | 10 | 0 | 10 | ~22 | ~380 K | 1E |
 | [Backend Social](backend-social.md) | 10 | 0 | 10 | ~22 | ~380 K | 1G |
-| [Backend Notification](backend-notification.md) | 10 | 6 | 4 | ~22 | ~380 K | 1B–1G |
-| [Web Angular](web-angular.md) | 25 | 10 | 15 | ~55 | ~950 K | 1A–1G |
-| [Mobile Flutter](mobile-flutter.md) | 25 | 10 | 15 | ~55 | ~950 K | 1A–1G |
+| [Backend Notification](backend-notification.md) | 10 | 8 | 2 | ~22 | ~380 K | 1B–1G |
+| [Web Angular](web-angular.md) | 25 | 13 | 12 | ~55 | ~950 K | 1A–1G |
+| [Mobile Flutter](mobile-flutter.md) | 25 | 13 | 12 | ~55 | ~950 K | 1A–1G |
 | [Infrastructure](infrastructure.md) | 10 | 8 | 2 | ~12 | ~200 K | 0, 1A |
 | [Testing & Quality](testing-quality.md) | 10 | 2 | 8 | ~25 | ~430 K | 0–1G |
 
@@ -35,8 +35,8 @@
 | **Phase 0** | Foundation | 28 | 28 | 100% |
 | **Phase 1A** | Hub & List Management | 42 | 42 | 100% |
 | **Phase 1B** | Queue & Proposals | 28 | 24 | 86% |
-| **Phase 1C** | Voting & Skipping | 24 | 13 | 54% |
-| **Phase 1D** | Economy | 18 | 0 | 0% |
+| **Phase 1C** | Voting & Skipping | 24 | 19 | 79% |
+| **Phase 1D** | Economy | 18 | 13 | 72% |
 | **Phase 1E** | Analytics & Reports | 14 | 0 | 0% |
 | **Phase 1F** | Roles & Delegation | 12 | 0 | 0% |
 | **Phase 1G** | Social (Minimal) | 14 | 0 | 0% |

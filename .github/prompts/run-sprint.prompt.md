@@ -22,9 +22,10 @@ If any specialist agent encounters a blocker (build error after retry, missing c
 
 ## Execution Steps
 
-1. **Read the sprint plan** — Identify the tasks, their execution groups, and target agents
-2. **Mark tasks as sprint** — Update status from `📋 Backlog` to `🔄 Sprint` in each backlog file
-3. **Execute each group sequentially** (tasks within a group run in parallel):
+1. **Read checkpoint** — Load `backlog/.checkpoint.json` if it exists, carry over `requests_used`
+2. **Read the sprint plan** — Identify the tasks, their execution groups, and target agents
+3. **Mark tasks as sprint** — Update status from `📋 Backlog` to `🔄 Sprint` in each backlog file
+4. **Execute each group sequentially** (max **2** parallel agents per group):
    a. For each task in the group, invoke the appropriate specialist agent with:
     - Task ID and full description
     - Spec document references from `/docs/`
@@ -32,16 +33,22 @@ If any specialist agent encounters a blocker (build error after retry, missing c
     - Acceptance criteria
     - File ownership constraints
       b. Wait for all agents in the group to complete
-      c. If an agent fails or blocks → mark `⏳ Waiting Human`, log reason, continue
-      d. Run build verification:
+      c. Increment `requests_used` by PRs consumed
+      d. If an agent fails or blocks → mark `⏳ Waiting Human`, log reason, continue
+      e. Run build verification:
     - Backend: `dotnet build src/Musicratic.slnx`
     - Web: `cd web && npx ng build` (if web tasks were done)
     - Mobile: `cd mobile && flutter analyze` (if mobile tasks were done)
-      e. If build fails → attempt one fix. If still fails → `⏳ Waiting Human` for affected tasks
-      f. Mark completed tasks as `✅ Done` in backlog files
-4. **Defer blocked dependents** — Tasks depending on `⏳ Waiting Human` tasks → back to `📋 Backlog`
-5. **Update supra-project** — Recalculate totals, done counts, and phase percentages
-6. **Report results**:
+      f. If build fails → attempt one fix. If still fails → `⏳ Waiting Human` for affected tasks
+      g. Mark completed tasks as `✅ Done` in backlog files
+      h. **🔒 COMMIT & PUSH** after each group
+      i. **📝 WRITE CHECKPOINT** — Update `backlog/.checkpoint.json`
+      j. **⏸️ COOLDOWN** — `Start-Sleep -Seconds 30` before next group
+5. **Defer blocked dependents** — Tasks depending on `⏳ Waiting Human` tasks → back to `📋 Backlog`
+6. **Update supra-project** — Recalculate totals, done counts, and phase percentages
+7. **🔒 FINAL COMMIT & PUSH** — Commit backlog updates
+8. **📝 FINAL CHECKPOINT** — Write updated checkpoint
+9. **Report results**:
 
 ```markdown
 ## Sprint N — Results

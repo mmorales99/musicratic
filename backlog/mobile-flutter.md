@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 10 |
-| Remaining | 15 |
+| Done | 13 |
+| Remaining | 12 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -37,9 +37,9 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-012 | Vote buttons widget (up/down, haptic feedback, disabled after voting) | M | 2 | 40K | 1C | VOTE-004 | flutter-mobile | 📋 Backlog |
-| MOB-013 | Vote tally display (real-time animated bar via WebSocket) | M | 2 | 40K | 1C | VOTE-009 | flutter-mobile | 📋 Backlog |
-| MOB-014 | Skip notification (snackbar + optional refund confirmation) | S | 1 | 20K | 1C | VOTE-007 | flutter-mobile | 📋 Backlog |
+| MOB-012 | Vote buttons widget (up/down, haptic feedback, disabled after voting) | M | 2 | 40K | 1C | VOTE-004 | flutter-mobile | ✅ Done |
+| MOB-013 | Vote tally display (real-time animated bar via WebSocket) | M | 2 | 40K | 1C | VOTE-009 | flutter-mobile | ✅ Done |
+| MOB-014 | Skip notification (snackbar + optional refund confirmation) | S | 1 | 20K | 1C | VOTE-007 | flutter-mobile | ✅ Done |
 
 ## Phase 1D — Economy
 

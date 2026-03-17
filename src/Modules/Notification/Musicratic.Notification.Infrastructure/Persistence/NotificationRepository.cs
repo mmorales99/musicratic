@@ -65,6 +65,34 @@ public sealed class NotificationRepository : INotificationRepository
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<(IReadOnlyList<Domain.Entities.Notification> Items, int TotalCount)> GetByUserPaginated(
+        Guid userId,
+        int skip,
+        int take,
+        CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.Notifications
+            .Where(n => n.UserId == userId)
+            .OrderByDescending(n => n.CreatedAt);
+
+        var totalCount = await query.CountAsync(cancellationToken);
+
+        var items = await query
+            .Skip(skip)
+            .Take(take)
+            .ToListAsync(cancellationToken);
+
+        return (items, totalCount);
+    }
+
+    public async Task<int> GetUnreadCount(
+        Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Notifications
+            .CountAsync(n => n.UserId == userId && n.ReadAt == null, cancellationToken);
+    }
+
     public async Task<IReadOnlyList<Domain.Entities.Notification>> GetUnreadByUser(
         Guid userId,
         CancellationToken cancellationToken = default)

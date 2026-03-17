@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 15 |
-| Done | 4 |
-| Remaining | 11 |
+| Done | 15 |
+| Remaining | 0 |
 | Est. premium requests | ~34 |
 | Est. tokens | ~600 K |
 
@@ -23,17 +23,17 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| ECON-005 | Coin pricing engine (base = floor(duration/60), hotness multiplier, final = floor(base×mult)) | M | 3 | 50K | 1D | — | backend-module | 📋 Backlog |
-| ECON-006 | Wallet transaction history query (paginated, filtered by type) | S | 1 | 20K | 1D | ECON-001 | backend-module | 📋 Backlog |
-| ECON-007 | Coin purchase command via Stripe webhook (verify signature → credit wallet) | L | 4 | 70K | 1D | ECON-001 | backend-module | 📋 Backlog |
-| ECON-008 | Stripe PaymentIntent creation endpoint (amount → payment intent) | M | 2 | 40K | 1D | — | backend-module | 📋 Backlog |
-| ECON-009 | Apple IAP receipt verification (App Store Server API → validate → credit) | L | 4 | 70K | 1D | ECON-001 | backend-module | 📋 Backlog |
-| ECON-010 | Google Play Billing verification (Google Play Developer API → validate → credit) | L | 4 | 70K | 1D | ECON-001 | backend-module | 📋 Backlog |
-| ECON-011 | Subscription entity (hub_id, tier, started_at, expires_at, stripe_subscription_id) | S | 1 | 20K | 1D | — | backend-module | 📋 Backlog |
-| ECON-012 | Subscription EF configuration + SubscriptionRepository | S | 1 | 20K | 1D | ECON-011 | database | 📋 Backlog |
-| ECON-013 | Subscription tier enforcement service (check limits: hubs, lists, sub-owners per tier) | M | 2 | 40K | 1D | ECON-011 | backend-module | 📋 Backlog |
-| ECON-014 | Free trial lifecycle (30d trial, prompts at day 20/28, deactivate at day 30, 90d retention) | M | 3 | 50K | 1D | ECON-013 | backend-module | 📋 Backlog |
-| ECON-015 | Economy API endpoints (get wallet, get transactions, create payment, manage subscription) | M | 2 | 40K | 1D | ECON-005 | backend-module | 📋 Backlog |
+| ECON-005 | Coin pricing engine (base = floor(duration/60), hotness multiplier, final = floor(base×mult)) | M | 3 | 50K | 1D | — | backend-module | ✅ Done |
+| ECON-006 | Wallet transaction history query (paginated, filtered by type) | S | 1 | 20K | 1D | ECON-001 | backend-module | ✅ Done |
+| ECON-007 | Coin purchase command via Stripe webhook (verify signature → credit wallet) | L | 4 | 70K | 1D | ECON-001 | backend-module | ✅ Done |
+| ECON-008 | Stripe PaymentIntent creation endpoint (amount → payment intent) | M | 2 | 40K | 1D | — | backend-module | ✅ Done |
+| ECON-009 | Apple IAP receipt verification (App Store Server API → validate → credit) | L | 4 | 70K | 1D | ECON-001 | backend-module | ✅ Done |
+| ECON-010 | Google Play Billing verification (Google Play Developer API → validate → credit) | L | 4 | 70K | 1D | ECON-001 | backend-module | ✅ Done |
+| ECON-011 | Subscription entity (hub_id, tier, started_at, expires_at, stripe_subscription_id) | S | 1 | 20K | 1D | — | backend-module | ✅ Done |
+| ECON-012 | Subscription EF configuration + SubscriptionRepository | S | 1 | 20K | 1D | ECON-011 | database | ✅ Done |
+| ECON-013 | Subscription tier enforcement service (check limits: hubs, lists, sub-owners per tier) | M | 2 | 40K | 1D | ECON-011 | backend-module | ✅ Done |
+| ECON-014 | Free trial lifecycle (30d trial, prompts at day 20/28, deactivate at day 30, 90d retention) | M | 3 | 50K | 1D | ECON-013 | backend-module | ✅ Done |
+| ECON-015 | Economy API endpoints (get wallet, get transactions, create payment, manage subscription) | M | 2 | 40K | 1D | ECON-005 | backend-module | ✅ Done |
 
 ## Dependency Graph
 

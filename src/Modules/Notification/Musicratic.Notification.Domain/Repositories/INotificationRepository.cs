@@ -9,6 +9,16 @@ public interface INotificationRepository : IRepository<Entities.Notification>
         Guid userId,
         CancellationToken cancellationToken = default);
 
+    Task<(IReadOnlyList<Entities.Notification> Items, int TotalCount)> GetByUserPaginated(
+        Guid userId,
+        int skip,
+        int take,
+        CancellationToken cancellationToken = default);
+
+    Task<int> GetUnreadCount(
+        Guid userId,
+        CancellationToken cancellationToken = default);
+
     Task<IReadOnlyList<Entities.Notification>> GetUnreadByUser(
         Guid userId,
         CancellationToken cancellationToken = default);

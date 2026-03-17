@@ -30,10 +30,7 @@ const WARNING_THRESHOLD = 50;
       >
         <!-- Progress Bar -->
         <div class="vote-tally__bar">
-          <div
-            class="vote-tally__bar-up"
-            [style.width.%]="upPercent()"
-          ></div>
+          <div class="vote-tally__bar-up" [style.width.%]="upPercent()"></div>
           <div
             class="vote-tally__bar-down"
             [style.width.%]="downPercent()"
@@ -42,21 +39,18 @@ const WARNING_THRESHOLD = 50;
 
         <!-- Labels -->
         <div class="vote-tally__labels">
-          <span class="vote-tally__up-label">
-            👍 {{ upPercent() }}%
-          </span>
+          <span class="vote-tally__up-label"> 👍 {{ upPercent() }}% </span>
           <span class="vote-tally__total">
             {{ totalVoters() }} vote{{ totalVoters() === 1 ? "" : "s" }}
           </span>
-          <span class="vote-tally__down-label">
-            {{ downPercent() }}% 👎
-          </span>
+          <span class="vote-tally__down-label"> {{ downPercent() }}% 👎 </span>
         </div>
 
         <!-- Threshold Warning -->
         @if (isNearThreshold() && !isAtThreshold()) {
           <div class="vote-tally__warning">
-            ⚠️ Approaching skip threshold ({{ downPercent() }}% / {{ skipThreshold }}%)
+            ⚠️ Approaching skip threshold ({{ downPercent() }}% /
+            {{ skipThreshold }}%)
           </div>
         }
         @if (isAtThreshold()) {
@@ -153,7 +147,7 @@ export class VoteTallyComponent implements OnInit, OnDestroy, OnChanges {
   private readonly tally = signal<VoteTally | null>(null);
   protected readonly loaded = computed(() => this.tally() !== null);
   protected readonly totalVoters = computed(
-    () => (this.tally()?.totalVoters ?? 0),
+    () => this.tally()?.totalVoters ?? 0,
   );
   protected readonly upPercent = computed<number>(() => {
     const t = this.tally();
@@ -166,14 +160,10 @@ export class VoteTallyComponent implements OnInit, OnDestroy, OnChanges {
     return Math.round((t.downvotes / t.totalVoters) * 100);
   });
   protected readonly isNearThreshold = computed(
-    () =>
-      this.downPercent() >= WARNING_THRESHOLD &&
-      this.totalVoters() > 0,
+    () => this.downPercent() >= WARNING_THRESHOLD && this.totalVoters() > 0,
   );
   protected readonly isAtThreshold = computed(
-    () =>
-      this.downPercent() >= SKIP_THRESHOLD &&
-      this.totalVoters() > 0,
+    () => this.downPercent() >= SKIP_THRESHOLD && this.totalVoters() > 0,
   );
 
   ngOnInit(): void {

@@ -11,6 +11,8 @@ public sealed class NotificationDbContext : BaseDbContext
 
     public DbSet<DeviceToken> DeviceTokens => Set<DeviceToken>();
 
+    public DbSet<NotificationPreference> NotificationPreferences => Set<NotificationPreference>();
+
     public NotificationDbContext(
         DbContextOptions<NotificationDbContext> options,
         TenantContext tenantContext)
