@@ -5,8 +5,8 @@
 | Metric                    | Value     |
 | ------------------------- | --------- |
 | **Total tasks**           | 186       |
-| **Done**                  | 178       |
-| **Remaining**             | 8         |
+| **Done**                  | 181       |
+| **Remaining**             | 5         |
 | **Est. premium requests** | ~350      |
 | **Est. tokens**           | ~7 M      |
 | **Est. wall time**        | ~60–100 h |
@@ -26,7 +26,7 @@
 | [Web Angular](web-angular.md)                   | 25    | 25   | 0       | ~55      | ~950 K      | 1A–1G          |
 | [Mobile Flutter](mobile-flutter.md)             | 25    | 25   | 0       | ~55      | ~950 K      | 1A–1G          |
 | [Infrastructure](infrastructure.md)             | 10    | 10   | 0       | ~12      | ~200 K      | 0, 1A          |
-| [Testing & Quality](testing-quality.md)         | 10    | 2    | 8       | ~25      | ~430 K      | 0–1G           |
+| [Testing & Quality](testing-quality.md)         | 10    | 5    | 5       | ~25      | ~430 K      | 0–1G           |
 
 ## Phase Progress
 
