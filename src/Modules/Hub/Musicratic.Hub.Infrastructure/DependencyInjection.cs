@@ -7,6 +7,7 @@ using Musicratic.Hub.Domain.Services;
 using Musicratic.Hub.Infrastructure.Persistence;
 using Musicratic.Hub.Infrastructure.Services;
 using Musicratic.Shared.Application;
+using Musicratic.Shared.Contracts;
 
 namespace Musicratic.Hub.Infrastructure;
 
@@ -29,6 +30,7 @@ public static class DependencyInjection
         services.AddSingleton<IHubLinkService>(sp =>
             new HubLinkService(configuration));
         services.AddSingleton<IQrCodeService, QrCodeService>();
+        services.AddScoped<IHubMemberRoleProvider, HubMemberRoleProvider>();
 
         services.Configure<AttachmentExpiryOptions>(options =>
         {

@@ -70,4 +70,21 @@ public sealed class HubMemberRepository : IHubMemberRepository
             .Where(m => m.HubId == hubId)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<(IReadOnlyList<HubMember> Items, int TotalCount)> GetMembersByHubPaged(
+        Guid hubId,
+        int page,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.HubMembers.Where(m => m.HubId == hubId);
+        var totalCount = await query.CountAsync(cancellationToken);
+        var items = await query
+            .OrderBy(m => m.AssignedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (items, totalCount);
+    }
 }

@@ -8,6 +8,7 @@ using Musicratic.Auth.Infrastructure.Configuration;
 using Musicratic.Auth.Infrastructure.Persistence;
 using Musicratic.Auth.Infrastructure.Services;
 using Musicratic.Shared.Application;
+using Musicratic.Shared.Contracts;
 
 
 namespace Musicratic.Auth.Infrastructure;
@@ -32,6 +33,7 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, AuthUnitOfWork>();
 
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IRoleResolutionService, RoleResolutionService>();
 
         services.Configure<BlobStorageOptions>(
             configuration.GetSection(BlobStorageOptions.SectionName));

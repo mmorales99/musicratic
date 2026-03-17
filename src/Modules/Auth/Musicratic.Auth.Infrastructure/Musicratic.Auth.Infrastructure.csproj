@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Musicratic.Auth.Application\Musicratic.Auth.Application.csproj" />
     <ProjectReference Include="..\..\..\Shared\Musicratic.Shared.Infrastructure\Musicratic.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Musicratic.Shared.Contracts\Musicratic.Shared.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

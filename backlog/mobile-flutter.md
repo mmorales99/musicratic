@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 13 |
-| Remaining | 12 |
+| Done | 16 |
+| Remaining | 9 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -45,9 +45,9 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| MOB-015 | Wallet screen (balance, transaction history, pull-to-refresh) | M | 3 | 50K | 1D | ECON-006 | flutter-mobile | 📋 Backlog |
-| MOB-016 | Coin purchase flow (Apple IAP / Google Play Billing, in_app_purchase package) | XL | 8 | 150K | 1D | ECON-009, ECON-010 | flutter-mobile | 📋 Backlog |
-| MOB-017 | Subscription management screen (current tier, upgrade/downgrade) | M | 3 | 50K | 1D | ECON-013 | flutter-mobile | 📋 Backlog |
+| MOB-015 | Wallet screen (balance, transaction history, pull-to-refresh) | M | 3 | 50K | 1D | ECON-006 | flutter-mobile | ✅ Done |
+| MOB-016 | Coin purchase flow (Apple IAP / Google Play Billing, in_app_purchase package) | XL | 8 | 150K | 1D | ECON-009, ECON-010 | flutter-mobile | ✅ Done |
+| MOB-017 | Subscription management screen (current tier, upgrade/downgrade) | M | 3 | 50K | 1D | ECON-013 | flutter-mobile | ✅ Done |
 
 ## Phase 1E — Analytics & Reports
 

@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 13 |
-| Remaining | 12 |
+| Done | 16 |
+| Remaining | 9 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -45,9 +45,9 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-015 | Wallet screen (balance display, transaction history, paginated list) | M | 3 | 50K | 1D | ECON-006 | angular-web | 📋 Backlog |
-| WEB-016 | Coin purchase flow (select package → Stripe Checkout → confirmation) | L | 4 | 70K | 1D | ECON-008 | angular-web | 📋 Backlog |
-| WEB-017 | Subscription management screen (current tier, upgrade/downgrade, billing) | M | 3 | 50K | 1D | ECON-013 | angular-web | 📋 Backlog |
+| WEB-015 | Wallet screen (balance display, transaction history, paginated list) | M | 3 | 50K | 1D | ECON-006 | angular-web | ✅ Done |
+| WEB-016 | Coin purchase flow (select package → Stripe Checkout → confirmation) | L | 4 | 70K | 1D | ECON-008 | angular-web | ✅ Done |
+| WEB-017 | Subscription management screen (current tier, upgrade/downgrade, billing) | M | 3 | 50K | 1D | ECON-013 | angular-web | ✅ Done |
 
 ## Phase 1E — Analytics & Reports
 

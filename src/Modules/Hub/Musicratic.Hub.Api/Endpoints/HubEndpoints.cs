@@ -10,6 +10,7 @@ using Musicratic.Hub.Application.Commands.UpdateHubSettings;
 using Musicratic.Hub.Application.DTOs;
 using Musicratic.Hub.Application.Queries.GetActiveHubs;
 using Musicratic.Hub.Application.Queries.GetHub;
+using Musicratic.Hub.Application.Queries.GetHubMemberDetail;
 using Musicratic.Hub.Application.Queries.GetHubMembers;
 using Musicratic.Hub.Application.Queries.GetHubSettings;
 using Musicratic.Hub.Application.Queries.SearchHubs;
@@ -31,6 +32,7 @@ public static class HubEndpoints
         group.MapPost("/{id:guid}/activate", ActivateHub).WithName("ActivateHub");
         group.MapPost("/{id:guid}/deactivate", DeactivateHub).WithName("DeactivateHub");
         group.MapGet("/{id:guid}/members", GetHubMembers).WithName("GetHubMembers");
+        group.MapGet("/{id:guid}/members/{userId:guid}", GetHubMemberDetail).WithName("GetHubMemberDetail");
         group.MapPost("/{id:guid}/deep-link", GenerateDeepLink).WithName("GenerateDeepLink");
         group.MapGet("/{id:guid}/settings", GetHubSettings).WithName("GetHubSettings");
         group.MapPatch("/{id:guid}/settings", UpdateHubSettings).WithName("UpdateHubSettings");
@@ -116,10 +118,24 @@ public static class HubEndpoints
     private static async Task<IResult> GetHubMembers(
         Guid id,
         ISender sender,
+        CancellationToken cancellationToken,
+        int page = 1,
+        int pageSize = 20)
+    {
+        var members = await sender.Send(
+            new GetHubMembersQuery(id, page, pageSize), cancellationToken);
+        return Results.Ok(members);
+    }
+
+    private static async Task<IResult> GetHubMemberDetail(
+        Guid id,
+        Guid userId,
+        ISender sender,
         CancellationToken cancellationToken)
     {
-        var members = await sender.Send(new GetHubMembersQuery(id), cancellationToken);
-        return Results.Ok(members);
+        var member = await sender.Send(
+            new GetHubMemberDetailQuery(id, userId), cancellationToken);
+        return member is null ? Results.NotFound() : Results.Ok(member);
     }
 
     private static async Task<IResult> GenerateDeepLink(
