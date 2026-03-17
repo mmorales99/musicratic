@@ -12,6 +12,8 @@ import '../features/hub/repository/list_repository.dart';
 import '../features/playback/bloc/playback_bloc.dart';
 import '../features/playback/bloc/queue_bloc.dart';
 import '../features/playback/bloc/search_bloc.dart';
+import '../features/playback/proposal/proposal_bloc.dart';
+import '../features/playback/proposal/proposal_repository.dart';
 import '../features/playback/repository/playback_repository.dart';
 import '../features/playback/repositories/queue_repository.dart';
 import '../features/playback/repositories/track_repository.dart';
@@ -69,6 +71,9 @@ void configureDependencies() {
   getIt.registerLazySingleton<TrackSearchRepository>(
     () => TrackSearchRepositoryImpl(apiClient: getIt<BffApiClient>()),
   );
+  getIt.registerLazySingleton<ProposalRepository>(
+    () => ProposalRepositoryImpl(apiClient: getIt<BffApiClient>()),
+  );
   getIt.registerLazySingleton<VotingRepository>(
     () => VotingRepositoryImpl(
       apiClient: getIt<BffApiClient>(),
@@ -115,6 +120,12 @@ void configureDependencies() {
   );
   getIt.registerFactory<SearchBloc>(
     () => SearchBloc(repository: getIt<TrackSearchRepository>()),
+  );
+  getIt.registerFactory<ProposalBloc>(
+    () => ProposalBloc(
+      searchRepository: getIt<TrackSearchRepository>(),
+      proposalRepository: getIt<ProposalRepository>(),
+    ),
   );
   getIt.registerFactory<VotingBloc>(
     () => VotingBloc(repository: getIt<VotingRepository>()),

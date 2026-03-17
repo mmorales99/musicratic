@@ -11,13 +11,21 @@ import { HubDetailMachineService } from "../machines/hub-detail-machine.service"
 import { RequireRoleDirective } from "@app/shared/directives/require-role.directive";
 import { UserRole } from "@app/shared/models/user-role.model";
 import { RoleService } from "@app/shared/services/role.service";
+import { ShareButtonComponent } from "@app/features/social/components/share-button/share-button.component";
+import { HubReviewsComponent } from "@app/features/social/components/hub-reviews/hub-reviews.component";
 
-type TabId = "info" | "settings" | "lists";
+type TabId = "info" | "settings" | "lists" | "reviews";
 
 @Component({
   selector: "app-hub-detail",
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, RequireRoleDirective],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    RequireRoleDirective,
+    ShareButtonComponent,
+    HubReviewsComponent,
+  ],
   providers: [HubDetailMachineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -73,6 +81,7 @@ type TabId = "info" | "settings" | "lists";
             >
               Download QR
             </button>
+            <app-share-button shareType="hub" [entityId]="hub.id" />
           </div>
         </div>
 
@@ -233,6 +242,9 @@ type TabId = "info" | "settings" | "lists";
                   </a>
                 }
               </div>
+            }
+            @case ("reviews") {
+              <app-hub-reviews [hubId]="hub.id" />
             }
           }
         </div>
@@ -478,6 +490,7 @@ export class HubDetailComponent implements OnInit {
     { id: "info", label: "Info" },
     { id: "settings", label: "Settings" },
     { id: "lists", label: "Lists" },
+    { id: "reviews", label: "Reviews" },
   ];
 
   readonly editForm = this.fb.group({

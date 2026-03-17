@@ -99,5 +99,10 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: "social",
+    loadChildren: () =>
+      import("./features/social/social.routes").then((m) => m.SOCIAL_ROUTES),
+  },
   { path: "**", redirectTo: "hub" },
 ];

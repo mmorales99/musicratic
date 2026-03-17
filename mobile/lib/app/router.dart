@@ -32,9 +32,11 @@ import '../features/hub/screens/list_detail_screen.dart';
 import '../features/playback/bloc/queue_bloc.dart';
 import '../features/playback/bloc/queue_event.dart';
 import '../features/playback/bloc/search_bloc.dart';
+import '../features/playback/proposal/proposal_bloc.dart';
 import '../features/playback/screens/playback_screen.dart';
 import '../features/playback/screens/queue_screen.dart';
 import '../features/playback/screens/track_search_screen.dart';
+import '../features/playback/proposal/proposal_screen.dart';
 import '../features/profile/screens/profile_screen.dart';
 import '../features/voting/bloc/voting_bloc.dart';
 import '../features/voting/screens/voting_screen.dart';
@@ -132,6 +134,17 @@ GoRouter createAppRouter({required AuthBloc authBloc}) {
                   return BlocProvider(
                     create: (_) => getIt<SearchBloc>(),
                     child: TrackSearchScreen(hubId: hubId),
+                  );
+                },
+              ),
+              GoRoute(
+                path: 'propose',
+                name: 'hub-propose',
+                builder: (context, state) {
+                  final hubId = state.pathParameters['hubId']!;
+                  return BlocProvider(
+                    create: (_) => getIt<ProposalBloc>(),
+                    child: ProposalScreen(hubId: hubId),
                   );
                 },
               ),

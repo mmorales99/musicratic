@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 165 |
-| **Remaining** | 11 |
+| **Done** | 169 |
+| **Remaining** | 7 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -23,8 +23,8 @@
 | [Backend Analytics](backend-analytics.md) | 10 | 10 | 0 | ~22 | ~380 K | 1E |
 | [Backend Social](backend-social.md) | 10 | 10 | 0 | ~22 | ~380 K | 1G |
 | [Backend Notification](backend-notification.md) | 10 | 10 | 0 | ~22 | ~380 K | 1B–1G |
-| [Web Angular](web-angular.md) | 25 | 22 | 3 | ~55 | ~950 K | 1A–1G |
-| [Mobile Flutter](mobile-flutter.md) | 25 | 16 | 9 | ~55 | ~950 K | 1A–1G |
+| [Web Angular](web-angular.md) | 25 | 25 | 0 | ~55 | ~950 K | 1A–1G |
+| [Mobile Flutter](mobile-flutter.md) | 25 | 17 | 8 | ~55 | ~950 K | 1A–1G |
 | [Infrastructure](infrastructure.md) | 10 | 10 | 0 | ~12 | ~200 K | 0, 1A |
 | [Testing & Quality](testing-quality.md) | 10 | 2 | 8 | ~25 | ~430 K | 0–1G |
 
@@ -34,7 +34,7 @@
 |-------|-------------|-------|------|---|
 | **Phase 0** | Foundation | 28 | 28 | 100% |
 | **Phase 1A** | Hub & List Management | 42 | 42 | 100% |
-| **Phase 1B** | Queue & Proposals | 28 | 26 | 93% |
+| **Phase 1B** | Queue & Proposals | 28 | 27 | 96% |
 | **Phase 1C** | Voting & Skipping | 24 | 20 | 83% |
 | **Phase 1D** | Economy | 18 | 18 | 100% |
 | **Phase 1E** | Analytics & Reports | 14 | 14 | 100% |

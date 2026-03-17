@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 22 |
-| Remaining | 3 |
+| Done | 25 |
+| Remaining | 0 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -68,6 +68,6 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-023 | User profile screen (display name, avatar upload, stats, edit) | M | 2 | 40K | 1G | SOCL-008 | angular-web | 📋 Backlog |
-| WEB-024 | Hub reviews component (star rating, write review, view reviews list) | M | 2 | 40K | 1G | SOCL-005 | angular-web | 📋 Backlog |
-| WEB-025 | Social sharing (Web Share API, copy link, generate share card) | S | 1 | 25K | 1G | SOCL-007 | angular-web | 📋 Backlog |
+| WEB-023 | User profile screen (display name, avatar upload, stats, edit) | M | 2 | 40K | 1G | SOCL-008 | angular-web | ✅ Done |
+| WEB-024 | Hub reviews component (star rating, write review, view reviews list) | M | 2 | 40K | 1G | SOCL-005 | angular-web | ✅ Done |
+| WEB-025 | Social sharing (Web Share API, copy link, generate share card) | S | 1 | 25K | 1G | SOCL-007 | angular-web | ✅ Done |

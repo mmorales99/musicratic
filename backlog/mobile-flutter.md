@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 16 |
-| Remaining | 9 |
+| Done | 17 |
+| Remaining | 8 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -30,7 +30,7 @@
 |----|------|------|-----|--------|-------|------|-------|--------|
 | MOB-008 | Live queue screen (WebSocket real-time, animated list transitions) | L | 4 | 70K | 1B | PLAY-016 | flutter-mobile | ✅ Done |
 | MOB-009 | Now-playing widget (track info, album art, animated progress, time remaining) | M | 3 | 50K | 1B | PLAY-009 | flutter-mobile | ✅ Done |
-| MOB-010 | Track proposal flow (search → choose pay/free → confirm, with coin balance check) | L | 4 | 70K | 1B | PLAY-013 | flutter-mobile | 📋 Backlog |
+| MOB-010 | Track proposal flow (search → choose pay/free → confirm, with coin balance check) | L | 4 | 70K | 1B | PLAY-013 | flutter-mobile | ✅ Done |
 | MOB-011 | Track search screen (multi-provider search with provider tabs) | M | 3 | 50K | 1B | PLAY-006 | flutter-mobile | ✅ Done |
 
 ## Phase 1C — Voting & Skipping
