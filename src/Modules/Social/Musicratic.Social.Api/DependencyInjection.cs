@@ -6,7 +6,6 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddSocialApi(this IServiceCollection services)
     {
-        // TODO: Register services
         return services;
     }
 }

@@ -35,6 +35,7 @@ using Musicratic.Social.Domain;
 using Musicratic.Social.Application;
 using Musicratic.Social.Infrastructure;
 using Musicratic.Social.Api;
+using Musicratic.Social.Api.Endpoints;
 using Musicratic.Notification.Domain;
 using Musicratic.Notification.Application;
 using Musicratic.Notification.Infrastructure;
@@ -153,6 +154,7 @@ app.MapEconomyEndpoints();
 app.MapEconomyDaprEndpoints();
 app.MapStripeWebhookEndpoints();
 app.MapAnalyticsEndpoints();
+app.MapSocialEndpoints();
 
 app.Run();
 

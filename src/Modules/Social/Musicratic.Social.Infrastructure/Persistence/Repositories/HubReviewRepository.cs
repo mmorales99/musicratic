@@ -13,6 +13,14 @@ public sealed class HubReviewRepository : IHubReviewRepository
         _dbContext = dbContext;
     }
 
+    public async Task<HubReview?> GetById(
+        Guid reviewId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.HubReviews
+            .FirstOrDefaultAsync(r => r.Id == reviewId, cancellationToken);
+    }
+
     public async Task<HubReview?> GetByUserAndHub(
         Guid hubId,
         Guid userId,
@@ -53,6 +61,15 @@ public sealed class HubReviewRepository : IHubReviewRepository
         var average = await reviews.AverageAsync(r => r.Rating, cancellationToken);
 
         return (average, count);
+    }
+
+    public async Task<int> GetCountByHub(
+        Guid hubId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.HubReviews
+            .Where(r => r.HubId == hubId)
+            .CountAsync(cancellationToken);
     }
 
     public async Task Add(HubReview review, CancellationToken cancellationToken = default)

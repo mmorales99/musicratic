@@ -1,9 +1,9 @@
 {
-    "last_sprint": 8,
-    "requests_used": 30,
-    "last_completed_group": 1,
-    "timestamp": "2025-07-14T10:15:00Z",
-    "tasks_done_this_session": ["AUTH-020", "HUB-030", "PLAY-013", "AUTH-021", "AUTH-022", "VOTE-008", "NTFY-009", "HUB-031", "HUB-032", "NTFY-010"],
+    "last_sprint": 9,
+    "requests_used": 37,
+    "last_completed_group": 2,
+    "timestamp": "2025-07-14T10:30:00Z",
+    "tasks_done_this_session": ["AUTH-020", "HUB-030", "PLAY-013", "AUTH-021", "AUTH-022", "VOTE-008", "NTFY-009", "HUB-031", "HUB-032", "NTFY-010", "SOCL-001", "SOCL-002", "SOCL-003", "SOCL-004", "SOCL-008"],
     "tasks_waiting_human": [],
     "exit_reason": null
 }
