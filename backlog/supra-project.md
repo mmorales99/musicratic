@@ -2,44 +2,44 @@
 
 ## Project Health
 
-| Metric | Value |
-|--------|-------|
-| **Total tasks** | 186 |
-| **Done** | 178 |
-| **Remaining** | 8 |
-| **Est. premium requests** | ~350 |
-| **Est. tokens** | ~7 M |
-| **Est. wall time** | ~60–100 h |
+| Metric                    | Value     |
+| ------------------------- | --------- |
+| **Total tasks**           | 186       |
+| **Done**                  | 178       |
+| **Remaining**             | 8         |
+| **Est. premium requests** | ~350      |
+| **Est. tokens**           | ~7 M      |
+| **Est. wall time**        | ~60–100 h |
 
 ## Sub-Project Summary
 
-| Sub-Project | Total | Done | Backlog | Est. PRs | Est. Tokens | Phase Coverage |
-|-------------|-------|------|---------|----------|-------------|----------------|
-| [Backend Auth](backend-auth.md) | 16 | 16 | 0 | ~22 | ~400 K | 0, 1A, 1F |
-| [Backend Hub](backend-hub.md) | 22 | 22 | 0 | ~35 | ~600 K | 0, 1A, 1F |
-| [Backend Playback](backend-playback.md) | 18 | 18 | 0 | ~40 | ~700 K | 1A, 1B |
-| [Backend Voting](backend-voting.md) | 15 | 15 | 0 | ~32 | ~550 K | 1B, 1C |
-| [Backend Economy](backend-economy.md) | 15 | 15 | 0 | ~34 | ~600 K | 1C, 1D |
-| [Backend Analytics](backend-analytics.md) | 10 | 10 | 0 | ~22 | ~380 K | 1E |
-| [Backend Social](backend-social.md) | 10 | 10 | 0 | ~22 | ~380 K | 1G |
-| [Backend Notification](backend-notification.md) | 10 | 10 | 0 | ~22 | ~380 K | 1B–1G |
-| [Web Angular](web-angular.md) | 25 | 25 | 0 | ~55 | ~950 K | 1A–1G |
-| [Mobile Flutter](mobile-flutter.md) | 25 | 25 | 0 | ~55 | ~950 K | 1A–1G |
-| [Infrastructure](infrastructure.md) | 10 | 10 | 0 | ~12 | ~200 K | 0, 1A |
-| [Testing & Quality](testing-quality.md) | 10 | 2 | 8 | ~25 | ~430 K | 0–1G |
+| Sub-Project                                     | Total | Done | Backlog | Est. PRs | Est. Tokens | Phase Coverage |
+| ----------------------------------------------- | ----- | ---- | ------- | -------- | ----------- | -------------- |
+| [Backend Auth](backend-auth.md)                 | 16    | 16   | 0       | ~22      | ~400 K      | 0, 1A, 1F      |
+| [Backend Hub](backend-hub.md)                   | 22    | 22   | 0       | ~35      | ~600 K      | 0, 1A, 1F      |
+| [Backend Playback](backend-playback.md)         | 18    | 18   | 0       | ~40      | ~700 K      | 1A, 1B         |
+| [Backend Voting](backend-voting.md)             | 15    | 15   | 0       | ~32      | ~550 K      | 1B, 1C         |
+| [Backend Economy](backend-economy.md)           | 15    | 15   | 0       | ~34      | ~600 K      | 1C, 1D         |
+| [Backend Analytics](backend-analytics.md)       | 10    | 10   | 0       | ~22      | ~380 K      | 1E             |
+| [Backend Social](backend-social.md)             | 10    | 10   | 0       | ~22      | ~380 K      | 1G             |
+| [Backend Notification](backend-notification.md) | 10    | 10   | 0       | ~22      | ~380 K      | 1B–1G          |
+| [Web Angular](web-angular.md)                   | 25    | 25   | 0       | ~55      | ~950 K      | 1A–1G          |
+| [Mobile Flutter](mobile-flutter.md)             | 25    | 25   | 0       | ~55      | ~950 K      | 1A–1G          |
+| [Infrastructure](infrastructure.md)             | 10    | 10   | 0       | ~12      | ~200 K      | 0, 1A          |
+| [Testing & Quality](testing-quality.md)         | 10    | 2    | 8       | ~25      | ~430 K      | 0–1G           |
 
 ## Phase Progress
 
-| Phase | Description | Tasks | Done | % |
-|-------|-------------|-------|------|---|
-| **Phase 0** | Foundation | 28 | 28 | 100% |
-| **Phase 1A** | Hub & List Management | 42 | 42 | 100% |
-| **Phase 1B** | Queue & Proposals | 28 | 28 | 100% |
-| **Phase 1C** | Voting & Skipping | 24 | 24 | 100% |
-| **Phase 1D** | Economy | 18 | 18 | 100% |
-| **Phase 1E** | Analytics & Reports | 14 | 14 | 100% |
-| **Phase 1F** | Roles & Delegation | 12 | 12 | 100% |
-| **Phase 1G** | Social (Minimal) | 14 | 14 | 100% |
+| Phase        | Description           | Tasks | Done | %    |
+| ------------ | --------------------- | ----- | ---- | ---- |
+| **Phase 0**  | Foundation            | 28    | 28   | 100% |
+| **Phase 1A** | Hub & List Management | 42    | 42   | 100% |
+| **Phase 1B** | Queue & Proposals     | 28    | 28   | 100% |
+| **Phase 1C** | Voting & Skipping     | 24    | 24   | 100% |
+| **Phase 1D** | Economy               | 18    | 18   | 100% |
+| **Phase 1E** | Analytics & Reports   | 14    | 14   | 100% |
+| **Phase 1F** | Roles & Delegation    | 12    | 12   | 100% |
+| **Phase 1G** | Social (Minimal)      | 14    | 14   | 100% |
 
 ## Recommended Sprint Order
 
@@ -68,12 +68,12 @@ Sprint 12 ── Phase 1G               ─── web + mobile (social screens) 
 
 ## Task Statuses
 
-| Status | Meaning |
-|--------|---------|
-| ✅ Done | Completed, build passes, tests pass |
-| 🔄 Sprint | Assigned to current sprint, in progress |
-| 📋 Backlog | Ready to be planned into a sprint |
-| 🚫 Blocked | Dependency not met |
+| Status           | Meaning                                               |
+| ---------------- | ----------------------------------------------------- |
+| ✅ Done          | Completed, build passes, tests pass                   |
+| 🔄 Sprint        | Assigned to current sprint, in progress               |
+| 📋 Backlog       | Ready to be planned into a sprint                     |
+| 🚫 Blocked       | Dependency not met                                    |
 | ⏳ Waiting Human | Needs human input — agent cannot proceed autonomously |
 
 ### ⏳ Waiting Human Rules

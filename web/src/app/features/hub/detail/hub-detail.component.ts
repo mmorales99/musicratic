@@ -199,11 +199,20 @@ type TabId = "info" | "settings" | "lists" | "reviews";
                     Edit Hub
                   </button>
                 </div>
-                <div class="hub-detail__member-links" *appRequireRole="HubManager">
-                  <a [routerLink]="['/hub', hub.id, 'members']" class="btn btn--secondary btn--small">
+                <div
+                  class="hub-detail__member-links"
+                  *appRequireRole="HubManager"
+                >
+                  <a
+                    [routerLink]="['/hub', hub.id, 'members']"
+                    class="btn btn--secondary btn--small"
+                  >
                     Manage Members
                   </a>
-                  <a [routerLink]="['/hub', hub.id, 'roles']" class="btn btn--secondary btn--small">
+                  <a
+                    [routerLink]="['/hub', hub.id, 'roles']"
+                    class="btn btn--secondary btn--small"
+                  >
                     Assign Roles
                   </a>
                 </div>

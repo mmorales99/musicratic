@@ -1,4 +1,4 @@
-export type ShareType = 'hub' | 'track' | 'list' | 'profile';
+export type ShareType = "hub" | "track" | "list" | "profile";
 
 export interface ShareLink {
   url: string;

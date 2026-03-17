@@ -17,8 +17,8 @@
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| TEST-001 | Playwright E2E infrastructure for Angular (config, fixtures, auth helpers) | M | 3 | 50K | 1A | WEB-001 | testing | 📋 Backlog |
-| TEST-002 | Playwright E2E infrastructure for Flutter web (config, fixtures) | M | 3 | 50K | 1A | MOB-001 | testing | 📋 Backlog |
+| TEST-001 | Playwright E2E infrastructure for Angular (config, fixtures, auth helpers) | M | 3 | 50K | 1A | WEB-001 | testing | � Sprint |
+| TEST-002 | Playwright E2E infrastructure for Flutter web (config, fixtures) | M | 3 | 50K | 1A | MOB-001 | testing | ✅ Done |
 | TEST-003 | Shared test utilities (entity builders, fake repositories, test data factories) | M | 2 | 40K | 1A | — | testing | ✅ Done |
 | TEST-004 | CustomWebApplicationFactory enhancement (per-module SQLite, seeded test data) | M | 2 | 40K | 1A | — | testing | ✅ Done |
 
@@ -41,7 +41,7 @@
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
 | TEST-009 | Coverage report generation (backend + web + mobile, merge into single report) | M | 2 | 40K | 1G | — | testing | 📋 Backlog |
-| TEST-010 | SonarQube CI integration (scanner in GitHub Actions, quality gate enforcement) | M | 2 | 40K | 1G | INFRA-014 | testing | 📋 Backlog |
+| TEST-010 | SonarQube CI integration (scanner in GitHub Actions, quality gate enforcement) | M | 2 | 40K | 1G | INFRA-014 | testing | � Sprint |
 
 ## Dependency Graph
 

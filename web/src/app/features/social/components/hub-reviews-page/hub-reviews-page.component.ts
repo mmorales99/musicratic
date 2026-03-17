@@ -7,9 +7,7 @@ import { HubReviewsComponent } from "../hub-reviews/hub-reviews.component";
   standalone: true,
   imports: [HubReviewsComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <app-hub-reviews [hubId]="hubId" />
-  `,
+  template: ` <app-hub-reviews [hubId]="hubId" /> `,
 })
 export class HubReviewsPageComponent {
   readonly hubId: string;

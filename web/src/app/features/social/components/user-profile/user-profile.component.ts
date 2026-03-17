@@ -74,7 +74,7 @@ import { ShareButtonComponent } from "../share-button/share-button.component";
                 rows="3"
               ></textarea>
               <span class="form-field__hint">
-                {{ editForm.get('bio')?.value?.length || 0 }}/140
+                {{ editForm.get("bio")?.value?.length || 0 }}/140
               </span>
             </label>
             <label class="form-field">
@@ -87,7 +87,7 @@ import { ShareButtonComponent } from "../share-button/share-button.component";
                 class="btn btn--primary"
                 [disabled]="saving() || editForm.invalid"
               >
-                {{ saving() ? 'Saving...' : 'Save' }}
+                {{ saving() ? "Saving..." : "Save" }}
               </button>
               <button
                 type="button"
@@ -129,17 +129,11 @@ import { ShareButtonComponent } from "../share-button/share-button.component";
             </div>
             <div class="user-profile__header-actions">
               @if (isOwnProfile()) {
-                <button
-                  class="btn btn--secondary"
-                  (click)="startEdit()"
-                >
+                <button class="btn btn--secondary" (click)="startEdit()">
                   Edit Profile
                 </button>
               }
-              <app-share-button
-                shareType="profile"
-                [entityId]="p.id"
-              />
+              <app-share-button shareType="profile" [entityId]="p.id" />
             </div>
           </div>
 
@@ -206,12 +200,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   load(): void {
-    const userId =
-      this.route.snapshot.paramMap.get("userId") ?? "me";
+    const userId = this.route.snapshot.paramMap.get("userId") ?? "me";
     const currentUser = this.authService.currentUser();
-    this.isOwnProfile.set(
-      userId === "me" || userId === currentUser?.id,
-    );
+    this.isOwnProfile.set(userId === "me" || userId === currentUser?.id);
 
     this.loading.set(true);
     this.error.set(null);

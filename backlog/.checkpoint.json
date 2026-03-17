@@ -1,9 +1,9 @@
 {
-    "last_sprint": 14,
-    "requests_used": 75,
-    "last_completed_group": 1,
-    "timestamp": "2025-07-24T19:00:00Z",
-    "tasks_done_this_session": ["AUTH-021", "AUTH-022", "VOTE-008", "NTFY-009", "HUB-031", "HUB-032", "NTFY-010", "SOCL-001", "SOCL-002", "SOCL-003", "SOCL-004", "SOCL-008", "SOCL-005", "SOCL-007", "SOCL-006", "SOCL-009", "SOCL-010", "INFRA-013", "INFRA-014", "WEB-010", "WEB-018", "WEB-019", "WEB-020", "WEB-021", "WEB-022", "WEB-023", "WEB-024", "WEB-025", "MOB-010", "MOB-018", "MOB-019", "MOB-020", "MOB-021", "MOB-022", "MOB-023", "MOB-024", "MOB-025"],
-    "tasks_waiting_human": [],
-    "exit_reason": "budget_cap_reached"
+  "last_sprint": 14,
+  "requests_used": 0,
+  "last_completed_group": 0,
+  "timestamp": "2026-03-17T08:00:00Z",
+  "tasks_done_this_session": [],
+  "tasks_waiting_human": [],
+  "exit_reason": null
 }

@@ -46,9 +46,9 @@ export const routes: Routes = [
   {
     path: "hub/:hubId/propose",
     loadComponent: () =>
-      import(
-        "./features/playback/components/track-proposal/track-proposal.component"
-      ).then((m) => m.TrackProposalComponent),
+      import("./features/playback/components/track-proposal/track-proposal.component").then(
+        (m) => m.TrackProposalComponent,
+      ),
     canActivate: [authGuard],
   },
   {
@@ -80,9 +80,9 @@ export const routes: Routes = [
   {
     path: "hub/:hubId/subscription",
     loadComponent: () =>
-      import(
-        "./features/economy/subscription/subscription.component"
-      ).then((m) => m.SubscriptionComponent),
+      import("./features/economy/subscription/subscription.component").then(
+        (m) => m.SubscriptionComponent,
+      ),
     canActivate: [authGuard],
   },
   {

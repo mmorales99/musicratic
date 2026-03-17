@@ -65,7 +65,7 @@ import { DatePipe } from "@angular/common";
                 placeholder="Share your experience..."
               ></textarea>
               <span class="form-field__hint">
-                {{ reviewForm.get('comment')?.value?.length || 0 }}/500
+                {{ reviewForm.get("comment")?.value?.length || 0 }}/500
               </span>
             </label>
             <div class="hub-reviews__form-actions">
@@ -74,7 +74,7 @@ import { DatePipe } from "@angular/common";
                 class="btn btn--primary"
                 [disabled]="submitting() || !formRating()"
               >
-                {{ editingReview() ? 'Update Review' : 'Submit Review' }}
+                {{ editingReview() ? "Update Review" : "Submit Review" }}
               </button>
               @if (editingReview()) {
                 <button
@@ -96,10 +96,7 @@ import { DatePipe } from "@angular/common";
             </div>
           </form>
         } @else {
-          <button
-            class="btn btn--secondary"
-            (click)="showForm.set(true)"
-          >
+          <button class="btn btn--secondary" (click)="showForm.set(true)">
             Write a Review
           </button>
         }
@@ -157,7 +154,7 @@ import { DatePipe } from "@angular/common";
           (click)="loadMore()"
           [disabled]="loadingMore()"
         >
-          {{ loadingMore() ? 'Loading...' : 'Load More' }}
+          {{ loadingMore() ? "Loading..." : "Load More" }}
         </button>
       }
     </section>
@@ -231,7 +228,9 @@ export class HubReviewsComponent implements OnInit {
     this.submitting.set(true);
     this.reviewService.deleteReview(review.id).subscribe({
       next: () => {
-        this.reviews.update((list: Review[]) => list.filter((r: Review) => r.id !== review.id));
+        this.reviews.update((list: Review[]) =>
+          list.filter((r: Review) => r.id !== review.id),
+        );
         this.resetForm();
         this.loadRating();
         this.submitting.set(false);

@@ -1,10 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { BffApiService } from "@app/shared/services/bff-api.service";
-import {
-  UserProfile,
-  UpdateProfileRequest,
-} from "../models/profile.model";
+import { UserProfile, UpdateProfileRequest } from "../models/profile.model";
 
 @Injectable({ providedIn: "root" })
 export class ProfileService {
