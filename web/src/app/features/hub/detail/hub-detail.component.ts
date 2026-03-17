@@ -8,13 +8,16 @@ import {
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { ReactiveFormsModule, FormBuilder, Validators } from "@angular/forms";
 import { HubDetailMachineService } from "../machines/hub-detail-machine.service";
+import { RequireRoleDirective } from "@app/shared/directives/require-role.directive";
+import { UserRole } from "@app/shared/models/user-role.model";
+import { RoleService } from "@app/shared/services/role.service";
 
 type TabId = "info" | "settings" | "lists";
 
 @Component({
   selector: "app-hub-detail",
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, RequireRoleDirective],
   providers: [HubDetailMachineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -74,7 +77,7 @@ type TabId = "info" | "settings" | "lists";
         </div>
 
         <!-- Actions -->
-        <div class="hub-detail__actions">
+        <div class="hub-detail__actions" *appRequireRole="HubManager">
           @if (!hub.isActive) {
             <button
               class="btn btn--primary"
@@ -182,9 +185,19 @@ type TabId = "info" | "settings" | "lists";
                   <dt>Subscription</dt>
                   <dd>{{ hub.subscriptionTier }}</dd>
                 </dl>
-                <button class="btn btn--secondary" (click)="onEdit()">
-                  Edit Hub
-                </button>
+                <div *appRequireRole="HubManager">
+                  <button class="btn btn--secondary" (click)="onEdit()">
+                    Edit Hub
+                  </button>
+                </div>
+                <div class="hub-detail__member-links" *appRequireRole="HubManager">
+                  <a [routerLink]="['/hub', hub.id, 'members']" class="btn btn--secondary btn--small">
+                    Manage Members
+                  </a>
+                  <a [routerLink]="['/hub', hub.id, 'roles']" class="btn btn--secondary btn--small">
+                    Assign Roles
+                  </a>
+                </div>
               }
             }
             @case ("settings") {
@@ -411,6 +424,11 @@ type TabId = "info" | "settings" | "lists";
         color: #a0a0b0;
         font-size: 0.85rem;
       }
+      .hub-detail__member-links {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
       .btn {
         padding: 0.5rem 1.25rem;
         border-radius: 8px;
@@ -449,6 +467,9 @@ export class HubDetailComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly roleService = inject(RoleService);
+
+  protected readonly HubManager = UserRole.HubManager;
 
   readonly activeTab = signal<TabId>("info");
   readonly codeCopied = signal(false);
@@ -471,6 +492,7 @@ export class HubDetailComponent implements OnInit {
     const hubId = this.route.snapshot.paramMap.get("id");
     if (hubId) {
       this.machine.load(hubId);
+      this.roleService.fetchRole(hubId);
     }
   }
 

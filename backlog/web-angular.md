@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 25 |
-| Done | 18 |
-| Remaining | 7 |
+| Done | 22 |
+| Remaining | 3 |
 | Est. premium requests | ~55 |
 | Est. tokens | ~950 K |
 
@@ -54,15 +54,15 @@
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
 | WEB-018 | Analytics dashboard (charts: top tracks, vote distribution, play counts) | L | 4 | 70K | 1E | ANLT-009 | angular-web | ✅ Done |
-| WEB-019 | Reports screen (weekly/monthly summaries, actionable suggestions) | M | 2 | 40K | 1E | ANLT-006 | angular-web | 📋 Backlog |
+| WEB-019 | Reports screen (weekly/monthly summaries, actionable suggestions) | M | 2 | 40K | 1E | ANLT-006 | angular-web | ✅ Done |
 
 ## Phase 1F — Roles & Delegation
 
 | ID | Task | Size | PRs | Tokens | Phase | Deps | Agent | Status |
 |----|------|------|-----|--------|-------|------|-------|--------|
-| WEB-020 | Member management screen (list members, view roles, remove member) | M | 2 | 40K | 1F | HUB-030 | angular-web | 📋 Backlog |
-| WEB-021 | Role assignment UI (promote/demote, tier limit warnings) | M | 2 | 40K | 1F | HUB-031 | angular-web | 📋 Backlog |
-| WEB-022 | Conditional UI rendering by role (show/hide actions based on permissions) | M | 2 | 35K | 1F | AUTH-021 | angular-web | 📋 Backlog |
+| WEB-020 | Member management screen (list members, view roles, remove member) | M | 2 | 40K | 1F | HUB-030 | angular-web | ✅ Done |
+| WEB-021 | Role assignment UI (promote/demote, tier limit warnings) | M | 2 | 40K | 1F | HUB-031 | angular-web | ✅ Done |
+| WEB-022 | Conditional UI rendering by role (show/hide actions based on permissions) | M | 2 | 35K | 1F | AUTH-021 | angular-web | ✅ Done |
 
 ## Phase 1G — Social
 

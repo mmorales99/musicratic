@@ -12,6 +12,8 @@ import { NowPlayingComponent } from "../now-playing/now-playing.component";
 import { VoteButtonsComponent } from "@app/features/voting/vote-buttons/vote-buttons.component";
 import { VoteTallyComponent } from "@app/features/voting/vote-tally/vote-tally.component";
 import { SkipNotificationComponent } from "@app/features/voting/skip-notification/skip-notification.component";
+import { RequireRoleDirective } from "@app/shared/directives/require-role.directive";
+import { UserRole } from "@app/shared/models/user-role.model";
 import { QueueEntry } from "@app/shared/models/track.model";
 
 @Component({
@@ -22,6 +24,7 @@ import { QueueEntry } from "@app/shared/models/track.model";
     VoteButtonsComponent,
     VoteTallyComponent,
     SkipNotificationComponent,
+    RequireRoleDirective,
   ],
   providers: [QueueMachineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,8 +45,10 @@ import { QueueEntry } from "@app/shared/models/track.model";
 
         <!-- Voting Controls -->
         @if (nowPlayingEntryId(); as entryId) {
-          <app-vote-buttons [hubId]="hubId" [entryId]="entryId" />
-          <app-vote-tally [hubId]="hubId" [entryId]="entryId" />
+          <div *appRequireRole="Visitor">
+            <app-vote-buttons [hubId]="hubId" [entryId]="entryId" />
+            <app-vote-tally [hubId]="hubId" [entryId]="entryId" />
+          </div>
         }
 
         <!-- Skip Notifications -->
@@ -227,6 +232,8 @@ export class QueueComponent implements OnInit, OnDestroy {
   protected readonly machine = inject(QueueMachineService);
   private readonly route = inject(ActivatedRoute);
   protected hubId = "";
+
+  protected readonly Visitor = UserRole.Visitor;
 
   protected readonly upcomingQueue = computed<QueueEntry[]>(() =>
     this.machine

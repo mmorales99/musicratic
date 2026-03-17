@@ -10,4 +10,11 @@ export const ANALYTICS_ROUTES: Routes = [
         "./components/analytics-dashboard/analytics-dashboard.component"
       ).then((m) => m.AnalyticsDashboardComponent),
   },
+  {
+    path: "hub/:hubId/reports",
+    loadComponent: () =>
+      import(
+        "./components/reports-screen/reports-screen.component"
+      ).then((m) => m.ReportsScreenComponent),
+  },
 ];
