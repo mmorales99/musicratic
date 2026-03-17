@@ -89,9 +89,20 @@ jobs:
         working-directory: web
         run: npx playwright install --with-deps
 
+      - name: Run unit tests with coverage
+        working-directory: web
+        run: npx ng test --watch=false --code-coverage
+
       - name: Run Playwright tests
         working-directory: web
         run: npx playwright test
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-coverage
+          path: web/coverage/lcov.info
+          retention-days: 7
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -152,6 +163,12 @@ jobs:
           name: backend-coverage
           path: coverage/backend
 
+      - name: Download web coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: web-coverage
+          path: coverage/web
+
       - name: Download mobile coverage
         uses: actions/download-artifact@v4
         with:
@@ -168,7 +185,7 @@ jobs:
           args: >
             -Dproject.settings=infra/sonarqube/sonar-project.properties
             -Dsonar.cs.opencover.reportsPaths=coverage/backend/**/coverage.cobertura.xml
-            -Dsonar.typescript.lcov.reportPaths=web/coverage/lcov.info
+            -Dsonar.typescript.lcov.reportPaths=coverage/web/lcov.info
             -Dsonar.dart.lcov.reportPaths=coverage/mobile/lcov.info
 
       - name: SonarQube Quality Gate
