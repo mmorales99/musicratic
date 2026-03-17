@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | Total tasks | 15 |
-| Done | 14 |
-| Remaining | 1 |
+| Done | 15 |
+| Remaining | 0 |
 | Est. premium requests | ~32 |
 | Est. tokens | ~550 K |
 
@@ -28,7 +28,7 @@
 |----|------|------|-----|--------|-------|------|-------|--------|
 | VOTE-006 | Voting window timer service (60s window, opens when proposed track plays) | M | 3 | 50K | 1C | VOTE-004 | backend-module | ✅ Done |
 | VOTE-007 | Skip rule engine (≥65% downvotes → skip, configurable threshold + min vote count) | M | 3 | 50K | 1C | VOTE-005 | backend-module | ✅ Done |
-| VOTE-008 | Owner priority vote (owner downvote → instant skip, exempt from window, scoped to lists) | M | 2 | 40K | 1C | VOTE-007, AUTH-020 | backend-module | 📋 Backlog |
+| VOTE-008 | Owner priority vote (owner downvote → instant skip, exempt from window, scoped to lists) | M | 2 | 40K | 1C | VOTE-007, AUTH-020 | backend-module | ✅ Done |
 | VOTE-009 | Vote tally real-time WebSocket broadcasting (tally updates on each vote) | M | 2 | 40K | 1C | VOTE-005 | backend-module | ✅ Done |
 | VOTE-010 | Anti-abuse: rate limiting (1 vote/user/entry), device fingerprint check | M | 2 | 40K | 1C | VOTE-004 | backend-module | ✅ Done |
 | VOTE-011 | Minimum vote count threshold (configurable per hub, default 1) | S | 1 | 20K | 1C | VOTE-007 | backend-module | ✅ Done |

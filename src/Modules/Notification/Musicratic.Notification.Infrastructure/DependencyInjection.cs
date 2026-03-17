@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Musicratic.Notification.Application.Services;
 using Musicratic.Notification.Domain.Repositories;
 using Musicratic.Notification.Infrastructure.Configuration;
+using Musicratic.Notification.Infrastructure.EventHandlers;
 using Musicratic.Notification.Infrastructure.Persistence;
 using Musicratic.Notification.Infrastructure.Services;
 using Musicratic.Shared.Application;
@@ -38,6 +39,13 @@ public static class DependencyInjection
         services.AddSingleton<IApnsPushService, ApnsPushService>();
         services.AddSingleton<IFcmPushService, FcmPushService>();
         services.AddScoped<IPushNotificationService, PushNotificationService>();
+
+        // NTFY-009: Dapr event handlers
+        services.AddScoped<VoteCastNotificationHandler>();
+        services.AddScoped<SkipTriggeredNotificationHandler>();
+        services.AddScoped<TrackStartedNotificationHandler>();
+        services.AddScoped<ReviewCreatedNotificationHandler>();
+        services.AddScoped<ReportReadyNotificationHandler>();
 
         return services;
     }

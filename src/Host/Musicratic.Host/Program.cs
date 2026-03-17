@@ -8,6 +8,7 @@ using Musicratic.Auth.Application;
 using Musicratic.Auth.Infrastructure;
 using Musicratic.Auth.Api;
 using Musicratic.Auth.Api.Endpoints;
+using Musicratic.Auth.Infrastructure.Authorization;
 using Musicratic.Hub.Domain;
 using Musicratic.Hub.Application;
 using Musicratic.Hub.Infrastructure;
@@ -139,6 +140,7 @@ app.MapScalarApiReference();
 app.UseWebSockets();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRoleAuthorization();
 
 // Module endpoints
 app.MapAuthEndpoints();

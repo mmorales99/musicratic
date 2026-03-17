@@ -8,5 +8,6 @@ public enum NotificationType
     ProposalRejected,
     ReviewCreated,
     ReportReady,
+    NowPlaying,
     GeneralInfo
 }

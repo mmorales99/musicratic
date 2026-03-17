@@ -31,6 +31,9 @@ public static class DependencyInjection
         // VOTE-013: Dapr event publisher
         services.AddScoped<IVoteEventPublisher, VoteEventPublisher>();
 
+        // VOTE-008: Owner priority vote service
+        services.AddScoped<IOwnerVoteService, OwnerVoteService>();
+
         // VOTE-013: MediatR handlers for Dapr event subscriptions
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));

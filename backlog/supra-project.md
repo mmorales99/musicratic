@@ -5,8 +5,8 @@
 | Metric | Value |
 |--------|-------|
 | **Total tasks** | 176 |
-| **Done** | 140 |
-| **Remaining** | 36 |
+| **Done** | 144 |
+| **Remaining** | 32 |
 | **Est. premium requests** | ~350 |
 | **Est. tokens** | ~7 M |
 | **Est. wall time** | ~60–100 h |
@@ -15,14 +15,14 @@
 
 | Sub-Project | Total | Done | Backlog | Est. PRs | Est. Tokens | Phase Coverage |
 |-------------|-------|------|---------|----------|-------------|----------------|
-| [Backend Auth](backend-auth.md) | 16 | 14 | 2 | ~22 | ~400 K | 0, 1A, 1F |
+| [Backend Auth](backend-auth.md) | 16 | 16 | 0 | ~22 | ~400 K | 0, 1A, 1F |
 | [Backend Hub](backend-hub.md) | 22 | 19 | 3 | ~35 | ~600 K | 0, 1A, 1F |
 | [Backend Playback](backend-playback.md) | 18 | 18 | 0 | ~40 | ~700 K | 1A, 1B |
-| [Backend Voting](backend-voting.md) | 15 | 14 | 1 | ~32 | ~550 K | 1B, 1C |
+| [Backend Voting](backend-voting.md) | 15 | 15 | 0 | ~32 | ~550 K | 1B, 1C |
 | [Backend Economy](backend-economy.md) | 15 | 15 | 0 | ~34 | ~600 K | 1C, 1D |
 | [Backend Analytics](backend-analytics.md) | 10 | 10 | 0 | ~22 | ~380 K | 1E |
 | [Backend Social](backend-social.md) | 10 | 0 | 10 | ~22 | ~380 K | 1G |
-| [Backend Notification](backend-notification.md) | 10 | 8 | 2 | ~22 | ~380 K | 1B–1G |
+| [Backend Notification](backend-notification.md) | 10 | 9 | 1 | ~22 | ~380 K | 1B–1G |
 | [Web Angular](web-angular.md) | 25 | 16 | 9 | ~55 | ~950 K | 1A–1G |
 | [Mobile Flutter](mobile-flutter.md) | 25 | 16 | 9 | ~55 | ~950 K | 1A–1G |
 | [Infrastructure](infrastructure.md) | 10 | 8 | 2 | ~12 | ~200 K | 0, 1A |
@@ -35,10 +35,10 @@
 | **Phase 0** | Foundation | 28 | 28 | 100% |
 | **Phase 1A** | Hub & List Management | 42 | 42 | 100% |
 | **Phase 1B** | Queue & Proposals | 28 | 25 | 89% |
-| **Phase 1C** | Voting & Skipping | 24 | 19 | 79% |
+| **Phase 1C** | Voting & Skipping | 24 | 20 | 83% |
 | **Phase 1D** | Economy | 18 | 18 | 100% |
-| **Phase 1E** | Analytics & Reports | 14 | 10 | 71% |
-| **Phase 1F** | Roles & Delegation | 12 | 2 | 17% |
+| **Phase 1E** | Analytics & Reports | 14 | 11 | 79% |
+| **Phase 1F** | Roles & Delegation | 12 | 4 | 33% |
 | **Phase 1G** | Social (Minimal) | 14 | 0 | 0% |
 
 ## Recommended Sprint Order

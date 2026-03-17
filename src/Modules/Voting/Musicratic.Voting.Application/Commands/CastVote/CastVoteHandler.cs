@@ -14,7 +14,8 @@ public sealed class CastVoteHandler(
     IVotingWindowService votingWindowService,
     ISkipRuleEngine skipRuleEngine,
     IVoteTallyBroadcastService broadcastService,
-    IVoteEventPublisher eventPublisher) : ICommandHandler<CastVoteCommand, VoteDto>
+    IVoteEventPublisher eventPublisher,
+    IOwnerVoteService ownerVoteService) : ICommandHandler<CastVoteCommand, VoteDto>
 {
     public async Task<VoteDto> Handle(
         CastVoteCommand request,
@@ -68,6 +69,32 @@ public sealed class CastVoteHandler(
         await eventPublisher.PublishVoteCastAsync(
             request.TenantId, request.QueueEntryId, request.UserId, request.Value,
             cancellationToken);
+
+        // VOTE-008: Owner priority vote — instant skip
+        if (request.Value == VoteValue.Down
+            && await ownerVoteService.IsOwnerWithSkipPower(request.UserId, request.TenantId, cancellationToken))
+        {
+            votingWindowService.CloseWindow(request.TenantId, request.QueueEntryId);
+
+            const string ownerSkipReason = "Owner priority skip";
+
+            await broadcastService.BroadcastSkipTriggered(
+                request.TenantId, request.QueueEntryId, ownerSkipReason,
+                cancellationToken);
+
+            await eventPublisher.PublishSkipTriggeredAsync(
+                request.TenantId, request.QueueEntryId,
+                ownerSkipReason, tally.DownvotePercentage,
+                cancellationToken);
+
+            return new VoteDto(
+                vote.Id,
+                vote.TenantId,
+                vote.UserId,
+                vote.QueueEntryId,
+                vote.Value,
+                vote.CastAt);
+        }
 
         // VOTE-007: Evaluate skip rule
         var skipDecision = skipRuleEngine.Evaluate(tally.Upvotes, tally.Downvotes);
