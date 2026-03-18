@@ -6,7 +6,7 @@ namespace Musicratic.Voting.Application.Commands.RemoveVote;
 
 public sealed class RemoveVoteHandler(
     IVoteRepository voteRepository,
-    IUnitOfWork unitOfWork,
+    IVotingUnitOfWork unitOfWork,
     IVoteRateLimiter rateLimiter) : ICommandHandler<RemoveVoteCommand>
 {
     public async Task Handle(RemoveVoteCommand request, CancellationToken cancellationToken)

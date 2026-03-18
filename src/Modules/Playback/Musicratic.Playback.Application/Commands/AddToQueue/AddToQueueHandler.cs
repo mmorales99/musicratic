@@ -8,7 +8,7 @@ namespace Musicratic.Playback.Application.Commands.AddToQueue;
 public sealed class AddToQueueHandler(
     IQueueEntryRepository queueEntryRepository,
     ITrackRepository trackRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<AddToQueueCommand, QueueEntryDto>
+    IPlaybackUnitOfWork unitOfWork) : ICommandHandler<AddToQueueCommand, QueueEntryDto>
 {
     public async Task<QueueEntryDto> Handle(
         AddToQueueCommand request, CancellationToken cancellationToken)

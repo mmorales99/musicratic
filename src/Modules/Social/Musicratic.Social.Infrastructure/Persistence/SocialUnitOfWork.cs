@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Social.Application;
 
 namespace Musicratic.Social.Infrastructure.Persistence;
 
-public sealed class SocialUnitOfWork : IUnitOfWork
+public sealed class SocialUnitOfWork : ISocialUnitOfWork
 {
     private readonly SocialDbContext _dbContext;
 

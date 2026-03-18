@@ -6,7 +6,7 @@ namespace Musicratic.Notification.Application.Commands.UpdatePreference;
 
 public sealed class UpdatePreferenceHandler(
     INotificationPreferenceRepository preferenceRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UpdatePreferenceCommand>
+    INotificationUnitOfWork unitOfWork) : ICommandHandler<UpdatePreferenceCommand>
 {
     public async Task Handle(
         UpdatePreferenceCommand request,

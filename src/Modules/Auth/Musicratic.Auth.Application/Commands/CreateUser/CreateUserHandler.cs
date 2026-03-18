@@ -6,7 +6,7 @@ namespace Musicratic.Auth.Application.Commands.CreateUser;
 
 public sealed class CreateUserHandler(
     IUserRepository userRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreateUserCommand, Guid>
+    IAuthUnitOfWork unitOfWork) : ICommandHandler<CreateUserCommand, Guid>
 {
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {

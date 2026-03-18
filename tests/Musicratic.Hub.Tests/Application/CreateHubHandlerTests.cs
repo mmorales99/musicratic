@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Moq;
+using Musicratic.Hub.Application;
 using Musicratic.Hub.Application.Commands.CreateHub;
 using Musicratic.Hub.Domain.Entities;
 using Musicratic.Hub.Domain.Enums;
@@ -14,14 +15,14 @@ public class CreateHubHandlerTests
 {
     private readonly Mock<IHubRepository> _hubRepositoryMock;
     private readonly Mock<IHubCodeGenerator> _hubCodeGeneratorMock;
-    private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+    private readonly Mock<IHubUnitOfWork> _unitOfWorkMock;
     private readonly CreateHubHandler _handler;
 
     public CreateHubHandlerTests()
     {
         _hubRepositoryMock = new Mock<IHubRepository>();
         _hubCodeGeneratorMock = new Mock<IHubCodeGenerator>();
-        _unitOfWorkMock = new Mock<IUnitOfWork>();
+        _unitOfWorkMock = new Mock<IHubUnitOfWork>();
 
         _hubCodeGeneratorMock
             .Setup(g => g.Generate(It.IsAny<string>(), It.IsAny<CancellationToken>()))

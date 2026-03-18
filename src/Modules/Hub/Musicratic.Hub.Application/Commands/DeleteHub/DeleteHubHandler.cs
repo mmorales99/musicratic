@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.DeleteHub;
 
 public sealed class DeleteHubHandler(
     IHubRepository hubRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DeleteHubCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<DeleteHubCommand>
 {
     public async Task Handle(DeleteHubCommand request, CancellationToken cancellationToken)
     {

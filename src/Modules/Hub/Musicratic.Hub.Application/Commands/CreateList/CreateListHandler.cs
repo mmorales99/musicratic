@@ -6,7 +6,7 @@ namespace Musicratic.Hub.Application.Commands.CreateList;
 public sealed class CreateListHandler(
     IHubRepository hubRepository,
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreateListCommand, Guid>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<CreateListCommand, Guid>
 {
     public async Task<Guid> Handle(CreateListCommand request, CancellationToken cancellationToken)
     {

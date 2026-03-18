@@ -6,7 +6,7 @@ using Musicratic.Social.Domain.Repositories;
 using Musicratic.Social.Infrastructure.Persistence;
 using Musicratic.Social.Infrastructure.Persistence.Repositories;
 using Musicratic.Social.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Social.Application;
 
 namespace Musicratic.Social.Infrastructure;
 
@@ -20,7 +20,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("SocialDb")));
 
         services.AddScoped<IHubReviewRepository, HubReviewRepository>();
-        services.AddScoped<IUnitOfWork, SocialUnitOfWork>();
+        services.AddScoped<ISocialUnitOfWork, SocialUnitOfWork>();
         services.AddSingleton<ISocialSharingService, SocialSharingService>();
         services.AddScoped<IReviewEventPublisher, ReviewEventPublisher>();
 

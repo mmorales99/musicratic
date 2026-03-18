@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
+using Musicratic.Notification.Application;
 using Musicratic.Notification.Application.Services;
 using Musicratic.Notification.Domain.Enums;
 using Musicratic.Notification.Domain.Repositories;
-using Musicratic.Shared.Application;
 using Musicratic.Shared.Contracts.Events;
 
 namespace Musicratic.Notification.Infrastructure.EventHandlers;
@@ -15,13 +15,13 @@ namespace Musicratic.Notification.Infrastructure.EventHandlers;
 public sealed class VoteCastNotificationHandler
 {
     private readonly INotificationRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly INotificationUnitOfWork _unitOfWork;
     private readonly INotificationPushService _pushService;
     private readonly ILogger<VoteCastNotificationHandler> _logger;
 
     public VoteCastNotificationHandler(
         INotificationRepository repository,
-        IUnitOfWork unitOfWork,
+        INotificationUnitOfWork unitOfWork,
         INotificationPushService pushService,
         ILogger<VoteCastNotificationHandler> logger)
     {

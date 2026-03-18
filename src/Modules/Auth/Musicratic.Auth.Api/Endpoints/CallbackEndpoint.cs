@@ -10,7 +10,7 @@ using Musicratic.Auth.Application.Services;
 using Musicratic.Auth.Domain.Repositories;
 using Musicratic.Auth.Domain.Entities;
 using Musicratic.Auth.Infrastructure.Configuration;
-using Musicratic.Shared.Application;
+using Musicratic.Auth.Application;
 
 namespace Musicratic.Auth.Api.Endpoints;
 
@@ -24,7 +24,7 @@ public static class CallbackEndpoint
         IOptions<AuthentikOptions> options,
         [FromServices] IDataProtectionProvider dataProtectionProvider,
         IUserRepository userRepository,
-        IUnitOfWork unitOfWork,
+        IAuthUnitOfWork unitOfWork,
         IHttpClientFactory httpClientFactory,
         HttpContext httpContext,
         [FromQuery] string code,
@@ -180,7 +180,7 @@ public static class CallbackEndpoint
 
     private static async Task UpsertUser(
         IUserRepository userRepository,
-        IUnitOfWork unitOfWork,
+        IAuthUnitOfWork unitOfWork,
         UserInfoResponse userInfo,
         CancellationToken cancellationToken)
     {

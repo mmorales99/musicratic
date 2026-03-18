@@ -9,7 +9,7 @@ namespace Musicratic.Voting.Application.Commands.OpenCollectiveVote;
 
 public sealed class OpenCollectiveVoteHandler(
     ICollectiveVoteSessionRepository sessionRepository,
-    IUnitOfWork unitOfWork,
+    IVotingUnitOfWork unitOfWork,
     ISender mediator)
     : ICommandHandler<OpenCollectiveVoteCommand, CollectiveVoteSessionDto>
 {

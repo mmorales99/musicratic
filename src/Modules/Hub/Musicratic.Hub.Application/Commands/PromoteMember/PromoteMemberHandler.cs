@@ -7,7 +7,7 @@ namespace Musicratic.Hub.Application.Commands.PromoteMember;
 public sealed class PromoteMemberHandler(
     IHubRepository hubRepository,
     IHubMemberRepository memberRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<PromoteMemberCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<PromoteMemberCommand>
 {
     // Tier limits from docs/07-user-roles.md
     private static readonly Dictionary<SubscriptionTier, (int SubHubManagers, int SubListOwners)> TierLimits = new()

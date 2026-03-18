@@ -13,10 +13,12 @@ using Musicratic.Hub.Domain;
 using Musicratic.Hub.Application;
 using Musicratic.Hub.Infrastructure;
 using Musicratic.Hub.Api;
+using Musicratic.Hub.Api.Endpoints;
 using Musicratic.Playback.Domain;
 using Musicratic.Playback.Application;
 using Musicratic.Playback.Infrastructure;
 using Musicratic.Playback.Api;
+using Musicratic.Playback.Api.Endpoints;
 using Musicratic.Voting.Domain;
 using Musicratic.Voting.Application;
 using Musicratic.Voting.Infrastructure;
@@ -155,6 +157,11 @@ app.MapEconomyDaprEndpoints();
 app.MapStripeWebhookEndpoints();
 app.MapAnalyticsEndpoints();
 app.MapSocialEndpoints();
+app.MapHubEndpoints();
+app.MapAttachmentEndpoints();
+app.MapMemberEndpoints();
+app.MapListEndpoints();
+app.MapPlaybackEndpoints();
 
 app.Run();
 

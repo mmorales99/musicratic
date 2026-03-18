@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Moq;
+using Musicratic.Auth.Application;
 using Musicratic.Auth.Application.Commands.CreateUser;
 using Musicratic.Auth.Domain.Entities;
 using Musicratic.Auth.Domain.Repositories;
@@ -10,13 +11,13 @@ namespace Musicratic.Auth.Tests.Application;
 public class CreateUserHandlerTests
 {
     private readonly Mock<IUserRepository> _userRepositoryMock;
-    private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+    private readonly Mock<IAuthUnitOfWork> _unitOfWorkMock;
     private readonly CreateUserHandler _handler;
 
     public CreateUserHandlerTests()
     {
         _userRepositoryMock = new Mock<IUserRepository>();
-        _unitOfWorkMock = new Mock<IUnitOfWork>();
+        _unitOfWorkMock = new Mock<IAuthUnitOfWork>();
         _handler = new CreateUserHandler(_userRepositoryMock.Object, _unitOfWorkMock.Object);
     }
 

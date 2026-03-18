@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.AddListTrack;
 
 public sealed class AddListTrackHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<AddListTrackCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<AddListTrackCommand>
 {
     public async Task Handle(AddListTrackCommand request, CancellationToken cancellationToken)
     {

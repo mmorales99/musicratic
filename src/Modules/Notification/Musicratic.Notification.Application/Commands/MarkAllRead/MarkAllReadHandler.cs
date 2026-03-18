@@ -5,7 +5,7 @@ namespace Musicratic.Notification.Application.Commands.MarkAllRead;
 
 public sealed class MarkAllReadHandler(
     INotificationRepository notificationRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<MarkAllReadCommand>
+    INotificationUnitOfWork unitOfWork) : ICommandHandler<MarkAllReadCommand>
 {
     public async Task Handle(
         MarkAllReadCommand request,

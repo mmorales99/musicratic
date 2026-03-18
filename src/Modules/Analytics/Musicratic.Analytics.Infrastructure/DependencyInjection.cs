@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Musicratic.Analytics.Domain.Repositories;
 using Musicratic.Analytics.Infrastructure.Persistence;
-using Musicratic.Shared.Application;
+using Musicratic.Analytics.Application;
 
 namespace Musicratic.Analytics.Infrastructure;
 
@@ -17,7 +17,7 @@ public static class DependencyInjection
         services.AddDbContext<AnalyticsDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("AnalyticsDb")));
 
-        services.AddScoped<IUnitOfWork, AnalyticsUnitOfWork>();
+        services.AddScoped<IAnalyticsUnitOfWork, AnalyticsUnitOfWork>();
 
         // ANLT-002: Repositories
         services.AddScoped<ITrackStatsRepository, TrackStatsRepository>();

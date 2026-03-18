@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Musicratic.Hub.Domain.Enums;
@@ -49,11 +50,11 @@ public sealed class HubConfiguration : IEntityTypeConfiguration<Domain.Entities.
 
         builder.Property(h => h.IsActive)
             .HasColumnName("is_active")
-            .HasDefaultValue(false);
+            .IsRequired();
 
         builder.Property(h => h.IsPaused)
             .HasColumnName("is_paused")
-            .HasDefaultValue(false);
+            .IsRequired();
 
         builder.Property(h => h.PausedAt)
             .HasColumnName("paused_at");
@@ -72,16 +73,39 @@ public sealed class HubConfiguration : IEntityTypeConfiguration<Domain.Entities.
 
         builder.Property(h => h.IsDeleted)
             .HasColumnName("is_deleted")
-            .HasDefaultValue(false);
+            .IsRequired();
 
         builder.Property(h => h.DeletedAt)
             .HasColumnName("deleted_at");
 
-        builder.HasQueryFilter(h => !h.IsDeleted);
+        builder.HasQueryFilter(h => h.IsDeleted == false);
 
         builder.OwnsOne(h => h.Settings, settings =>
         {
-            settings.ToJson("settings_json");
+            settings.Property(s => s.AllowProposals)
+                .HasColumnName("settings_allow_proposals");
+
+            settings.Property(s => s.AutoSkipThreshold)
+                .HasColumnName("settings_auto_skip_threshold");
+
+            settings.Property(s => s.VotingWindowSeconds)
+                .HasColumnName("settings_voting_window_seconds");
+
+            settings.Property(s => s.MaxQueueSize)
+                .HasColumnName("settings_max_queue_size");
+
+            settings.Property(s => s.AllowedProviders)
+                .HasColumnName("settings_allowed_providers")
+                .HasConversion(
+                    v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
+                    v => JsonSerializer.Deserialize<List<MusicProvider>>(v, (JsonSerializerOptions?)null) ?? new List<MusicProvider>())
+                .HasMaxLength(500);
+
+            settings.Property(s => s.EnableLocalStorage)
+                .HasColumnName("settings_enable_local_storage");
+
+            settings.Property(s => s.AdsEnabled)
+                .HasColumnName("settings_ads_enabled");
         });
 
         builder.Property(h => h.TenantId)
@@ -95,6 +119,10 @@ public sealed class HubConfiguration : IEntityTypeConfiguration<Domain.Entities.
             .WithOne(m => m.Hub)
             .HasForeignKey(m => m.HubId)
             .HasConstraintName("fk_hub_members_hubs");
+
+        builder.Navigation(h => h.Members)
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
+            .HasField("_members");
 
         builder.Property(h => h.CreatedAt)
             .HasColumnName("created_at")

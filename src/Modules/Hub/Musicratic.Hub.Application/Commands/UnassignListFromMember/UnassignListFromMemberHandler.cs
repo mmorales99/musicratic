@@ -6,7 +6,7 @@ namespace Musicratic.Hub.Application.Commands.UnassignListFromMember;
 public sealed class UnassignListFromMemberHandler(
     IHubMemberRepository memberRepository,
     IMemberListAssignmentRepository assignmentRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UnassignListFromMemberCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<UnassignListFromMemberCommand>
 {
     public async Task Handle(UnassignListFromMemberCommand request, CancellationToken cancellationToken)
     {

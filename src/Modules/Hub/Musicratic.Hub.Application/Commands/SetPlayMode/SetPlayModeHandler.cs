@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.SetPlayMode;
 
 public sealed class SetPlayModeHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<SetPlayModeCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<SetPlayModeCommand>
 {
     public async Task Handle(SetPlayModeCommand request, CancellationToken cancellationToken)
     {

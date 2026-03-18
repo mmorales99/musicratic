@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Musicratic.Economy.Application;
 using Musicratic.Economy.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Economy.Api.Services;
 
@@ -42,7 +42,7 @@ public sealed class TrialExpiryBackgroundService(
         var subscriptionRepository = scope.ServiceProvider
             .GetRequiredService<ISubscriptionRepository>();
         var unitOfWork = scope.ServiceProvider
-            .GetRequiredService<IUnitOfWork>();
+            .GetRequiredService<IEconomyUnitOfWork>();
 
         var expiredTrials = await subscriptionRepository.GetExpiredTrials(cancellationToken);
 

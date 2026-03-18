@@ -10,7 +10,7 @@ namespace Musicratic.Economy.Application.Services;
 /// </summary>
 public sealed class FreeTrialService(
     ISubscriptionRepository subscriptionRepository,
-    IUnitOfWork unitOfWork) : IFreeTrialService
+    IEconomyUnitOfWork unitOfWork) : IFreeTrialService
 {
     private const int TrialDurationDays = 30;
     private const int ConversionPromptDay = 20;

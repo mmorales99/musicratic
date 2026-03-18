@@ -12,7 +12,7 @@ namespace Musicratic.Social.Application.Commands.CreateReview;
 public sealed class CreateReviewHandler(
     IHubReviewRepository reviewRepository,
     IReviewEventPublisher reviewEventPublisher,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreateReviewCommand, ReviewDto>
+    ISocialUnitOfWork unitOfWork) : ICommandHandler<CreateReviewCommand, ReviewDto>
 {
     public async Task<ReviewDto> Handle(
         CreateReviewCommand request, CancellationToken cancellationToken)

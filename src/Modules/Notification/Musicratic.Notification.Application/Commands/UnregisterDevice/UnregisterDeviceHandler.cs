@@ -5,7 +5,7 @@ namespace Musicratic.Notification.Application.Commands.UnregisterDevice;
 
 public sealed class UnregisterDeviceHandler(
     IDeviceTokenRepository deviceTokenRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UnregisterDeviceCommand>
+    INotificationUnitOfWork unitOfWork) : ICommandHandler<UnregisterDeviceCommand>
 {
     public async Task Handle(
         UnregisterDeviceCommand request,

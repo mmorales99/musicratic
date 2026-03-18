@@ -8,7 +8,7 @@ namespace Musicratic.Hub.Application.Commands.CreateHub;
 public sealed class CreateHubHandler(
     IHubRepository hubRepository,
     IHubCodeGenerator hubCodeGenerator,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreateHubCommand, Guid>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<CreateHubCommand, Guid>
 {
     public async Task<Guid> Handle(CreateHubCommand request, CancellationToken cancellationToken)
     {

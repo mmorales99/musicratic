@@ -7,7 +7,7 @@ namespace Musicratic.Auth.Application.Commands.UploadAvatar;
 public sealed class UploadAvatarHandler(
     IUserRepository userRepository,
     IBlobStorageService blobStorageService,
-    IUnitOfWork unitOfWork) : ICommandHandler<UploadAvatarCommand, string>
+    IAuthUnitOfWork unitOfWork) : ICommandHandler<UploadAvatarCommand, string>
 {
     private const long MaxFileSizeBytes = 2 * 1024 * 1024; // 2 MB
     private static readonly HashSet<string> AllowedContentTypes = ["image/jpeg", "image/png"];

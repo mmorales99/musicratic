@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
+using Musicratic.Economy.Application;
 using Musicratic.Economy.Domain.Repositories;
-using Musicratic.Shared.Application;
 using Musicratic.Shared.Contracts;
 using Musicratic.Shared.Contracts.DTOs;
 
@@ -8,7 +8,8 @@ namespace Musicratic.Economy.Infrastructure.Services;
 
 public sealed class WalletOperationProvider(
     IWalletRepository walletRepository,
-    IUnitOfWork unitOfWork,
+    ITransactionRepository transactionRepository,
+    IEconomyUnitOfWork unitOfWork,
     ILogger<WalletOperationProvider> logger) : IWalletOperationProvider
 {
     public async Task<WalletDebitResult> DebitCoins(
@@ -42,8 +43,8 @@ public sealed class WalletOperationProvider(
                 $"Insufficient balance. Current: {wallet.Balance}, Requested: {amount}.");
         }
 
-        wallet.Debit(amount, reason, referenceId);
-        walletRepository.Update(wallet);
+        var transaction = wallet.Debit(amount, reason, referenceId);
+        await transactionRepository.Add(transaction, ct);
         await unitOfWork.SaveChanges(ct);
 
         logger.LogInformation(

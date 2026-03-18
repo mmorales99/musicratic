@@ -14,7 +14,7 @@ public sealed record HubDeactivatedNotification(Guid HubId) : INotification;
 
 public sealed class HubDeactivatedEventHandler(
     IQueueEntryRepository queueEntryRepository,
-    IUnitOfWork unitOfWork) : INotificationHandler<HubDeactivatedNotification>
+    IPlaybackUnitOfWork unitOfWork) : INotificationHandler<HubDeactivatedNotification>
 {
     public async Task Handle(
         HubDeactivatedNotification notification, CancellationToken cancellationToken)

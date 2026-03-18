@@ -8,7 +8,8 @@ namespace Musicratic.Hub.Application.Commands.AttachUser;
 public sealed class AttachUserHandler(
     IHubRepository hubRepository,
     IHubAttachmentRepository attachmentRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<AttachUserCommand, Guid>
+    IHubMemberRepository memberRepository,
+    IHubUnitOfWork unitOfWork) : ICommandHandler<AttachUserCommand, Guid>
 {
     /// <summary>
     /// Attaches a user to a hub. Detaches from any previous hub first.
@@ -36,8 +37,11 @@ public sealed class AttachUserHandler(
         await attachmentRepository.Add(attachment, cancellationToken);
 
         // Add user as Visitor member if not already a member
-        hub.TryAddMember(request.UserId, HubMemberRole.Visitor, assignedBy: null);
-        hubRepository.Update(hub);
+        var newMember = hub.TryAddMember(request.UserId, HubMemberRole.Visitor, assignedBy: null);
+        if (newMember is not null)
+        {
+            await memberRepository.Add(newMember, cancellationToken);
+        }
 
         await unitOfWork.SaveChanges(cancellationToken);
 

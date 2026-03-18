@@ -6,7 +6,7 @@ using Musicratic.Economy.Application.Services;
 using Musicratic.Economy.Domain.Repositories;
 using Musicratic.Economy.Infrastructure.Persistence;
 using Musicratic.Economy.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Economy.Application;
 using Musicratic.Shared.Contracts;
 
 namespace Musicratic.Economy.Infrastructure;
@@ -25,7 +25,7 @@ public static class DependencyInjection
         services.AddScoped<ITransactionRepository, TransactionRepository>();
         services.AddScoped<ICoinPackageRepository, CoinPackageRepository>();
         services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
-        services.AddScoped<IUnitOfWork, EconomyUnitOfWork>();
+        services.AddScoped<IEconomyUnitOfWork, EconomyUnitOfWork>();
 
         // ECON-004: Refund service
         services.AddScoped<IRefundService, RefundService>();

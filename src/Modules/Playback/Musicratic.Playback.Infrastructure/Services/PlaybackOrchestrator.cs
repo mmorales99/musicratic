@@ -1,13 +1,13 @@
 using Microsoft.Extensions.Logging;
+using Musicratic.Playback.Application;
 using Musicratic.Playback.Application.Services;
 using Musicratic.Playback.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Playback.Infrastructure.Services;
 
 public sealed class PlaybackOrchestrator(
     IQueueEntryRepository queueEntryRepository,
-    IUnitOfWork unitOfWork,
+    IPlaybackUnitOfWork unitOfWork,
     ILogger<PlaybackOrchestrator> logger) : IPlaybackOrchestrator
 {
     public async Task StartPlayback(Guid hubId, CancellationToken cancellationToken)

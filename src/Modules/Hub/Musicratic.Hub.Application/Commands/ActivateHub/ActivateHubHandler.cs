@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.ActivateHub;
 
 public sealed class ActivateHubHandler(
     IHubRepository hubRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<ActivateHubCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<ActivateHubCommand>
 {
     public async Task Handle(ActivateHubCommand request, CancellationToken cancellationToken)
     {

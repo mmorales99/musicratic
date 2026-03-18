@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Auth.Application;
 
 namespace Musicratic.Auth.Infrastructure.Persistence;
 
-public sealed class AuthUnitOfWork : IUnitOfWork
+public sealed class AuthUnitOfWork : IAuthUnitOfWork
 {
     private readonly AuthDbContext _dbContext;
 

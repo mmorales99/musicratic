@@ -12,7 +12,7 @@ namespace Musicratic.Social.Application.Commands.RespondToReview;
 public sealed class RespondToReviewHandler(
     IHubReviewRepository reviewRepository,
     IHubMemberRoleProvider hubMemberRoleProvider,
-    IUnitOfWork unitOfWork) : ICommandHandler<RespondToReviewCommand, ReviewDto>
+    ISocialUnitOfWork unitOfWork) : ICommandHandler<RespondToReviewCommand, ReviewDto>
 {
     private const string SuperOwnerRole = "SuperOwner";
 

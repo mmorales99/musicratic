@@ -7,7 +7,7 @@ using Musicratic.Notification.Infrastructure.Configuration;
 using Musicratic.Notification.Infrastructure.EventHandlers;
 using Musicratic.Notification.Infrastructure.Persistence;
 using Musicratic.Notification.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Notification.Application;
 
 namespace Musicratic.Notification.Infrastructure;
 
@@ -23,7 +23,7 @@ public static class DependencyInjection
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IDeviceTokenRepository, DeviceTokenRepository>();
         services.AddScoped<INotificationPreferenceRepository, NotificationPreferenceRepository>();
-        services.AddScoped<IUnitOfWork, NotificationUnitOfWork>();
+        services.AddScoped<INotificationUnitOfWork, NotificationUnitOfWork>();
 
         services.AddSingleton<IConnectionManager, InMemoryConnectionManager>();
         services.AddSingleton<INotificationPushService, WebSocketNotificationService>();

@@ -5,7 +5,7 @@ namespace Musicratic.Playback.Application.Commands.RejectProposal;
 
 public sealed class RejectProposalHandler(
     IQueueEntryRepository queueEntryRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<RejectProposalCommand>
+    IPlaybackUnitOfWork unitOfWork) : ICommandHandler<RejectProposalCommand>
 {
     public async Task Handle(
         RejectProposalCommand request, CancellationToken cancellationToken)

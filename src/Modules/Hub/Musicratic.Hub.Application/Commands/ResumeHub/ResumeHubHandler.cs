@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.ResumeHub;
 
 public sealed class ResumeHubHandler(
     IHubRepository hubRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<ResumeHubCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<ResumeHubCommand>
 {
     public async Task Handle(ResumeHubCommand request, CancellationToken cancellationToken)
     {

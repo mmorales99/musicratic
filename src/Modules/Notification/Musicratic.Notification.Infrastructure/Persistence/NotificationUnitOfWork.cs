@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Notification.Application;
 
 namespace Musicratic.Notification.Infrastructure.Persistence;
 
-public sealed class NotificationUnitOfWork : IUnitOfWork
+public sealed class NotificationUnitOfWork : INotificationUnitOfWork
 {
     private readonly NotificationDbContext _dbContext;
 

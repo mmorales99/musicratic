@@ -9,7 +9,7 @@ namespace Musicratic.Analytics.Application.Services;
 public sealed class StatsAggregationService(
     ITrackStatsRepository trackStatsRepository,
     IHubStatsRepository hubStatsRepository,
-    IUnitOfWork unitOfWork) : IStatsAggregationService
+    IAnalyticsUnitOfWork unitOfWork) : IStatsAggregationService
 {
     public async Task RecordTrackPlay(
         Guid trackId, Guid hubId, Guid tenantId, TimeSpan duration,

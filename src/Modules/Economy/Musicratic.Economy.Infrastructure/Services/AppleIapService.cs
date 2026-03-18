@@ -2,9 +2,9 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Musicratic.Economy.Application;
 using Musicratic.Economy.Application.Services;
 using Musicratic.Economy.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Economy.Infrastructure.Services;
 
@@ -15,7 +15,7 @@ namespace Musicratic.Economy.Infrastructure.Services;
 public sealed class AppleIapService(
     IWalletRepository walletRepository,
     ICoinPackageRepository coinPackageRepository,
-    IUnitOfWork unitOfWork,
+    IEconomyUnitOfWork unitOfWork,
     IOptions<AppleIapOptions> options,
     ILogger<AppleIapService> logger) : IAppleIapService
 {

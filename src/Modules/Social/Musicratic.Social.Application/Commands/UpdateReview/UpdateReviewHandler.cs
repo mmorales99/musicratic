@@ -6,7 +6,7 @@ namespace Musicratic.Social.Application.Commands.UpdateReview;
 
 public sealed class UpdateReviewHandler(
     IHubReviewRepository reviewRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UpdateReviewCommand, ReviewDto>
+    ISocialUnitOfWork unitOfWork) : ICommandHandler<UpdateReviewCommand, ReviewDto>
 {
     public async Task<ReviewDto> Handle(
         UpdateReviewCommand request, CancellationToken cancellationToken)

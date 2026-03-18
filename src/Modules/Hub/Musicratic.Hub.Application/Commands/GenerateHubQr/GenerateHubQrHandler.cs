@@ -8,7 +8,7 @@ public sealed class GenerateHubQrHandler(
     IHubRepository hubRepository,
     IHubLinkService hubLinkService,
     IQrCodeService qrCodeService,
-    IUnitOfWork unitOfWork) : ICommandHandler<GenerateHubQrCommand, GenerateHubQrResult>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<GenerateHubQrCommand, GenerateHubQrResult>
 {
     public async Task<GenerateHubQrResult> Handle(
         GenerateHubQrCommand request,

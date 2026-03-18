@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.DeleteList;
 
 public sealed class DeleteListHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DeleteListCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<DeleteListCommand>
 {
     public async Task Handle(DeleteListCommand request, CancellationToken cancellationToken)
     {

@@ -5,7 +5,7 @@ namespace Musicratic.Notification.Application.Commands.DeleteNotification;
 
 public sealed class DeleteNotificationHandler(
     INotificationRepository notificationRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DeleteNotificationCommand>
+    INotificationUnitOfWork unitOfWork) : ICommandHandler<DeleteNotificationCommand>
 {
     public async Task Handle(
         DeleteNotificationCommand request,

@@ -7,7 +7,7 @@ using Musicratic.Auth.Infrastructure.Authentication;
 using Musicratic.Auth.Infrastructure.Configuration;
 using Musicratic.Auth.Infrastructure.Persistence;
 using Musicratic.Auth.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Auth.Application;
 using Musicratic.Shared.Contracts;
 
 
@@ -30,7 +30,7 @@ public static class DependencyInjection
         services.AddSingleton<IOidcDiscoveryService, OidcDiscoveryService>();
 
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IUnitOfWork, AuthUnitOfWork>();
+        services.AddScoped<IAuthUnitOfWork, AuthUnitOfWork>();
 
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IRoleResolutionService, RoleResolutionService>();

@@ -2,8 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Musicratic.Hub.Application;
 using Musicratic.Hub.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Hub.Infrastructure.Services;
 
@@ -46,7 +46,7 @@ public sealed class AttachmentExpiryBackgroundService(
         var attachmentRepository = scope.ServiceProvider
             .GetRequiredService<IHubAttachmentRepository>();
         var unitOfWork = scope.ServiceProvider
-            .GetRequiredService<IUnitOfWork>();
+            .GetRequiredService<IHubUnitOfWork>();
 
         var expired = await attachmentRepository.GetExpiredActive(cancellationToken);
 

@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Voting.Application;
 
 namespace Musicratic.Voting.Infrastructure.Persistence;
 
-public sealed class VotingUnitOfWork : IUnitOfWork
+public sealed class VotingUnitOfWork : IVotingUnitOfWork
 {
     private readonly VotingDbContext _dbContext;
 

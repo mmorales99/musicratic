@@ -6,7 +6,7 @@ namespace Musicratic.Notification.Application.Commands.RegisterDevice;
 
 public sealed class RegisterDeviceHandler(
     IDeviceTokenRepository deviceTokenRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<RegisterDeviceCommand, Guid>
+    INotificationUnitOfWork unitOfWork) : ICommandHandler<RegisterDeviceCommand, Guid>
 {
     public async Task<Guid> Handle(
         RegisterDeviceCommand request,

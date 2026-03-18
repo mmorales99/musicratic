@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.BulkAddListTracks;
 
 public sealed class BulkAddListTracksHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<BulkAddListTracksCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<BulkAddListTracksCommand>
 {
     public async Task Handle(BulkAddListTracksCommand request, CancellationToken cancellationToken)
     {

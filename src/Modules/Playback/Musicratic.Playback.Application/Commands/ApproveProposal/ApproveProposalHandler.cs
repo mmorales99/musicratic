@@ -5,7 +5,7 @@ namespace Musicratic.Playback.Application.Commands.ApproveProposal;
 
 public sealed class ApproveProposalHandler(
     IQueueEntryRepository queueEntryRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<ApproveProposalCommand>
+    IPlaybackUnitOfWork unitOfWork) : ICommandHandler<ApproveProposalCommand>
 {
     public async Task Handle(
         ApproveProposalCommand request, CancellationToken cancellationToken)

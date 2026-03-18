@@ -7,7 +7,7 @@ namespace Musicratic.Hub.Application.Commands.GenerateDeepLink;
 public sealed class GenerateDeepLinkHandler(
     IHubRepository hubRepository,
     IHubLinkService hubLinkService,
-    IUnitOfWork unitOfWork) : ICommandHandler<GenerateDeepLinkCommand, string>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<GenerateDeepLinkCommand, string>
 {
     public async Task<string> Handle(
         GenerateDeepLinkCommand request,

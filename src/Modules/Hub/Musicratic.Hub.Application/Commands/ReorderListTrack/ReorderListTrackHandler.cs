@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.ReorderListTrack;
 
 public sealed class ReorderListTrackHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<ReorderListTrackCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<ReorderListTrackCommand>
 {
     public async Task Handle(ReorderListTrackCommand request, CancellationToken cancellationToken)
     {

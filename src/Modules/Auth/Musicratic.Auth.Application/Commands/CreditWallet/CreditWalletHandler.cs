@@ -5,7 +5,7 @@ namespace Musicratic.Auth.Application.Commands.CreditWallet;
 
 public sealed class CreditWalletHandler(
     IUserRepository userRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreditWalletCommand>
+    IAuthUnitOfWork unitOfWork) : ICommandHandler<CreditWalletCommand>
 {
     public async Task Handle(CreditWalletCommand request, CancellationToken cancellationToken)
     {

@@ -194,6 +194,63 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+  # ── Merged Coverage Report ──────────────────────────────────
+  coverage-report:
+    name: Coverage Report
+    runs-on: ubuntu-24.04
+    needs: [backend, web, mobile]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install ReportGenerator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Download backend coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-coverage
+          path: coverage/backend
+
+      - name: Download web coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: web-coverage
+          path: coverage/web
+
+      - name: Download mobile coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: mobile-coverage
+          path: coverage/mobile
+
+      - name: Generate merged HTML report
+        run: >
+          reportgenerator
+          "-reports:coverage/backend/**/coverage.cobertura.xml;coverage/web/lcov.info;coverage/mobile/lcov.info"
+          "-targetdir:coverage/report"
+          "-reporttypes:Html;Cobertura;MarkdownSummaryGithub"
+          "-title:Musicratic Coverage Report"
+
+      - name: Write coverage summary to job
+        if: always()
+        run: |
+          if [ -f coverage/report/SummaryGithub.md ]; then
+            cat coverage/report/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload merged coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/report/
+          retention-days: 30
+
   # ── Conventional Commits Check ──────────────────────────────
   commit-lint:
     name: Conventional Commits

@@ -9,7 +9,7 @@ public sealed class AssignListToMemberHandler(
     IHubMemberRepository memberRepository,
     IListRepository listRepository,
     IMemberListAssignmentRepository assignmentRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<AssignListToMemberCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<AssignListToMemberCommand>
 {
     public async Task Handle(AssignListToMemberCommand request, CancellationToken cancellationToken)
     {

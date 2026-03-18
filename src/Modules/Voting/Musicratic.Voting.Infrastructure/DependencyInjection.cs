@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Musicratic.Shared.Application;
+using Musicratic.Voting.Application;
 using Musicratic.Voting.Application.Services;
 using Musicratic.Voting.Domain.Repositories;
 using Musicratic.Voting.Infrastructure.Persistence;
@@ -20,7 +20,7 @@ public static class DependencyInjection
 
         services.AddScoped<IVoteRepository, VoteRepository>();
         services.AddScoped<ICollectiveVoteSessionRepository, CollectiveVoteSessionRepository>();
-        services.AddScoped<IUnitOfWork, VotingUnitOfWork>();
+        services.AddScoped<IVotingUnitOfWork, VotingUnitOfWork>();
 
         // VOTE-009: WebSocket connection manager + broadcast service
         services.AddSingleton<VoteConnectionManager>();

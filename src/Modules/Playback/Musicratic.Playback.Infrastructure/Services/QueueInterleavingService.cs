@@ -1,16 +1,16 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Musicratic.Playback.Application;
 using Musicratic.Playback.Application.Services;
 using Musicratic.Playback.Domain.Enums;
 using Musicratic.Playback.Domain.Repositories;
 using Musicratic.Playback.Infrastructure.Configuration;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Playback.Infrastructure.Services;
 
 public sealed class QueueInterleavingService(
     IQueueEntryRepository queueEntryRepository,
-    IUnitOfWork unitOfWork,
+    IPlaybackUnitOfWork unitOfWork,
     IOptions<QueueInterleavingOptions> options,
     ILogger<QueueInterleavingService> logger) : IQueueInterleavingService
 {

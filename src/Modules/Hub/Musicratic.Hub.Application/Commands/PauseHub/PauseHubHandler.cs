@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.PauseHub;
 
 public sealed class PauseHubHandler(
     IHubRepository hubRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<PauseHubCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<PauseHubCommand>
 {
     public async Task Handle(PauseHubCommand request, CancellationToken cancellationToken)
     {

@@ -9,7 +9,7 @@ namespace Musicratic.Voting.Application.Commands.CastVote;
 
 public sealed class CastVoteHandler(
     IVoteRepository voteRepository,
-    IUnitOfWork unitOfWork,
+    IVotingUnitOfWork unitOfWork,
     IVoteRateLimiter rateLimiter,
     IVotingWindowService votingWindowService,
     ISkipRuleEngine skipRuleEngine,

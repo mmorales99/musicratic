@@ -14,6 +14,7 @@ public abstract class BaseDbContext(
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Ignore<DomainEvent>();
         ApplyTenantQueryFilters(modelBuilder);
     }
 

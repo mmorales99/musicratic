@@ -58,7 +58,9 @@ public sealed class HubAttachmentRepository : IHubAttachmentRepository
         CancellationToken cancellationToken = default)
     {
         return await _dbContext.HubAttachments
-            .FirstOrDefaultAsync(a => a.UserId == userId && a.IsActive, cancellationToken);
+            .FirstOrDefaultAsync(
+                a => a.UserId == userId && a.EndedAt == null && a.ExpiresAt > DateTime.UtcNow,
+                cancellationToken);
     }
 
     public async Task<IReadOnlyList<HubAttachment>> GetAttachmentsByHub(

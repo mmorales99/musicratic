@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Hub.Application;
 
 namespace Musicratic.Hub.Infrastructure.Persistence;
 
-public sealed class HubUnitOfWork : IUnitOfWork
+public sealed class HubUnitOfWork : IHubUnitOfWork
 {
     private readonly HubDbContext _dbContext;
 

@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
+using Musicratic.Economy.Application;
 using Musicratic.Economy.Application.Services;
 using Musicratic.Economy.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Economy.Infrastructure.Services;
 
@@ -12,7 +12,7 @@ namespace Musicratic.Economy.Infrastructure.Services;
 /// </summary>
 public sealed class RefundService(
     IWalletRepository walletRepository,
-    IUnitOfWork unitOfWork,
+    IEconomyUnitOfWork unitOfWork,
     ILogger<RefundService> logger) : IRefundService
 {
     /// <summary>

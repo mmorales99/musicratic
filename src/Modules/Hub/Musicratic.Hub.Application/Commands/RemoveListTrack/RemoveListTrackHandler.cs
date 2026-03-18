@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.RemoveListTrack;
 
 public sealed class RemoveListTrackHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<RemoveListTrackCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<RemoveListTrackCommand>
 {
     public async Task Handle(RemoveListTrackCommand request, CancellationToken cancellationToken)
     {

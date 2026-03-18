@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.DetachUser;
 
 public sealed class DetachUserHandler(
     IHubAttachmentRepository attachmentRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DetachUserCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<DetachUserCommand>
 {
     public async Task Handle(DetachUserCommand request, CancellationToken cancellationToken)
     {

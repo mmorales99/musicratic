@@ -10,7 +10,7 @@ public sealed class ProposeTrackCollectiveHandler(
     IQueueEntryRepository queueEntryRepository,
     ITrackRepository trackRepository,
     ICollectiveVoteService collectiveVoteService,
-    IUnitOfWork unitOfWork) : ICommandHandler<ProposeTrackCollectiveCommand, ProposalDto>
+    IPlaybackUnitOfWork unitOfWork) : ICommandHandler<ProposeTrackCollectiveCommand, ProposalDto>
 {
     public async Task<ProposalDto> Handle(
         ProposeTrackCollectiveCommand request, CancellationToken cancellationToken)

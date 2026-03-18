@@ -3,10 +3,10 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Musicratic.Economy.Application;
 using Musicratic.Economy.Application.Services;
 using Musicratic.Economy.Domain.Enums;
 using Musicratic.Economy.Domain.Repositories;
-using Musicratic.Shared.Application;
 
 namespace Musicratic.Economy.Infrastructure.Services;
 
@@ -18,7 +18,7 @@ public sealed class StripeWebhookHandler(
     IWalletRepository walletRepository,
     ITransactionRepository transactionRepository,
     ICoinPackageRepository coinPackageRepository,
-    IUnitOfWork unitOfWork,
+    IEconomyUnitOfWork unitOfWork,
     IOptions<StripeOptions> stripeOptions,
     ILogger<StripeWebhookHandler> logger) : IStripeWebhookHandler
 {

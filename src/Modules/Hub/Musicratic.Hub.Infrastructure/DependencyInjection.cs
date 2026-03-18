@@ -6,7 +6,7 @@ using Musicratic.Hub.Domain.Repositories;
 using Musicratic.Hub.Domain.Services;
 using Musicratic.Hub.Infrastructure.Persistence;
 using Musicratic.Hub.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Hub.Application;
 using Musicratic.Shared.Contracts;
 
 namespace Musicratic.Hub.Infrastructure;
@@ -25,7 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IHubAttachmentRepository, HubAttachmentRepository>();
         services.AddScoped<IListRepository, ListRepository>();
         services.AddScoped<IMemberListAssignmentRepository, MemberListAssignmentRepository>();
-        services.AddScoped<IUnitOfWork, HubUnitOfWork>();
+        services.AddScoped<IHubUnitOfWork, HubUnitOfWork>();
         services.AddScoped<IHubCodeGenerator, HubCodeGenerator>();
         services.AddSingleton<IPlayModeService, PlayModeService>();
         services.AddSingleton<IHubLinkService>(sp =>

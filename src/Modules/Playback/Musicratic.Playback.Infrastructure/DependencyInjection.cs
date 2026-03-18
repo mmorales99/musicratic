@@ -8,7 +8,7 @@ using Musicratic.Playback.Infrastructure.Configuration;
 using Musicratic.Playback.Infrastructure.Persistence;
 using Musicratic.Playback.Infrastructure.Providers;
 using Musicratic.Playback.Infrastructure.Services;
-using Musicratic.Shared.Application;
+using Musicratic.Playback.Application;
 
 namespace Musicratic.Playback.Infrastructure;
 
@@ -23,7 +23,7 @@ public static class DependencyInjection
 
         services.AddScoped<ITrackRepository, TrackRepository>();
         services.AddScoped<IQueueEntryRepository, QueueEntryRepository>();
-        services.AddScoped<IUnitOfWork, PlaybackUnitOfWork>();
+        services.AddScoped<IPlaybackUnitOfWork, PlaybackUnitOfWork>();
         services.AddScoped<IPlaybackOrchestrator, PlaybackOrchestrator>();
 
         services.Configure<SpotifyOptions>(

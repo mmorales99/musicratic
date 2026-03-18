@@ -11,7 +11,7 @@ public sealed class ProposeTrackPaidHandler(
     IQueueEntryRepository queueEntryRepository,
     ITrackRepository trackRepository,
     IWalletOperationProvider walletOperationProvider,
-    IUnitOfWork unitOfWork) : ICommandHandler<ProposeTrackPaidCommand, ProposalDto>
+    IPlaybackUnitOfWork unitOfWork) : ICommandHandler<ProposeTrackPaidCommand, ProposalDto>
 {
     public async Task<ProposalDto> Handle(
         ProposeTrackPaidCommand request, CancellationToken cancellationToken)

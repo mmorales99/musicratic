@@ -5,7 +5,7 @@ namespace Musicratic.Auth.Application.Commands.UpdateProfile;
 
 public sealed class UpdateProfileHandler(
     IUserRepository userRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UpdateProfileCommand>
+    IAuthUnitOfWork unitOfWork) : ICommandHandler<UpdateProfileCommand>
 {
     public async Task Handle(UpdateProfileCommand request, CancellationToken cancellationToken)
     {

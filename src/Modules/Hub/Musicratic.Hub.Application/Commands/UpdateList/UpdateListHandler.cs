@@ -5,7 +5,7 @@ namespace Musicratic.Hub.Application.Commands.UpdateList;
 
 public sealed class UpdateListHandler(
     IListRepository listRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<UpdateListCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<UpdateListCommand>
 {
     public async Task Handle(UpdateListCommand request, CancellationToken cancellationToken)
     {

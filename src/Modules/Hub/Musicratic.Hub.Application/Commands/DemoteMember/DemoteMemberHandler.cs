@@ -6,7 +6,7 @@ namespace Musicratic.Hub.Application.Commands.DemoteMember;
 
 public sealed class DemoteMemberHandler(
     IHubRepository hubRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DemoteMemberCommand>
+    IHubUnitOfWork unitOfWork) : ICommandHandler<DemoteMemberCommand>
 {
     public async Task Handle(DemoteMemberCommand request, CancellationToken cancellationToken)
     {

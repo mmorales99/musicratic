@@ -5,7 +5,7 @@ namespace Musicratic.Social.Application.Commands.DeleteReview;
 
 public sealed class DeleteReviewHandler(
     IHubReviewRepository reviewRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<DeleteReviewCommand>
+    ISocialUnitOfWork unitOfWork) : ICommandHandler<DeleteReviewCommand>
 {
     public async Task Handle(
         DeleteReviewCommand request, CancellationToken cancellationToken)

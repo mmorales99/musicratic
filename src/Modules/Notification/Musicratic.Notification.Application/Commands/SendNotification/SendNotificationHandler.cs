@@ -8,7 +8,7 @@ namespace Musicratic.Notification.Application.Commands.SendNotification;
 public sealed class SendNotificationHandler(
     INotificationRepository notificationRepository,
     INotificationPreferenceRepository preferenceRepository,
-    IUnitOfWork unitOfWork,
+    INotificationUnitOfWork unitOfWork,
     INotificationPushService webSocketPushService,
     IPushNotificationService pushNotificationService) : ICommandHandler<SendNotificationCommand, Guid>
 {

@@ -8,7 +8,7 @@ namespace Musicratic.Voting.Application.Commands.CloseCollectiveVote;
 public sealed class CloseCollectiveVoteHandler(
     ICollectiveVoteSessionRepository sessionRepository,
     IVoteRepository voteRepository,
-    IUnitOfWork unitOfWork)
+    IVotingUnitOfWork unitOfWork)
     : ICommandHandler<CloseCollectiveVoteCommand, CollectiveVoteSessionDto>
 {
     public async Task<CollectiveVoteSessionDto> Handle(

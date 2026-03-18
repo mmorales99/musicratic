@@ -1,8 +1,8 @@
-using Musicratic.Shared.Application;
+using Musicratic.Playback.Application;
 
 namespace Musicratic.Playback.Infrastructure.Persistence;
 
-public sealed class PlaybackUnitOfWork : IUnitOfWork
+public sealed class PlaybackUnitOfWork : IPlaybackUnitOfWork
 {
     private readonly PlaybackDbContext _dbContext;
 
