@@ -73,6 +73,21 @@ builder.Services.AddSwaggerGen();
 // Authorization
 builder.Services.AddAuthorization();
 
+// CORS for preview/development (Angular SPA on different origin)
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+        if (allowedOrigins is { Length: > 0 })
+            policy.WithOrigins(allowedOrigins);
+        else if (builder.Environment.IsDevelopment() || builder.Configuration.GetValue<bool>("Preview:Enabled"))
+            policy.SetIsOriginAllowed(_ => true);
+
+        policy.AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+    });
+});
+
 // Shared
 builder.Services.AddSharedApplication();
 builder.Services.AddSharedInfrastructure();
@@ -136,6 +151,7 @@ builder.Services
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
+app.UseCors();
 app.MapHealthChecks("/health");
 app.UseSwagger();
 app.MapScalarApiReference();
@@ -147,6 +163,7 @@ app.UseRoleAuthorization();
 
 // Module endpoints
 app.MapAuthEndpoints();
+app.MapPreviewAuthEndpoints(builder.Configuration);
 app.MapVotingEndpoints();
 app.MapVoteWebSocket();
 app.MapNotificationWebSocket();

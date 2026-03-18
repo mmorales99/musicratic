@@ -35,7 +35,10 @@ import { ToastService } from "@app/shared/services/toast.service";
           } @else {
             <p>Purchase was cancelled. No charges were made.</p>
           }
-          <button class="btn btn--secondary btn--small" (click)="dismissResult()">
+          <button
+            class="btn btn--secondary btn--small"
+            (click)="dismissResult()"
+          >
             Dismiss
           </button>
         </div>
@@ -43,9 +46,9 @@ import { ToastService } from "@app/shared/services/toast.service";
 
       @if (machine.isLoadingPackages()) {
         <div class="purchase-page__loading">Loading coin packages...</div>
-      } @else if (machine.error(); as err) {
+      } @else if (machine.error()) {
         <div class="purchase-page__error">
-          <p>{{ err }}</p>
+          <p>{{ machine.error() }}</p>
           <button class="btn btn--primary" (click)="reload()">Retry</button>
         </div>
       } @else {

@@ -80,7 +80,8 @@ import { Report, ReportDetail, ReportType } from "../../models/report.model";
                   <div class="report-card__detail-loading">
                     Loading details...
                   </div>
-                } @else if (detail(); as d) {
+                } @else if (detail()) {
+                  @let d = detail()!;
                   <div class="report-card__detail">
                     <!-- Top Tracks -->
                     @if (d.topTracks.length > 0) {

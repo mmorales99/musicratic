@@ -91,8 +91,8 @@ interface FilterChip<T> {
       <!-- Results -->
       @if (loading()) {
         <p class="hub-page__loading">Searching hubs...</p>
-      } @else if (error(); as err) {
-        <p class="hub-page__error">{{ err }}</p>
+      } @else if (error()) {
+        <p class="hub-page__error">{{ error() }}</p>
       } @else if (hubs().length === 0) {
         <div class="hub-page__empty">
           <p>No hubs found.</p>

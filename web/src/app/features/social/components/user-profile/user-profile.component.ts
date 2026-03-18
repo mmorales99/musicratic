@@ -22,12 +22,13 @@ import { ShareButtonComponent } from "../share-button/share-button.component";
     <section class="user-profile">
       @if (loading()) {
         <div class="user-profile__loading">Loading profile...</div>
-      } @else if (error(); as err) {
+      } @else if (error()) {
         <div class="user-profile__error">
-          <p>{{ err }}</p>
+          <p>{{ error() }}</p>
           <button class="btn btn--primary" (click)="load()">Retry</button>
         </div>
-      } @else if (profile(); as p) {
+      } @else if (profile()) {
+        @let p = profile()!;
         @if (editing()) {
           <form
             [formGroup]="editForm"

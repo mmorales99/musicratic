@@ -16,28 +16,28 @@ public static class AuthEndpoints
         return group;
     }
 
-    private static async Task<IResult> GetCurrentUser(HttpContext httpContext, CancellationToken cancellationToken)
+    private static Task<IResult> GetCurrentUser(HttpContext httpContext, CancellationToken cancellationToken)
     {
         var sub = httpContext.User.FindFirst("sub")?.Value;
         if (string.IsNullOrEmpty(sub))
-            return Results.Unauthorized();
+            return Task.FromResult(Results.Unauthorized());
 
         // Forward to Auth module via Dapr service invocation or internal HTTP
         // In production, this uses DaprClient.InvokeMethodAsync to call Auth module
-        return Results.Ok(new { message = "Forward to Auth.GetUserBySub", sub });
+        return Task.FromResult(Results.Ok(new { message = "Forward to Auth.GetUserBySub", sub }));
     }
 
-    private static async Task<IResult> UpdateProfile(
+    private static Task<IResult> UpdateProfile(
         UpdateProfileRequest request,
         HttpContext httpContext,
         CancellationToken cancellationToken)
     {
         var sub = httpContext.User.FindFirst("sub")?.Value;
         if (string.IsNullOrEmpty(sub))
-            return Results.Unauthorized();
+            return Task.FromResult(Results.Unauthorized());
 
         // Forward to Auth module via Dapr service invocation
-        return Results.NoContent();
+        return Task.FromResult(Results.NoContent());
     }
 
     public sealed record UpdateProfileRequest(string DisplayName, string? AvatarUrl);

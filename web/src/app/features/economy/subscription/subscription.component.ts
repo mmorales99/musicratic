@@ -29,9 +29,9 @@ import {
 
       @if (loading()) {
         <div class="sub-page__loading">Loading subscription info...</div>
-      } @else if (error(); as err) {
+      } @else if (error()) {
         <div class="sub-page__error">
-          <p>{{ err }}</p>
+          <p>{{ error() }}</p>
           <button class="btn btn--primary" (click)="reload()">Retry</button>
         </div>
       } @else {
@@ -78,14 +78,13 @@ import {
           <div class="no-plan">
             <p>No active subscription for this hub.</p>
             @if (!startingTrial()) {
-              <button
-                class="btn btn--primary"
-                (click)="startTrial()"
-              >
+              <button class="btn btn--primary" (click)="startTrial()">
                 Start Free Trial
               </button>
             } @else {
-              <button class="btn btn--primary" disabled>Starting trial...</button>
+              <button class="btn btn--primary" disabled>
+                Starting trial...
+              </button>
             }
           </div>
         }
@@ -119,7 +118,9 @@ import {
               <tr>
                 <td>Lists per hub</td>
                 @for (t of tiers; track t.tier) {
-                  <td>{{ t.listLimit === null ? "Unlimited" : t.listLimit }}</td>
+                  <td>
+                    {{ t.listLimit === null ? "Unlimited" : t.listLimit }}
+                  </td>
                 }
               </tr>
               <tr>
@@ -313,11 +314,7 @@ export class SubscriptionComponent implements OnInit {
 
   protected readonly upgradableTiers = computed(() => {
     const current = this.subscription()?.tier;
-    const tierOrder: SubscriptionTier[] = [
-      "free_trial",
-      "monthly",
-      "annual",
-    ];
+    const tierOrder: SubscriptionTier[] = ["free_trial", "monthly", "annual"];
     const currentIndex = current ? tierOrder.indexOf(current) : -1;
     return SUBSCRIPTION_TIERS.filter((t) => {
       const idx = tierOrder.indexOf(t.tier);

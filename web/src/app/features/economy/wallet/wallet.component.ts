@@ -29,12 +29,13 @@ const FILTER_OPTIONS: { label: string; value: TransactionType | null }[] = [
     <section class="wallet-page">
       @if (machine.isLoadingWallet()) {
         <div class="wallet-page__loading">Loading wallet...</div>
-      } @else if (machine.error() && !machine.wallet(); as err) {
+      } @else if (machine.error() && !machine.wallet()) {
         <div class="wallet-page__error">
-          <p>{{ err }}</p>
+          <p>{{ machine.error() }}</p>
           <button class="btn btn--primary" (click)="retry()">Retry</button>
         </div>
-      } @else if (machine.wallet(); as w) {
+      } @else if (machine.wallet()) {
+        @let w = machine.wallet()!;
         <!-- Balance Card -->
         <div class="wallet-card">
           <div class="wallet-card__icon">🪙</div>

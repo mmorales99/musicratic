@@ -32,9 +32,9 @@ import { QueueEntry } from "@app/shared/models/track.model";
     <section class="queue-page">
       @if (machine.isConnecting()) {
         <div class="queue-page__loading">Connecting to hub queue...</div>
-      } @else if (machine.error(); as err) {
+      } @else if (machine.error()) {
         <div class="queue-page__error">
-          <p>{{ err }}</p>
+          <p>{{ machine.error() }}</p>
           <button class="btn btn--primary" (click)="machine.retry()">
             Retry
           </button>

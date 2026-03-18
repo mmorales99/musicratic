@@ -19,54 +19,54 @@ public static class HubEndpoints
         return group;
     }
 
-    private static async Task<IResult> GetActiveHubs(CancellationToken cancellationToken)
+    private static Task<IResult> GetActiveHubs(CancellationToken cancellationToken)
     {
         // Forward to Hub module via Dapr service invocation
-        return Results.Ok(new { message = "Forward to Hub.GetActiveHubs" });
+        return Task.FromResult(Results.Ok(new { message = "Forward to Hub.GetActiveHubs" }));
     }
 
-    private static async Task<IResult> GetHub(Guid id, CancellationToken cancellationToken)
+    private static Task<IResult> GetHub(Guid id, CancellationToken cancellationToken)
     {
         // Forward to Hub module via Dapr service invocation
-        return Results.Ok(new { message = "Forward to Hub.GetHub", hubId = id });
+        return Task.FromResult(Results.Ok(new { message = "Forward to Hub.GetHub", hubId = id }));
     }
 
-    private static async Task<IResult> CreateHub(
+    private static Task<IResult> CreateHub(
         CreateHubRequest request,
         HttpContext httpContext,
         CancellationToken cancellationToken)
     {
         var sub = httpContext.User.FindFirst("sub")?.Value;
         if (string.IsNullOrEmpty(sub))
-            return Results.Unauthorized();
+            return Task.FromResult(Results.Unauthorized());
 
         // Forward to Hub module via Dapr service invocation
-        return Results.Created("/api/web/hubs/placeholder", new { message = "Forward to Hub.CreateHub" });
+        return Task.FromResult(Results.Created("/api/web/hubs/placeholder", new { message = "Forward to Hub.CreateHub" }));
     }
 
-    private static async Task<IResult> AttachUser(
+    private static Task<IResult> AttachUser(
         AttachRequest request,
         HttpContext httpContext,
         CancellationToken cancellationToken)
     {
         var sub = httpContext.User.FindFirst("sub")?.Value;
         if (string.IsNullOrEmpty(sub))
-            return Results.Unauthorized();
+            return Task.FromResult(Results.Unauthorized());
 
         // Forward to Hub module via Dapr service invocation
-        return Results.Ok(new { message = "Forward to Hub.AttachUser" });
+        return Task.FromResult(Results.Ok(new { message = "Forward to Hub.AttachUser" }));
     }
 
-    private static async Task<IResult> DetachUser(
+    private static Task<IResult> DetachUser(
         HttpContext httpContext,
         CancellationToken cancellationToken)
     {
         var sub = httpContext.User.FindFirst("sub")?.Value;
         if (string.IsNullOrEmpty(sub))
-            return Results.Unauthorized();
+            return Task.FromResult(Results.Unauthorized());
 
         // Forward to Hub module via Dapr service invocation
-        return Results.NoContent();
+        return Task.FromResult(Results.NoContent());
     }
 
     public sealed record CreateHubRequest(string Name, string Type, object Settings);

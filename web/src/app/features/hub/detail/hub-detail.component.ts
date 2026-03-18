@@ -32,14 +32,15 @@ type TabId = "info" | "settings" | "lists" | "reviews";
     <section class="hub-detail">
       @if (machine.isLoading()) {
         <div class="hub-detail__loading">Loading hub...</div>
-      } @else if (machine.error(); as err) {
+      } @else if (machine.error()) {
         <div class="hub-detail__error">
-          <p>{{ err }}</p>
+          <p>{{ machine.error() }}</p>
           <button class="btn btn--primary" (click)="machine.retry()">
             Retry
           </button>
         </div>
-      } @else if (machine.hub(); as hub) {
+      } @else if (machine.hub()) {
+        @let hub = machine.hub()!;
         <!-- Header -->
         <div class="hub-detail__header">
           <div>

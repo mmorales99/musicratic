@@ -40,13 +40,13 @@ import { firstValueFrom } from "rxjs";
             placeholder="e.g. Café Luna"
             maxlength="50"
           />
-          @if (form.controls.name.touched && form.controls.name.errors) {
+          @if (form.controls["name"].touched && form.controls["name"].errors) {
             <span class="form-field__error">
-              @if (form.controls.name.errors["required"]) {
+              @if (form.controls["name"].errors?.["required"]) {
                 Name is required.
-              } @else if (form.controls.name.errors["minlength"]) {
+              } @else if (form.controls["name"].errors?.["minlength"]) {
                 Name must be at least 3 characters.
-              } @else if (form.controls.name.errors["maxlength"]) {
+              } @else if (form.controls["name"].errors?.["maxlength"]) {
                 Name must be at most 50 characters.
               }
             </span>

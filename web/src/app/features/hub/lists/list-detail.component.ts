@@ -28,14 +28,15 @@ import {
     <section class="list-detail">
       @if (machine.isLoading()) {
         <div class="list-detail__loading">Loading list...</div>
-      } @else if (machine.error(); as err) {
+      } @else if (machine.error()) {
         <div class="list-detail__error">
-          <p>{{ err }}</p>
+          <p>{{ machine.error() }}</p>
           <button class="btn btn--primary" (click)="machine.retry()">
             Retry
           </button>
         </div>
-      } @else if (machine.list(); as list) {
+      } @else if (machine.list()) {
+        @let list = machine.list()!;
         <!-- Header -->
         <div class="list-detail__header">
           <a [routerLink]="['/hub', hubId]" class="list-detail__back"
