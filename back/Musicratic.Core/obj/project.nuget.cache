@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Wj/FucMS2BU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\amat_\\Desktop\\MCV ingenieros\\musicratic\\back\\Musicratic.Core\\Musicratic.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amat_\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
+    "C:\\Users\\amat_\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

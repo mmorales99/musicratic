@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" />
-    <PackageReference Include="Dapr.AspNetCore" />
-    <PackageReference Include="Grpc.AspNetCore" />
-  </ItemGroup>
-
-</Project>

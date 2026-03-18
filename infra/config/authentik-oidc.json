@@ -1,9 +1,0 @@
-{
-  "Oidc": {
-    "Authority": "https://localhost:9443/application/o/musicratic-web/",
-    "ClientId": "REPLACE_WITH_CLIENT_ID",
-    "ClientSecret": "REPLACE_WITH_CLIENT_SECRET",
-    "CallbackPath": "/api/auth/callback",
-    "Scopes": ["openid", "email", "profile"]
-  }
-}

@@ -1,3 +1,0 @@
-this document is a collection of notes that maybe be useful for new features
-
-- some users are coffe shops, bars... social sites that sell ambience and space with drinks/food to spend time - users which hub retains lots of users will be elegible to free service while there are active users in the hub - if there are more users than 10 times the susbcription fee for the hub, this bars will get a portion of virtual coins spent to purpose music
