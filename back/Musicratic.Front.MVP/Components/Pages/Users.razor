@@ -1,0 +1,134 @@
+@page "/users"
+@rendermode InteractiveServer
+@using Musicratic.Front.MVP.Services
+@inject MusicraticClient Api
+
+<PageTitle>Users — Musicratic</PageTitle>
+
+<h2>Users</h2>
+
+@if (!string.IsNullOrEmpty(_message))
+{
+    <div class="alert @_messageClass alert-dismissible" role="alert">
+        @_message
+        <button type="button" class="btn-close" @onclick="() => _message = null"></button>
+    </div>
+}
+
+<div class="row g-4">
+
+    <!-- Create user -->
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header fw-semibold">Create user</div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">User ID</label>
+                    <input class="form-control" @bind="_newUserId" placeholder="e.g. alice" />
+                </div>
+                <button class="btn btn-primary" @onclick="CreateUser" disabled="@_busy">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- All users -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center fw-semibold">
+                All users
+                <button class="btn btn-sm btn-outline-secondary" @onclick="LoadUsers" disabled="@_busy">↺ Refresh</button>
+            </div>
+            <div class="card-body p-0">
+                @if (_users == null)
+                {
+                    <p class="p-3 text-muted">Loading…</p>
+                }
+                else if (_users.Count == 0)
+                {
+                    <p class="p-3 text-muted">No users yet.</p>
+                }
+                else
+                {
+                    <table class="table table-hover mb-0">
+                        <thead><tr><th>ID</th><th></th></tr></thead>
+                        <tbody>
+                        @foreach (var u in _users)
+                        {
+                            <tr>
+                                <td class="align-middle">@u.Id</td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-danger" @onclick="() => DeleteUser(u.Id)" disabled="@_busy">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private List<UserDto>? _users;
+    private string _newUserId = "";
+    private string? _message;
+    private string _messageClass = "alert-success";
+    private bool _busy;
+
+    protected override async Task OnInitializedAsync() => await LoadUsers();
+
+    private async Task LoadUsers()
+    {
+        _busy = true;
+        try { _users = await Api.GetUsersAsync(); }
+        catch (Exception ex) { ShowError(ex.Message); }
+        finally { _busy = false; }
+    }
+
+    private async Task CreateUser()
+    {
+        if (string.IsNullOrWhiteSpace(_newUserId)) return;
+        _busy = true;
+        try
+        {
+            var res = await Api.CreateUserAsync(_newUserId.Trim());
+            if (res.IsSuccessStatusCode)
+            {
+                ShowSuccess($"User '{_newUserId}' created.");
+                _newUserId = "";
+                await LoadUsers();
+            }
+            else
+            {
+                ShowError(await res.Content.ReadAsStringAsync());
+            }
+        }
+        catch (Exception ex) { ShowError(ex.Message); }
+        finally { _busy = false; }
+    }
+
+    private async Task DeleteUser(string userId)
+    {
+        _busy = true;
+        try
+        {
+            var res = await Api.DeleteUserAsync(userId);
+            if (res.IsSuccessStatusCode)
+            {
+                ShowSuccess($"User '{userId}' deleted.");
+                await LoadUsers();
+            }
+            else
+            {
+                ShowError(await res.Content.ReadAsStringAsync());
+            }
+        }
+        catch (Exception ex) { ShowError(ex.Message); }
+        finally { _busy = false; }
+    }
+
+    private void ShowSuccess(string msg) { _message = msg; _messageClass = "alert-success"; }
+    private void ShowError(string msg)   { _message = msg; _messageClass = "alert-danger"; }
+}
