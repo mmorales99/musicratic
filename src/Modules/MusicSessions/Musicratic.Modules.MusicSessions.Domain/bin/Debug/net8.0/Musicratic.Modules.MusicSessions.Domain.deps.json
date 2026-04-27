@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Musicratic.Modules.MusicSessions.Domain/1.0.0": {
+        "dependencies": {
+          "Musicratic.Shared.Kernel": "1.0.0"
+        },
+        "runtime": {
+          "Musicratic.Modules.MusicSessions.Domain.dll": {}
+        }
+      },
+      "Musicratic.Shared.Kernel/1.0.0": {
+        "runtime": {
+          "Musicratic.Shared.Kernel.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Musicratic.Modules.MusicSessions.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Musicratic.Shared.Kernel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,16 @@
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\bin\Debug\net8.0\Musicratic.Shared.Contracts.deps.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\bin\Debug\net8.0\Musicratic.Shared.Contracts.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\bin\Debug\net8.0\Musicratic.Shared.Contracts.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\bin\Debug\net8.0\Musicratic.Shared.Kernel.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\bin\Debug\net8.0\Musicratic.Shared.Kernel.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.csproj.AssemblyReference.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.AssemblyInfoInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.AssemblyInfo.cs
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.sourcelink.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicrat.B8597079.Up2Date
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\refint\Musicratic.Shared.Contracts.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\Musicratic.Shared.Contracts.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Contracts\obj\Debug\net8.0\ref\Musicratic.Shared.Contracts.dll

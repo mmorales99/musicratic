@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "6vUOu9lVbMk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\amat_\\Desktop\\MCV ingenieros\\musicratic\\src\\Modules\\MusicSessions\\Musicratic.Modules.MusicSessions.Application\\Musicratic.Modules.MusicSessions.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amat_\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\amat_\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\amat_\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.24\\microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}

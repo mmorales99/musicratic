@@ -1,0 +1,26 @@
+@page "/"
+
+<section class="hero">
+	<div class="hero-copy">
+		<p class="eyebrow">Testing surface</p>
+		<h1>Musicratic backend test UI</h1>
+		<p>
+			Use the shop owner view to exercise session runtime actions and the visitor view to test song
+			suggestions and the auth flag flow.
+		</p>
+	</div>
+
+	<div class="card-grid">
+		<a class="card card-accent" href="/shop-owner">
+			<span>Shop owner</span>
+			<strong>Start and close the session</strong>
+			<small>Inspect runtime state and the session payload.</small>
+		</a>
+
+		<a class="card card-soft" href="/visitor">
+			<span>Visitor</span>
+			<strong>Suggest songs from the catalog</strong>
+			<small>Check auth status, permission, and pending queue updates.</small>
+		</a>
+	</div>
+</section>

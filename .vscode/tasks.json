@@ -2,106 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
+      "label": "build Musicratic Host",
+      "type": "shell",
       "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/back/Musicratic.Core/Musicratic.Core.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "silent"
-      }
-    },
-    {
-      "label": "build tests",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/back/Musicratic.Core.Tests/Musicratic.Core.Tests.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile",
-      "presentation": {
-        "reveal": "silent"
-      }
-    },
-    {
-      "label": "build solution",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/back/Musicratic.Backend.slnx",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary;ForceNoAlign"
-      ],
-      "problemMatcher": "$msCompile",
-      "presentation": {
-        "reveal": "always"
-      }
-    },
-    {
-      "label": "test",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "test",
-        "${workspaceFolder}/back/Musicratic.Core.Tests/Musicratic.Core.Tests.csproj",
-        "--logger",
-        "console;verbosity=normal"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      }
-    },
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "--project",
-        "${workspaceFolder}/back/Musicratic.Core/Musicratic.Core.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "isBackground": true,
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated"
-      }
-    },
-    {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/back/Musicratic.Core/Musicratic.Core.csproj",
-        "--configuration",
-        "Release",
-        "--output",
-        "${workspaceFolder}/back/publish"
-      ],
-      "problemMatcher": "$msCompile",
-      "presentation": {
-        "reveal": "always"
-      }
+      "args": ["build", "${workspaceFolder}/src/Musicratic.slnx"],
+      "group": "build",
+      "problemMatcher": "$msCompile"
     }
   ]
 }

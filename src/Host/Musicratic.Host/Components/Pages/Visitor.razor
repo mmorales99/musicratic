@@ -1,0 +1,137 @@
+@page "/visitor"
+@rendermode @(new InteractiveServerRenderMode())
+@inject NavigationManager Navigation
+
+<section class="panel">
+	<div class="panel-grid">
+		<div>
+			<p class="eyebrow">Visitor</p>
+			<h2 class="section-title">Song suggestion test</h2>
+			<p class="muted">Check the auth flag, load the catalog, and suggest songs into the pending queue.</p>
+
+			<div class="field">
+				<label>Session code</label>
+				<input @bind="SessionCode" />
+			</div>
+
+			<div class="button-row">
+				<button class="button primary" @onclick="LoadAuthStatus">Check auth</button>
+				<button class="button" @onclick="LoadCatalog">Load catalog</button>
+				<button class="button" @onclick="LoadPendingSongs">Load pending</button>
+			</div>
+
+			<div class="status">@VisitorStatus</div>
+			<div class="muted" style="margin-top: 10px;">Suggestion permission: @CanSuggestSongs</div>
+		</div>
+
+		<div>
+			<h3 class="section-title">Available songs</h3>
+			@if (Catalog is null)
+			{
+				<p class="muted">No catalog loaded yet.</p>
+			}
+			else
+			{
+				<ul class="list">
+					@foreach (var song in Catalog)
+					{
+						<li class="list-item">
+							<div><strong>@song.Title</strong></div>
+							<div class="muted">@song.Artist · @song.Source</div>
+							<div class="button-row" style="margin-bottom: 0;">
+								<button class="button warning" @onclick="() => SuggestSong(song)">Suggest</button>
+							</div>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+	</div>
+
+	<div class="grid-2" style="margin-top: 20px;">
+		<div>
+			<h3 class="section-title">Auth response</h3>
+			@if (AuthStatus is null)
+			{
+				<p class="muted">No auth check loaded yet.</p>
+			}
+			else
+			{
+				<ul class="list">
+					<li class="list-item"><strong>Authenticated:</strong> @AuthStatus.IsAuthenticated</li>
+					<li class="list-item"><strong>Join state:</strong> @AuthStatus.JoinState</li>
+					<li class="list-item"><strong>Can suggest:</strong> @AuthStatus.CanSuggestSongs</li>
+				</ul>
+			}
+		</div>
+
+		<div>
+			<h3 class="section-title">Pending queue</h3>
+			@if (PendingSongs is null)
+			{
+				<p class="muted">No pending songs loaded yet.</p>
+			}
+			else if (PendingSongs.Length == 0)
+			{
+				<p class="muted">The queue is currently empty.</p>
+			}
+			else
+			{
+				<ul class="list">
+					@foreach (var song in PendingSongs)
+					{
+						<li class="list-item"><strong>@song.Title</strong> <span class="muted">@song.Artist</span></li>
+					}
+				</ul>
+			}
+		</div>
+	</div>
+</section>
+
+@code {
+	private string SessionCode { get; set; } = "shop-001";
+	private AppAuthStatusDto? AuthStatus { get; set; }
+	private SongCatalogItemDto[]? Catalog { get; set; }
+	private PendingSongDto[]? PendingSongs { get; set; }
+	private bool CanSuggestSongs => AuthStatus?.CanSuggestSongs == true;
+	private string VisitorStatus { get; set; } = "Ready for visitor testing.";
+
+	private HttpClient CreateClient() => new() { BaseAddress = new Uri(Navigation.BaseUri) };
+
+	protected override async Task OnInitializedAsync()
+	{
+		await LoadAuthStatus();
+		await LoadCatalog();
+		await LoadPendingSongs();
+	}
+
+	private async Task LoadAuthStatus()
+	{
+		using var client = CreateClient();
+		AuthStatus = await client.GetFromJsonAsync<AppAuthStatusDto>("api/identity/auth/status");
+		VisitorStatus = $"Auth checked. Suggestion permission: {AuthStatus?.CanSuggestSongs}.";
+	}
+
+	private async Task LoadCatalog()
+	{
+		using var client = CreateClient();
+		Catalog = await client.GetFromJsonAsync<SongCatalogItemDto[]>($"api/sessions/{SessionCode}/songs");
+		VisitorStatus = $"Loaded song catalog for {SessionCode}.";
+	}
+
+	private async Task LoadPendingSongs()
+	{
+		using var client = CreateClient();
+		PendingSongs = await client.GetFromJsonAsync<PendingSongDto[]>($"api/sessions/{SessionCode}/songs/pending");
+		VisitorStatus = $"Loaded pending queue for {SessionCode}.";
+	}
+
+	private async Task SuggestSong(SongCatalogItemDto song)
+	{
+		using var client = CreateClient();
+		var response = await client.PostAsJsonAsync($"api/sessions/{SessionCode}/songs/suggestions", new SongSuggestionRequestDto(song));
+		var suggestedSong = await response.Content.ReadFromJsonAsync<PendingSongDto>();
+		VisitorStatus = $"Suggested {suggestedSong?.Title}.";
+		await LoadPendingSongs();
+	}
+}

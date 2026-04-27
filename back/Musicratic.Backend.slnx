@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="Musicratic.AppHost/Musicratic.AppHost.csproj" />
-  <Project Path="Musicratic.Core.Tests/Musicratic.Core.Tests.csproj" />
-  <Project Path="Musicratic.Core/Musicratic.Core.csproj" />
-  <Project Path="Musicratic.Front.MVP/Musicratic.Front.MVP.csproj" />
-</Solution>

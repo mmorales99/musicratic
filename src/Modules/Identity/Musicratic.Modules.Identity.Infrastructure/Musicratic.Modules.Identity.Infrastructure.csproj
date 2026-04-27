@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Musicratic.Modules.Identity.Application\Musicratic.Modules.Identity.Application.csproj" />
+    <ProjectReference Include="..\Musicratic.Modules.Identity.Domain\Musicratic.Modules.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Musicratic.Shared.Kernel\Musicratic.Shared.Kernel.csproj" />
+  </ItemGroup>
+
+</Project>

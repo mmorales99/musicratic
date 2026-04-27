@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/Host/">
+    <Project Path="Host/Musicratic.Host/Musicratic.Host.csproj" />
+  </Folder>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Identity/">
+    <Project Path="Modules/Identity/Musicratic.Modules.Identity.Api/Musicratic.Modules.Identity.Api.csproj" />
+    <Project Path="Modules/Identity/Musicratic.Modules.Identity.Application/Musicratic.Modules.Identity.Application.csproj" />
+    <Project Path="Modules/Identity/Musicratic.Modules.Identity.Domain/Musicratic.Modules.Identity.Domain.csproj" />
+    <Project Path="Modules/Identity/Musicratic.Modules.Identity.Infrastructure/Musicratic.Modules.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Modules/MusicSessions/">
+    <Project Path="Modules/MusicSessions/Musicratic.Modules.MusicSessions.Api/Musicratic.Modules.MusicSessions.Api.csproj" />
+    <Project Path="Modules/MusicSessions/Musicratic.Modules.MusicSessions.Application/Musicratic.Modules.MusicSessions.Application.csproj" />
+    <Project Path="Modules/MusicSessions/Musicratic.Modules.MusicSessions.Domain/Musicratic.Modules.MusicSessions.Domain.csproj" />
+    <Project Path="Modules/MusicSessions/Musicratic.Modules.MusicSessions.Infrastructure/Musicratic.Modules.MusicSessions.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Musicratic.Shared.Contracts/Musicratic.Shared.Contracts.csproj" />
+    <Project Path="Shared/Musicratic.Shared.Kernel/Musicratic.Shared.Kernel.csproj" />
+  </Folder>
+</Solution>

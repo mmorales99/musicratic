@@ -1,0 +1,120 @@
+@page "/shop-owner"
+@rendermode @(new InteractiveServerRenderMode())
+@inject NavigationManager Navigation
+
+<section class="panel">
+	<div class="panel-grid">
+		<div>
+			<p class="eyebrow">Shop owner</p>
+			<h2 class="section-title">Session runtime test</h2>
+			<p class="muted">Start and close the session, then inspect the payload the visitor receives.</p>
+
+			<div class="field">
+				<label>Session code</label>
+				<input @bind="SessionCode" />
+			</div>
+
+			<div class="button-row">
+				<button class="button primary" @onclick="LoadSessionPayload">Load payload</button>
+				<button class="button" @onclick="LoadRuntimeStates">Load runtime states</button>
+				<button class="button warning" @onclick="StartSession">Start session</button>
+				<button class="button" @onclick="CloseSession">Close session</button>
+			</div>
+
+			<div class="status">@OwnerStatus</div>
+		</div>
+
+		<div>
+			<h3 class="section-title">Current payload</h3>
+			@if (SessionPayload is null)
+			{
+				<p class="muted">No payload loaded yet.</p>
+			}
+			else
+			{
+				<ul class="list">
+					<li class="list-item"><strong>Session:</strong> @SessionPayload.SessionCode</li>
+					<li class="list-item"><strong>State:</strong> @SessionPayload.SessionState</li>
+					<li class="list-item"><strong>Can suggest:</strong> @SessionPayload.CanSuggestSongs</li>
+					<li class="list-item"><strong>Playlist songs:</strong> @SessionPayload.Playlist.Count</li>
+					<li class="list-item"><strong>Available songs:</strong> @SessionPayload.AvailableSongs.Count</li>
+				</ul>
+			}
+		</div>
+	</div>
+
+	<div class="grid-2" style="margin-top: 20px;">
+		<div>
+			<h3 class="section-title">Runtime states</h3>
+			@if (RuntimeStates is null)
+			{
+				<p class="muted">No runtime states loaded yet.</p>
+			}
+			else
+			{
+				<ul class="list">
+					@foreach (var state in RuntimeStates)
+					{
+						<li class="list-item">
+							<strong>@state.Name</strong>
+							<div class="muted">@state.Description</div>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+
+		<div>
+			<h3 class="section-title">Latest action</h3>
+			<p class="muted">@ActionMessage</p>
+		</div>
+	</div>
+</section>
+
+@code {
+	private string SessionCode { get; set; } = "shop-001";
+	private SessionJoinPayloadDto? SessionPayload { get; set; }
+	private SessionRuntimeStateInfoDto[]? RuntimeStates { get; set; }
+	private string OwnerStatus { get; set; } = "Ready for runtime testing.";
+	private string ActionMessage { get; set; } = "No action yet.";
+
+	private HttpClient CreateClient() => new() { BaseAddress = new Uri(Navigation.BaseUri) };
+
+	protected override async Task OnInitializedAsync()
+	{
+		await LoadRuntimeStates();
+		await LoadSessionPayload();
+	}
+
+	private async Task LoadSessionPayload()
+	{
+		using var client = CreateClient();
+		SessionPayload = await client.GetFromJsonAsync<SessionJoinPayloadDto>($"api/sessions/{SessionCode}");
+		OwnerStatus = $"Loaded payload for {SessionCode}.";
+	}
+
+	private async Task LoadRuntimeStates()
+	{
+		using var client = CreateClient();
+		RuntimeStates = await client.GetFromJsonAsync<SessionRuntimeStateInfoDto[]>("api/sessions/runtime/states");
+		ActionMessage = "Loaded runtime state catalog.";
+	}
+
+	private async Task StartSession()
+	{
+		using var client = CreateClient();
+		var response = await client.PostAsJsonAsync("api/sessions/runtime/start", new { });
+		var state = await response.Content.ReadFromJsonAsync<RuntimeTransitionDto>();
+		OwnerStatus = $"Start requested. Backend returned: {state}.";
+	}
+
+	private async Task CloseSession()
+	{
+		using var client = CreateClient();
+		var response = await client.PostAsJsonAsync("api/sessions/runtime/close", new { });
+		var state = await response.Content.ReadFromJsonAsync<RuntimeTransitionDto>();
+		OwnerStatus = $"Close requested. Backend returned: {state}.";
+	}
+
+	private sealed record RuntimeTransitionDto(SessionRuntimeState State, string Description);
+}

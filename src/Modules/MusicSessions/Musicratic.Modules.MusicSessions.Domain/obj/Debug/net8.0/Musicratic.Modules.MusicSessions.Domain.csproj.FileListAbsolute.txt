@@ -1,0 +1,16 @@
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\bin\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.deps.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\bin\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\bin\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\bin\Debug\net8.0\Musicratic.Shared.Kernel.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\bin\Debug\net8.0\Musicratic.Shared.Kernel.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.csproj.AssemblyReference.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.AssemblyInfoInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.AssemblyInfo.cs
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.csproj.CoreCompileInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.sourcelink.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicrat.4AFD4644.Up2Date
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\refint\Musicratic.Modules.MusicSessions.Domain.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\Musicratic.Modules.MusicSessions.Domain.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Modules\MusicSessions\Musicratic.Modules.MusicSessions.Domain\obj\Debug\net8.0\ref\Musicratic.Modules.MusicSessions.Domain.dll

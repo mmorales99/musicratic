@@ -1,0 +1,12 @@
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\bin\Debug\net8.0\Musicratic.Shared.Kernel.deps.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\bin\Debug\net8.0\Musicratic.Shared.Kernel.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\bin\Debug\net8.0\Musicratic.Shared.Kernel.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.AssemblyInfoInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.AssemblyInfo.cs
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.csproj.CoreCompileInputs.cache
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.sourcelink.json
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\refint\Musicratic.Shared.Kernel.dll
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\Musicratic.Shared.Kernel.pdb
+C:\Users\amat_\Desktop\MCV ingenieros\musicratic\src\Shared\Musicratic.Shared.Kernel\obj\Debug\net8.0\ref\Musicratic.Shared.Kernel.dll
